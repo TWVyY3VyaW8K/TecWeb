@@ -109,6 +109,7 @@
           </div>
           </div>
           <div id="commentSection" class="container1024">
+          <form action="/AddComment.php" method="post">
           <div class="comment" id="topComment">
           <?php
             if($myDb->connected && isset($_SESSION['Username']))
@@ -118,12 +119,15 @@
            ?>
            <?php
             $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : "";
-            $dis = !isset($_SESSION['Username']) ? "openModal('LoginModal')" : "doComment('$Title','$Artist')";
            ?>
-           <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
+           <textarea name="Commento" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
         <?php
-            echo '<input type="button" value="Send" id="comment-btn" onclick="'.$dis.'"/></div>';
-          ?>
+            echo '<input type="submit" value="Send" id="comment-btn" '.$en.'/></div>';
+          ?>  
+          <input type="hidden" name="Opera" value=<?php echo '"'.$Title.'"' ?>>
+          <input type="hidden" name="Creatore" value=<?php echo '"'.$Artist.'"' ?>>
+        </form> 
+      </div>
           <?php
               if($myDb->connected)
               {
@@ -134,8 +138,9 @@
                   while($row = $result->fetch_assoc())
                   {
                     echo '<div class="comment">';
-                    if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin')
-                    	echo '<div class="delComment" onclick="removeComment(this, '.$row['ID'].')"> x </div>';
+                    if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin') {
+                    	echo '<div class="delComment"> <a href="RemoveComment.php?ID='.$row['ID'].' x</a></div>';
+                    }
                     echo '<a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a>';
                     echo $row['Commento']."</div>";
                   }
