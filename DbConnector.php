@@ -2,7 +2,7 @@
 class DbConnector {
 	const USER = 'root';
 	const PWD = '';
-	const DBNAME = 'my_artbit';
+	const DBNAME = 'tecweb';
 	const HOST = 'localhost';
 
 	public $connected = false;//used to know current status
@@ -32,7 +32,7 @@ class DbConnector {
 		$result = $this->db->query($q);
 		return $result;
 	}
-	
+
     public function lastInsertID(){
     return $this->db->insert_id;
     }
