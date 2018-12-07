@@ -17,14 +17,14 @@
     <body onload="eventListnerforLoginModal(); magnify(); /*setResizeListner();*/" >
       <?php
         require_once "header.php";
-        require_once "loginModal.php";
         require_once "searchModal.php";
-        require_once "signUpModal.php";
-        require_once "editProfileModal.php";
         require_once "DbConnector.php";
         require_once "functions.php";
         require_once "likedByModal.php";
-
+       // setcookie("backPage", "/$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
+        saveBackPage();
+        //echo $_SERVER['HTTP_HOST'];
+       // echo $_SERVER['REQUEST_URI'];
         $Title = $_GET['Title'];
         $Artist = $_GET['Artist'];
 

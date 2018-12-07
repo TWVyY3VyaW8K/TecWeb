@@ -16,10 +16,7 @@
 
   <?php
   require_once "header.php";
-  require_once "loginModal.php";
   require_once "searchModal.php";
-  require_once "signUpModal.php";
-  require_once "editProfileModal.php";
   require_once "DbConnector.php";
   require_once "functions.php";
 ?>

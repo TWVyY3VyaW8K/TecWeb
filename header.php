@@ -63,13 +63,18 @@
         echo '<a href="#" onclick="openModal(\'SignUpModal\')">Sign Up</a>';
     ?>
   </li>
-  <li class="user">
     <?php
       if(!isset($_SESSION['Username']))
+        if(($page)=="login.php")
+          echo '<li class="user activeMenuItem"><div class="notClickable">Login</div></li>';
+      else{
+        echo '<li class="user "><a href="login.php">Login</a></li>';
+
+      }
         //echo '<a href="#" onclick="openLoginModal()">Login</a>';
-        echo '<a href="#" onclick="openModal(\'LoginModal\')">Login</a>';
+    
+
     ?>
-   </li>
    <li class="user account-content">
     <?php
       if(isset($_SESSION['Username']))

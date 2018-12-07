@@ -234,12 +234,12 @@ hr{
   text-align: center;
   color: #FFFFFF;
   background-image: linear-gradient(-90deg, #008f88,#4fa46d);
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
 
 }
-/*Modals css---------------------------------------------------------------------------------------------------------*/
+/*login css---------------------------------------------------------------------------------------------------------*/
 /* Full-width input fields */
 input[type=text], input[type=password] {
 	width: 100%;
@@ -260,7 +260,7 @@ button {
 button:hover {
     background-color: rgba(106, 90, 205, 0.7);
 }
-.Modal button{
+.loginCard button{
 	width: 49%;
     float: left;
     margin: 0.5%;
@@ -276,24 +276,32 @@ button:hover {
     background: #0f4167;
 }
 /* Extra styles for the cancel button */
-.cancelbtn {
-	background-color: #f44336;
+.backButton {
+    width: 49%;
+    float: left;
+    margin: 0.5%;
+    font-size: 1.2em;
+    color: white;
+    background-color: red;
+    text-align: center;
+    text-decoration: none;
+    padding: 1em;
 }
-.cancelbtn:hover{
+.backButton:hover{
 	/*background-color: #8B0000;*/
     background-color: rgba(243, 67, 54, 0.7);
     color: white;
 }
 
 /*head for the  moadl*/
-.modalHead {
+.loginCard-Head {
 	text-align:center;
 	position: relative;
 	padding: 0.8em 0em;
 	font-size:1.5em;
 }
-/*footer for the  modal*/
-.modalFotter{
+/*footer for the  login*/
+.loginCard-footer{
 background-color: rgba(241,241,241,1);
 }
 
@@ -303,14 +311,11 @@ background-color: rgba(241,241,241,1);
 }
 
 
-/* Modal */
-.Modal {
-	margin-top: 8%;
-	height: 100%;
-  width: 50%;
-  border: solid 1px;
-
-  display: flex;
+/* loginCard */
+.loginCard {
+margin-top: 8%;
+width: 50%;
+border: solid 1px;
 }
 
 #scrollToTop {
@@ -326,8 +331,8 @@ background-color: rgba(241,241,241,1);
     border-radius: 4px;
 }
 
-/* Modal Content/Box */
-.modal-content {
+/* login Content/Box */
+.loginCard-content {
     background-color: #fefefe;
     margin: auto;
     font-weight: bold;
@@ -341,6 +346,9 @@ background-color: rgba(241,241,241,1);
 	padding:0;
 	font-size:1.5em;
 	margin-bottom:0.2em;
+}
+.red{
+    color:red;
 }
 
 
@@ -377,18 +385,19 @@ background-color: rgba(241,241,241,1);
 	padding-top:4em;
 	}
 
-	/*wide screen modal*/
-	.modal-content{
+	/*wide screen login*/
+	.loginCard-content{
 		margin:auto;
 		width:100%;
 		max-height:100%;
 		height:100%;
 	}
-	.modalFotter{
+	.loginCard-footer{
 		background-color: none;
 	}
-	.Modal button{
-		width:100%;
+	.loginCard,.loginCard button, .backButton{
+        width:100%;
+        border: 0px;
 	}
 }
 

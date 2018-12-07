@@ -2,7 +2,7 @@
 class DbConnector {
 	const USER = 'root';
 	const PWD = '';
-	const DBNAME = 'tecweb';
+	const DBNAME = 'my_artbit';
 	const HOST = 'localhost';
 
 	public $connected = false;//used to know current status

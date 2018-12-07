@@ -18,32 +18,74 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-  $myDb= new DbConnector();
-  $myDb->openDBConnection();
+	$connectionError=$invalidPwd=$invalidUsw=false;
+
+	if(isset($_POST["pwd"])&&isset($_POST["usr"])){
+			$pwd= htmlspecialchars($_POST["pwd"], ENT_QUOTES, "UTF-8");//cleaning the input
+			$usr= htmlspecialchars($_POST["usr"], ENT_QUOTES, "UTF-8");
+			//connecting to db
+			$myDb= new DbConnector();
+			$myDb->openDBConnection();
+			$a="da";
+			if($myDb->connected)
+			{
+				$result = $myDb->doQuery("select * from artisti where Username='".$usr."'");//excecute query
+				if(isset($usr) && !is_null($result) && $result->num_rows === 1)
+				{
+					$row = $result->fetch_assoc();
+					if (password_verify($pwd, $row["Password"]))
+					{
+						$_SESSION["Username"] = $usr;
+						if(isset($_COOKIE['backPage'])) {
+							header("location: ".$_COOKIE['backPage']);
+							die();
+						} else {
+							header("location: /index.php");
+							die();
+						}
+					}
+					else
+						$invalidPwd=true;
+				}
+				else
+						$invalidUsw=true;
+			}
+			else 
+					$connectionError=true;
+			$myDb->disconnect();
+	}
+
+
   ?>
-  <!-- The Modal -->
-  <div id="LoginModal" class="Modal">
+  <div id="LoginCard" class="loginCard container1024">
   	<!-- Modal Content -->
-  	<form class="modal-content  container1024" method="post" action="/Login.php" onsubmit="return doLogin(event)">
-  		<div class="modalHead">
+  	<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+  	<!--<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>" onsubmit="return doLogin(event)">-->
+  		<div class="loginCard-Head">
   			<h1>LOGIN FORM</h1>
   		</div>
   		<div class="container">
-  			<label for="usr">Username</label>
-  			<input id="usr" type="text" placeholder="Enter Username" name="usr" maxlength="20"/>
+  			<label for="usr">Username<?php if($invalidUsw)echo '<span class="red">**<span>' ?></label>
+  			<input id="usr" type="text" name="usr" maxlength="20"/>
 
-  			<label for="pwd">Password</label>
-  			<input  id="pwd" type="password" placeholder="Enter Password" name="pwd" maxlength="30"/>
+  			<label for="pwd">Password<?php if($invalidPwd)echo '<span class="red">**<span>' ?></label>
+  			<input  id="pwd" type="password" name="pwd" maxlength="30"/>
 
   		</div>
   		<div class="container" id="InvalidLogin">
   			<!--container for invalid login message-->
-
+				<?php 
+					if($connectionError)echo "Connection Error. Try again later.";
+					if($invalidPwd)echo "Invalid Password";
+					if($invalidUsw)echo "Invalid Username";
+				
+				
+				?>
   		</div>
 
-  		<div class="container modalFotter" >
+  		<div class="container loginCard-footer" >
   			<button type="submit">Login</button>
-  			<button type="button" onclick="closeModal('LoginModal')" class="cancelbtn">Cancel</button>
+				<?php echo getBackButton(); ?>
   		</div>
 
   	</form>

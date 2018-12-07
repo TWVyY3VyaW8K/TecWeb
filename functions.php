@@ -187,4 +187,20 @@
     function escapePathTraversal($path){
         return str_replace("/", "", str_replace(".", "", $path));
     }
-?>
+
+
+    /*---------------------------------------------------------*/
+    //generates the code for the back button
+    function getBackButton(){
+        if(isset($_COOKIE['backPage'])) {
+            return '<a href="'.$_COOKIE['backPage'].'" class="backButton">Back</a>';
+        } else {
+            return '<a href="/index.php" class="backButton">Back</a>';
+
+        }
+    }
+    //save the back page
+    function saveBackPage(){
+        setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
+    }
+?>
