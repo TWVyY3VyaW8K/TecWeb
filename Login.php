@@ -60,7 +60,6 @@
   <div id="LoginCard" class="loginCard container1024">
   	<!-- Modal Content -->
   	<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-  	<!--<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>" onsubmit="return doLogin(event)">-->
   		<div class="loginCard-Head">
   			<h1>LOGIN FORM</h1>
   		</div>

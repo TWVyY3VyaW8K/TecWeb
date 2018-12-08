@@ -7,6 +7,8 @@
   <ul>
     <?php
       session_start();
+      if(isset($_POST['logOut']))
+        unset($_SESSION['Username']);
       $page = basename($_SERVER['PHP_SELF']);
     ?>
     <li class="firstMenuItem <?php if(($page)=="index.php")echo "activeMenuItem";?>"><?php if(($page)!="index.php")echo '<a href="index.php">Home</a>'; else echo '<div class="notClickable">Home</div>';?></li>
@@ -75,12 +77,17 @@
     
 
     ?>
-   <li class="user account-content">
     <?php
-      if(isset($_SESSION['Username']))
-        echo '<a href="#" onclick="doLogOut()" >Logout</a>';
+      if(isset($_SESSION['Username'])){
+        echo '<li class="user account-content">';
+        echo'<form class="loginCard-content " method="post" action="'. $_SERVER["PHP_SELF"].'">';
+        echo '<input type="submit" value="logOut">';
+        echo '</form>';
+        echo '</li>';
+
+      }
     ?>
-    </li>
+
     <li class="hamburgerMenu">
         <div class="hamburgerMenuContainer" onclick="openDrobDownMenu(this)">
           <div class="line1"></div>
