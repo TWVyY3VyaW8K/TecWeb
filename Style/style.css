@@ -852,6 +852,11 @@ tr:nth-child(odd) {
     white-space: nowrap;*/
     overflow: hidden;
 }
+.breadcrumb{
+    background-color: rgba(0,0,0,0.15);
+    padding: 0.5em;
+    font-size: 1.2em;
+}
 /*
 #skipmenu:focus-within {
   height: 100%;

@@ -126,3 +126,32 @@
   </ul>
   </div>
 </div>
+
+<div class=" breadcrumb">
+  <div class="container1024">
+      <?php 
+      echo "You are on: ";
+      if($page=="index.php")
+          echo "HOME";
+      if($page=="gallery.php")
+          echo "GALLERY";
+      if($page=="upload.php")
+          echo "UPLOAD";
+      if($page=="likedItems.php")
+          echo "LIKED ITEMS";
+      if($page=="userItems.php")
+          echo "USER ITEMS";
+      if($page=="signUp.php")
+          echo "SIGN UP";
+      if($page=="resetPassword.php")
+          echo "RESET PASSWORD";
+      if($page=="login.php")
+          echo "LOGIN";
+      if($page=="editProfile.php")
+          echo "EDIT PROFILE";
+      if($page=="viewArtwork.php")
+          echo '<a href="'.$_SERVER['HTTP_REFERER'].'">GALLERY</a> >> '.$_GET['Title'];
+    ?>
+  </div>
+
+</div>
