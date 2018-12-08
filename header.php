@@ -7,64 +7,90 @@
   <ul>
     <?php
       session_start();
-      if(isset($_POST['logOut']))
+      if(isset($_POST['logOut'])){//log out request
         unset($_SESSION['Username']);
+      }
+
       $page = basename($_SERVER['PHP_SELF']);
     ?>
-    <li class="firstMenuItem <?php if(($page)=="index.php")echo "activeMenuItem";?>"><?php if(($page)!="index.php")echo '<a href="index.php">Home</a>'; else echo '<div class="notClickable">Home</div>';?></li>
-    <li class="<?php if(($page)=="gallery.php")echo "activeMenuItem";?>"><?php if(($page)!="gallery.php")echo '<a href="gallery.php">Gallery</a>'; else echo '<div class="notClickable">Gallery</div>';?></li>
-    <li class="<?php if(($page)=="upload.php")echo "activeMenuItem";?>"><?php if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>'; else echo '<div class="notClickable">Upload</div>';?></li>
-    <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";?>">
-      <?php
-        //Se l'utente è loggato allora può vedere i suoi preferiti
-        if(isset($_SESSION['Username'])){
-          if(($page)!="likedItems.php")
-            echo '<a href="likedItems.php">Liked Images</a>';
-          else
-            echo '<div class="notClickable">Liked Images</div>';
-        }
-      ?>
+    <li class="firstMenuItem <?php if(($page)=="index.php")echo "activeMenuItem";?>">
+      <?php if(($page)!="index.php")echo '<a href="index.php">Home</a>'; else echo '<div class="notClickable">Home</div>';?>
     </li>
-    <li class="<?php if(($page)=="userItems.php")echo "activeMenuItem";?>">
-      <?php
-        //Se l'utente è loggato allora può vedere i suoi preferiti
-        if(isset($_SESSION['Username'])){
-          if(($page)!="userItems.php")
-            echo '<a href="userItems.php">Your Images</a>';
-          else
-            echo '<div class="notClickable">Your Images</div>';
-        }
-      ?>
+
+    <li class="<?php if(($page)=="gallery.php")echo "activeMenuItem";?>">
+      <?php if(($page)!="gallery.php")echo '<a href="gallery.php">Gallery</a>'; else echo '<div class="notClickable">Gallery</div>';?>
     </li>
+
+    <li class="<?php if(($page)=="upload.php")echo "activeMenuItem";?>">
+      <?php if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>'; else echo '<div class="notClickable">Upload</div>';?>
+    </li>
+    
+    
+    <?php
+      //Se l'utente è loggato allora può vedere i suoi preferiti
+      if(isset($_SESSION['Username'])){
+        echo ' <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";">';
+        if(($page)!="likedItems.php")
+          echo '<a href="likedItems.php">Liked Images</a>';
+        else
+          echo '<div class="notClickable">Liked Images</div>';
+
+        echo '</li>';
+      }
+    ?>
+
+
+    <?php
+      //Se l'utente è loggato allora può vedere le sue immagini
+      if(isset($_SESSION['Username'])){
+        echo ' <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";">';
+        if(($page)!="userItems.php")
+          echo '<a href="userItems.php">Your Images</a>';
+        else
+          echo '<div class="notClickable">Your Images</div>';
+        echo '</li>';
+
+      }
+    ?>
+
+
     <li><a href="index.php#team">Team</a></li>
     <li>
       <a class="btnSearch" href="#" onclick="openModal('SearchModal')"><span class="searchIcon"></span></a>
     </li>
-    <li class="user account-dropdown">
-      <?php //To Sign in or edit profile of User
+      <?php //To Edit Profile and logOut
+ 
+
+
+        
         if(isset($_SESSION['Username'])){
+          echo ' <li class="user account-dropdown">';  
           echo '<a href="#">'.$_SESSION["Username"].'</a>';
-          echo '<div class="account-dropdown-content">
-                  <a href="#" onclick="openModal(\'EditProfileModal\')">Edit Profile</a>
-                  <a href="#" onclick="doLogOut()">Logout</a>
-                </div>';
+          echo '<div class="account-dropdown-content">';
+          echo '<a href="#" onclick="openModal("EditProfileModal")">Edit Profile</a>';
+          echo '<form  method="post" action="'. $_SERVER["PHP_SELF"].'">';
+          echo '<input name="logOut" type="submit" value="LogOut"></input>';
+          echo '</form>';
+          echo '</div>';
+          echo '</li>';
         }
+      
+
+
       ?>
-  </li>
-  <li class="user account-content">
-    <?php //To Sign in or edit profile of User
-      if(isset($_SESSION['Username']))
-        //echo '<a href="#" onclick="openEditProfileModal()">Edit Profile: '.$_SESSION["Username"].'</a>';
-        echo '<a href="#" onclick="openModal(\'EditProfileModal\')">Edit Profile: '.$_SESSION["Username"].'</a>';
-    ?>
-  </li>
-  <li class="user">
-    <?php //To Sign in or edit profile of User
-      if(!isset($_SESSION['Username']))
-        //echo '<a href="#" onclick="openSignUpModal()" >Sign Up</a>';
+
+
+    <?php 
+      if(!isset($_SESSION['Username'])){
+        echo '<li class="user">';
+
         echo '<a href="#" onclick="openModal(\'SignUpModal\')">Sign Up</a>';
+        echo '</li>';
+      }
     ?>
   </li>
+
+
     <?php
       if(!isset($_SESSION['Username']))
         if(($page)=="login.php")
@@ -73,20 +99,10 @@
         echo '<li class="user "><a href="login.php">Login</a></li>';
 
       }
-        //echo '<a href="#" onclick="openLoginModal()">Login</a>';
     
 
     ?>
-    <?php
-      if(isset($_SESSION['Username'])){
-        echo '<li class="user account-content">';
-        echo'<form class="loginCard-content " method="post" action="'. $_SERVER["PHP_SELF"].'">';
-        echo '<input type="submit" value="logOut">';
-        echo '</form>';
-        echo '</li>';
 
-      }
-    ?>
 
     <li class="hamburgerMenu">
         <div class="hamburgerMenuContainer" onclick="openDrobDownMenu(this)">

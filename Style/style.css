@@ -69,24 +69,32 @@ h2 {
 	margin: 0em 1em;
 }
 
-.menu a, .menu p, .hamburgerMenuContainer, .notClickable{
+.menu a, .menu p, .hamburgerMenuContainer, .notClickable,.menu input{
   color: #FFFFFF;
   display: block;
   padding: 1.0em 1.0em;
   text-decoration: none;
   text-align: center;
 }
-
-.menu a:hover,.activeMenuItem a, .notClickable{
-    /*background-color: #191970;*/
+.menu input{
+    background-color: transparent;
+    border: 0px;
+    width: 100%;
+}
+.menu a:hover,.activeMenuItem a, .notClickable,.menu input:hover{
     color:black!important;
     background-color:white;
+    cursor: pointer;
 }
 
 .menu a.btnSearch:hover {
     background-image: url(../Images/magnifying-glass-black.png);
 }
-
+/* Show the dropdown menu on hover */
+.account-dropdown:hover .account-dropdown-content {
+    display: block;
+  }
+  
 .background-color-90929294{
     background-color: #9290901a;
 }
@@ -153,12 +161,6 @@ hr{
   margin: 0 0.5%;
 }
 
-@media only screen and (max-width: 768px) {
-  .home_picture{
-    width: 59%;
-    margin: 0 20%;
-  }
-}
 
 .home_picture img{
   width: 100%;
@@ -194,13 +196,6 @@ hr{
   margin-top:2%;
 }
 
-@media screen and (max-width: 768px){
-	.semicolumn{
-		float: none;
-		margin: 1.0em auto;
-		width: 98%
-	}
-}
 /*---------Team member---------------------------------------------------------*/
 .teamMember {
   border-radius: 8%;
@@ -213,12 +208,6 @@ hr{
   overflow: hidden;
 }
 
-@media only screen and (max-width: 768px) {
-  .teamMember {
-    width: 46%;
-    margin: 0 2% 2% ;
-  }
-}
 
 .teamMember img {
   margin: 0% auto 10%;
@@ -352,54 +341,7 @@ border: solid 1px;
 }
 
 
-/*MEDIA QUERY-----------------------------------------------------*/
-@media screen and (max-width: 1024px) {
-	/*menu*/
-	.menu .btnSearch{float: none;}
-	.menu li {display: none;}
-	.menu li.hamburgerMenu {
-		float: right;
-		display: block;
-	}
 
-	.menu.responsive {position: relative;}
-	.menu.responsive .hamburgerMenu {
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
-	.menu.responsive li {
-		float: none;
-		display: block;
-		text-align: left;
-	}
-	.menu ul{
-		top:0;
-		right:0;
-		position: relative;
-	}
-	.menu img {
-		margin:0.5em;
-	}
-	.firstMenuItem{
-	padding-top:4em;
-	}
-
-	/*wide screen login*/
-	.loginCard-content{
-		margin:auto;
-		width:100%;
-		max-height:100%;
-		height:100%;
-	}
-	.loginCard-footer{
-		background-color: none;
-	}
-	.loginCard,.loginCard button, .backButton{
-        width:100%;
-        border: 0px;
-	}
-}
 
 /* *************************************************** GALLERY PAGE ******************************************************************************/
 /* -------- Stile per il pulsante di ricerca libera (Start) --------- */
@@ -695,72 +637,6 @@ div.divCategoryButtons button{
     }
 }
 */
-@media screen and (max-width: 400px){
-    .wrapper div{
-        width: 2.0em;
-    }
-    .galleryCaption .wrapper .width-45{
-        padding: 0;
-    }
-    .galleryCaption .width-55 .btnDiscover::before{
-        left: 25%;
-    }
-}
-@media only screen and (max-width:670px){
-    .galleryBoard .liFigures{
-        width: 100%;
-    }
-}
-@media screen and (min-width:670px){
-    .galleryBoard .liFigures{
-        width: 50%;
-    }
-    .galleryBoard .liFigures:nth-of-type(2n+1){
-        clear: left;
-    }
-}
-@media screen and (min-width: 1024px){
-    .gallery{
-        width: 90%;
-    }
-    .galleryBoard .liFigures{
-        width: 33.33333%;
-    }
-    .galleryBoard .liFigures:nth-of-type(2n+1) {
-        clear: none;
-    }
-
-    .galleryBoard .liFigures:nth-of-type(3n+1) {
-        clear: left;
-    }
-
-    .galNotThree .galleryBoard .liFigures{
-        width: 50%;
-    }
-    .galNotThree .galleryBoard .liFigures:nth-of-type(2n+1){
-        clear: left;
-    }
-
-    .galNotThree .galleryBoard .liFigures:nth-of-type(3n+1) {
-        clear: none;
-    }
-
-}
-@media screen and (min-width: 1400px){
-    .galleryBoard .liFigures, .galNotThree .galleryBoard .liFigures{
-        width: 25%;
-    }
-    .gallery{width: 100%;}
-    .galleryBoard .liFigures:nth-of-type(3n+1) , .galNotThree .galleryBoard .liFigures:nth-of-type(3n+1){
-        clear: none;
-    }
-    .galNotThree .galleryBoard .liFigures:nth-of-type(2n+1){
-        clear: none;
-    }
-    .galleryBoard .liFigures:nth-of-type(4n+1), .galNotThree .galleryBoard .liFigures:nth-of-type(4n+1) {
-        clear: left;
-    }
-}
 
 /* Pagination ..........---------------*/
 .div-bar:before, .div-bar:after{
@@ -854,20 +730,8 @@ div.divCategoryButtons button{
   z-index: 1;
   background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
 }
-/* Show the dropdown menu on hover */
-.account-dropdown:hover .account-dropdown-content {
-  display: block;
-}
-@media screen and (min-width: 1025px) {
-	.menu li.user.account-content{
-	  display: none;
-	}
-}
-@media screen and (max-width: 1024px) {
-	.menu li.user.account-dropdown{
-	  display: none;
-	}
-}
+
+
 /*---------------------------------TABLE------------------------------------------------------------*/
 table {
   border-collapse: collapse;
@@ -964,3 +828,187 @@ tr:nth-child(odd) {
   height: 100%;
 }
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************MEDIA QUERY**************************************************/
+
+
+
+
+@media screen and (max-width: 400px){
+    .wrapper div{
+        width: 2.0em;
+    }
+    .galleryCaption .wrapper .width-45{
+        padding: 0;
+    }
+    .galleryCaption .width-55 .btnDiscover::before{
+        left: 25%;
+    }
+}
+@media only screen and (max-width:670px){
+    .galleryBoard .liFigures{
+        width: 100%;
+    }
+}
+@media screen and (min-width:670px){
+    .galleryBoard .liFigures{
+        width: 50%;
+    }
+    .galleryBoard .liFigures:nth-of-type(2n+1){
+        clear: left;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .home_picture{
+      width: 59%;
+      margin: 0 20%;
+    }
+
+	.semicolumn{
+		float: none;
+		margin: 1.0em auto;
+		width: 98%
+	}
+
+    .teamMember {
+      width: 46%;
+      margin: 0 2% 2% ;
+    }
+  }
+
+
+
+@media screen and (max-width: 1024px) {
+	/*menu*/
+	.menu .btnSearch{
+        float: none;
+    }
+	.menu li {
+        display: none;
+    }
+
+	.menu li.hamburgerMenu {
+		float: right;
+		display: block;
+	}
+
+	.menu.responsive {
+        position: relative;
+    }
+	.menu.responsive .hamburgerMenu {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.menu.responsive li {
+		float: none;
+		display: block;
+        text-align: left;
+    }
+    .account-dropdown{
+        width: 100%;
+    }
+	.menu ul{
+		top:0;
+		right:0;
+		position: relative;
+	}
+	.menu img {
+		margin:0.5em;
+	}
+	.firstMenuItem{
+	padding-top:4em;
+    }
+    .account-dropdown-content{
+        position: relative;
+        background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+        display: block;
+    }
+
+	/*wide screen login*/
+	.loginCard-content{
+		margin:auto;
+		width:100%;
+		max-height:100%;
+		height:100%;
+	}
+	.loginCard-footer{
+		background-color: none;
+	}
+	.loginCard,.loginCard button, .backButton{
+        width:100%;
+        border: 0px;
+	}
+}
+
+
+@media screen and (min-width: 1024px){
+    .gallery{
+        width: 90%;
+    }
+    .galleryBoard .liFigures{
+        width: 33.33333%;
+    }
+    .galleryBoard .liFigures:nth-of-type(2n+1) {
+        clear: none;
+    }
+
+    .galleryBoard .liFigures:nth-of-type(3n+1) {
+        clear: left;
+    }
+
+    .galNotThree .galleryBoard .liFigures{
+        width: 50%;
+    }
+    .galNotThree .galleryBoard .liFigures:nth-of-type(2n+1){
+        clear: left;
+    }
+
+    .galNotThree .galleryBoard .liFigures:nth-of-type(3n+1) {
+        clear: none;
+    }
+
+}
+@media screen and (min-width: 1400px){
+    .galleryBoard .liFigures, .galNotThree .galleryBoard .liFigures{
+        width: 25%;
+    }
+    .gallery{width: 100%;}
+    .galleryBoard .liFigures:nth-of-type(3n+1) , .galNotThree .galleryBoard .liFigures:nth-of-type(3n+1){
+        clear: none;
+    }
+    .galNotThree .galleryBoard .liFigures:nth-of-type(2n+1){
+        clear: none;
+    }
+    .galleryBoard .liFigures:nth-of-type(4n+1), .galNotThree .galleryBoard .liFigures:nth-of-type(4n+1) {
+        clear: left;
+    }
+}
