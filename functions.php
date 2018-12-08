@@ -201,7 +201,9 @@
     }
     //save the back page
     function saveBackPage(){
-        $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+       // echo  $_SERVER['HTTP_REFERER'];
+        $_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
+       // $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
        // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
     }

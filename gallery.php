@@ -21,7 +21,7 @@
         require_once "likedByModal.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-        saveBackPage();
+       // saveBackPage();
     ?>
     <div class="gallery container1024" id="content">
         <form method="get" action="" name="formArtFilter">

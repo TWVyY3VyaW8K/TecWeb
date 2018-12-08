@@ -68,7 +68,7 @@
           echo '<a href="#">'.$_SESSION["Username"].'</a>';
           echo '<div class="account-dropdown-content">';
           echo '<a href="#" onclick="openModal("EditProfileModal")">Edit Profile</a>';
-          echo '<form  method="post" action="'. $_SERVER["PHP_SELF"].'">';
+          echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'">';
           echo '<input name="logOut" type="submit" value="LogOut"></input>';
           echo '</form>';
           echo '</div>';
@@ -82,11 +82,16 @@
 
     <?php 
       if(!isset($_SESSION['Username'])){
-        echo '<li class="user">';
 
-        echo '<a href="#" onclick="openModal(\'SignUpModal\')">Sign Up</a>';
-        echo '</li>';
+
+
+
+      if(($page)=="signUp.php")
+        echo '<li class="user activeMenuItem"><div class="notClickable">Sign Up</div></li>';
+      else{
+        echo '<li class="user "><a href="signUp.php">Sign Up</a></li>';
       }
+    }
     ?>
   </li>
 

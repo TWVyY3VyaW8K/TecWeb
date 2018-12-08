@@ -18,6 +18,8 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
+	
+	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false)saveBackPage();
 	$connectionError=$invalidPwd=$invalidUsw=false;
 
 	if(isset($_POST["pwd"])&&isset($_POST["usr"])){
@@ -26,7 +28,6 @@
 			//connecting to db
 			$myDb= new DbConnector();
 			$myDb->openDBConnection();
-			$a="da";
 			if($myDb->connected)
 			{
 				$result = $myDb->doQuery("select * from artisti where Username='".$usr."'");//excecute query
@@ -36,6 +37,7 @@
 					if (password_verify($pwd, $row["Password"]))
 					{
 						$_SESSION["Username"] = $usr;
+				
 						if(isset($_SESSION['backPage'])) {
 							header("location: ".$_SESSION['backPage']);
 							die();
@@ -59,7 +61,6 @@
   ?>
   <div class="fullScreenHeight loginTopPadding">
   <div id="LoginCard" class="loginCard container1024">
-  	<!-- Modal Content -->
   	<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
   		<div class="loginCard-Head">
   			<h1>LOGIN FORM</h1>

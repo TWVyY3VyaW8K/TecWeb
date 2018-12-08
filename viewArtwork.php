@@ -21,7 +21,7 @@
         require_once "DbConnector.php";
         require_once "functions.php";
         require_once "likedByModal.php";
-        saveBackPage();
+       // saveBackPage();
 
         $Title = $_GET['Title'];
         $Artist = $_GET['Artist'];
@@ -58,14 +58,9 @@
               $isLiked = boolImageLiked($Artist,$_SESSION['Username'],$Title)['Result'];
             }
           }
-          else
-             echo "<script> window.location.replace('404.php') </script>";
          }
-         else
-           echo "<script> window.location.replace('404.php') </script>";
         }
-        else
-          echo '<script>alert(\'Database problem!\');</script>';
+
       ?>
       <div class="container1024">
       <h1 id="artworkTitle"><?php echo $Title; ?></h1>

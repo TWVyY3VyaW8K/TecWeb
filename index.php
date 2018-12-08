@@ -20,7 +20,7 @@
 	require_once "likedByModal.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-	saveBackPage();
+//	saveBackPage();
   $myDb= new DbConnector();
   $myDb->openDBConnection();
   ?>

@@ -10,7 +10,7 @@
     min-height: calc(100vh - 101px);
 }
 .loginTopPadding{
-    padding: 8%;
+    padding: 5%;
 }
 
 /*---------Scritte piu' importanti----------------------------------------------*/
@@ -239,10 +239,10 @@ hr{
   padding: 1.0em;
   text-align: center;
   color: #FFFFFF;
-  background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
-  background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+  background: -moz-linear-gradient(-90deg, #008f88,#4fa46d); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-90deg, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008f88', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
+  background-image: linear-gradient(-90deg, #008f88,#4fa46d);
 
 
 }
@@ -250,7 +250,7 @@ hr{
 /* Full-width input fields */
 input[type=text], input[type=password] {
 	width: 100%;
-	padding: 1em;
+	padding: 0.5em;
 	margin: 0.5em 0;
 	display: inline-block;
 	box-sizing: border-box;
@@ -304,7 +304,7 @@ button:hover {
 .loginCard-Head {
 	text-align:center;
 	position: relative;
-	padding: 0.8em 0em;
+	padding: 0.2em 0em;
 	font-size:1.5em;
 }
 /*footer for the  login*/
