@@ -207,4 +207,16 @@
 
        // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
     }
+
+
+    function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pwd = array(); // to declare $pass as an array
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, (strlen($alphabet) - 1));
+            $pwd[] = $alphabet[$n];
+        }
+        return implode($pwd); //turn the array into a string
+    }
+
 ?>

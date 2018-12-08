@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="Style/style.css"/>
 	<link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
 	<script type="text/javascript" src="script.js" ></script>
-  <title>Artbit Login</title>
+  <title>Artbit SignUp</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
 	require_once "DbConnector.php";
 	require_once "functions.php";
 	
-	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr($_SERVER['HTTP_REFERER'], "login.php")==false )saveBackPage();
+	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false)saveBackPage();
     $invalidPwdMinLenght = false;
     $invalidConfirmPwd = false;
     $invalidEmail = false;

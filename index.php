@@ -22,7 +22,7 @@
 	require_once "functions.php";
 //	saveBackPage();
   $myDb= new DbConnector();
-  $myDb->openDBConnection();
+	$myDb->openDBConnection();
   ?>
   <div class="description"><!--general description-->
       <div class="overlay font_medium">

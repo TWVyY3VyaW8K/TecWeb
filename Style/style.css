@@ -267,6 +267,9 @@ button {
 button:hover {
     background-color: rgba(106, 90, 205, 0.7);
 }
+.singleButton{
+    width: 100%!important;
+}
 .loginCard button{
 	width: 49%;
     float: left;

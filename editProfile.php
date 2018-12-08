@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="Style/style.css"/>
 	<link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
 	<script type="text/javascript" src="script.js" ></script>
-  <title>Artbit Login</title>
+  <title>Artbit Edit Profile</title>
 </head>
 
 <body>

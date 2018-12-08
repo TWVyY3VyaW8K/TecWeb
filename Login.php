@@ -19,7 +19,7 @@
 	require_once "DbConnector.php";
 	require_once "functions.php";
 	
-	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false )saveBackPage();
+	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false)saveBackPage();
 	$connectionError=$invalidPwd=$invalidUsw=false;
 
 	if(isset($_POST["pwd"])&&isset($_POST["usr"])){
@@ -71,7 +71,7 @@
 
   			<label for="pwd">Password<?php if($invalidPwd)echo '<span class="red">**<span>' ?></label>
   			<input  id="pwd" type="password" name="pwd" maxlength="30"/>
-
+			Don't remember your password? <a href="resetPassword.php">Click to Reset</a>
   		</div>
   		<div class="container" id="InvalidLogin">
   			<!--container for invalid login message-->
