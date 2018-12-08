@@ -33,8 +33,7 @@ function eventListnerforLoginModal() {
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
-	console.log(document.body.scrollTop);
-	console.log(document.documentElement.scrollTop);
+
 	if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
         document.getElementById("scrollToTop").style.display = "block";
     } else {
@@ -58,169 +57,9 @@ function skipUnfocused(){
 function validateString(str){
 	return !(str==="");
 }
-//function to login using ajax
-function doLogin(event) {
-	event.preventDefault()//prevents to reload the page if login data arent correct
-
-	//getting the values of the fields
-	var usr=document.getElementById('usr').value;
-	var pwd=document.getElementById('pwd').value;
-    if((validateString(usr)===true)&&(validateString(pwd)===true)){
-      // creating ajax object
-      var xhttp;
-      if (window.XMLHttpRequest) {
-      // code for modern browsers
-      xhttp = new XMLHttpRequest();
-      } else {
-      // code for IE6, IE5
-      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      //calback function for the request
-      xhttp.onreadystatechange = function() {
-      	if (this.readyState === 4 && this.status === 200) {
-          //if status is ok
-          if(this.responseText==="Success")
-              location.reload();
-          else
-			  document.getElementById("InvalidLogin").innerHTML = this.responseText;
-
-			  closeModal('imgLoader');
-      	}
-      };
-
-	  openModal('imgLoader');
-      //doing th ajax request
-      xhttp.open("POST", "doLogin.php", true);
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send("usr="+usr+"&pwd="+pwd);
-	}else{
-			document.getElementById("InvalidLogin").innerHTML = "Please Insert a Username/Password";
-
-	}
-  return false;
-}
-
-//function to lofOut using ajax
-function doLogOut(event) {
-
-	// creating ajax object
-	var xhttp;
-	if (window.XMLHttpRequest) {
-	// code for modern browsers
-	xhttp = new XMLHttpRequest();
-	} else {
-	// code for IE6, IE5
-	xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	//calback function for the request
-	xhttp.onreadystatechange = function() {
-	if (this.readyState === 4 && this.status == 200) {
-		//if status is ok
-		if(this.responseText=="success"){
-			document.location.href="/"; //go to home page
-		}
-		closeModal('imgLoader');
-	}
-	};
-	openModal('imgLoader');
-	//doing th ajax request
-	xhttp.open("POST", "doLogOut.php", true);
-	xhttp.send();
-
-}
-
-
-//function to Singh Up using ajax
-function doSignUp(event) {
-	event.preventDefault()//prevents to reload the page if login data arent correct
-    //getting the values of the fields
-	var usr=document.getElementById('usrSignUp').value;
-	var pwd=document.getElementById('pwdSignUp').value;
-	var name=document.getElementById('name').value;
-	var surname=document.getElementById('surname').value;
-
-    if((validateString(usr)===true)&&(validateString(pwd)===true)&&(validateString(name)===true)&&(validateString(surname)===true)){
-		if(pwd.length>=5){
-            // creating ajax object
-            var xhttp;
-            if (window.XMLHttpRequest) {
-            // code for modern browsers
-            xhttp = new XMLHttpRequest();
-            } else {
-            // code for IE6, IE5
-            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            //calback function for the request
-            xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                //if status is ok
-                if(this.responseText==="Success"){
-                    location.reload();
-                }else{
-                    document.getElementById("SignUpMessage").innerHTML = this.responseText;
-                }
-				closeModal('imgLoader');
-            }
-			};
-			openModal('imgLoader');
-            //doing th ajax request
-            xhttp.open("POST", "doSignUp.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("usr="+usr+"&pwd="+pwd+"&name="+name+"&surname="+surname);
-       	}else{
-			document.getElementById("SignUpMessage").innerHTML = "Password must be at least 5 characters";
-		}
-	}else{
-			document.getElementById("SignUpMessage").innerHTML = "Please fill all the fields";
-
-	}
-  	return false;
-}
 
 
 
-//function to Edit Profile using ajax
-function doEditProfile(event) {
-	event.preventDefault()//prevents to reload the page if login data arent correct
-   //getting the values of the fields
-    var usr=document.getElementById('usrEdit').value;
- 	var pwd=document.getElementById('pwdEdit').value;
-  	var name=document.getElementById('nameEdit').value;
-  	var surname=document.getElementById('surnameEdit').value;
-    if((validateString(usr)===true)&&(validateString(pwd)===true)&&(validateString(name)===true)&&(validateString(surname)===true)){
-		if(pwd.length>=5){
-            // creating ajax object
-            var xhttp;
-            if (window.XMLHttpRequest) {
-            // code for modern browsers
-            xhttp = new XMLHttpRequest();
-            } else {
-            // code for IE6, IE5
-            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            //calback function for the request
-            xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                //if status is ok
-                document.getElementById("EditProfileMessage").innerHTML = this.responseText;
-				closeModal('imgLoader');
-            }
-            };
-			openModal('imgLoader');
-            //doing th ajax request
-            xhttp.open("POST", "doEditProfile.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("usr="+usr+"&pwd="+pwd+"&name="+name+"&surname="+surname);
-        }else{
-			document.getElementById("EditProfileMessage").innerHTML = "Password must be at least 5 characters";
-		}
-	}else{
-			document.getElementById("EditProfileMessage").innerHTML = "Please fill all the fields";
-
-	}
-
-  return false;
-}
 
 //drobdown menu event
 function openDrobDownMenu(btn) {

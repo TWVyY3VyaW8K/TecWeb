@@ -16,7 +16,7 @@
 
   <?php
   require_once "header.php";
-  require_once "searchModal.php";
+  //require_once "searchModal.php";
   require_once "DbConnector.php";
   require_once "functions.php";
 ?>

@@ -17,10 +17,10 @@
     <body onload="eventListnerforLoginModal(); magnify(); /*setResizeListner();*/" >
       <?php
         require_once "header.php";
-        require_once "searchModal.php";
+        //require_once "searchModal.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-        require_once "likedByModal.php";
+       // require_once "likedByModal.php";
        // saveBackPage();
 
         $Title = $_GET['Title'];

@@ -18,8 +18,8 @@
         require_once "header.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-        require_once "searchModal.php";
-        require_once "likedByModal.php";
+       // require_once "searchModal.php";
+        //require_once "likedByModal.php";
     ?>
     <div id="imgLoader" class="image-loader display-none">
         <img src="/Images/eclipse.svg">
