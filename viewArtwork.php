@@ -21,10 +21,8 @@
         require_once "DbConnector.php";
         require_once "functions.php";
         require_once "likedByModal.php";
-       // setcookie("backPage", "/$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
         saveBackPage();
-        //echo $_SERVER['HTTP_HOST'];
-       // echo $_SERVER['REQUEST_URI'];
+
         $Title = $_GET['Title'];
         $Artist = $_GET['Artist'];
 

@@ -36,8 +36,8 @@
 					if (password_verify($pwd, $row["Password"]))
 					{
 						$_SESSION["Username"] = $usr;
-						if(isset($_COOKIE['backPage'])) {
-							header("location: ".$_COOKIE['backPage']);
+						if(isset($_SESSION['backPage'])) {
+							header("location: ".$_SESSION['backPage']);
 							die();
 						} else {
 							header("location: /index.php");
@@ -57,6 +57,7 @@
 
 
   ?>
+  <div class="fullScreenHeight loginTopPadding">
   <div id="LoginCard" class="loginCard container1024">
   	<!-- Modal Content -->
   	<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
@@ -89,6 +90,7 @@
 
   	</form>
   </div>
+</div>
 
 
   <?php require_once "footer.html"?>

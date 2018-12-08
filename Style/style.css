@@ -6,6 +6,12 @@
     padding: 0;
     font-size: 1.0em;
 }
+.fullScreenHeight{
+    min-height: calc(100vh - 101px);
+}
+.loginTopPadding{
+    padding: 8%;
+}
 
 /*---------Scritte piu' importanti----------------------------------------------*/
 .font_medium {
@@ -41,8 +47,11 @@ h2 {
 .menu {
 	background-color: #6A5ACD;
 	overflow: hidden;
+    background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
     background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
-     /*background-image: linear-gradient(-90deg #008f88,#4fa46d);*/
+
 }
 .menu .imageLink{
 	padding:0;
@@ -94,7 +103,7 @@ h2 {
 .account-dropdown:hover .account-dropdown-content {
     display: block;
   }
-  
+
 .background-color-90929294{
     background-color: #9290901a;
 }
@@ -174,7 +183,11 @@ hr{
 
 /*---------Statistiche---------------------------------------------------------*/
 .section caption{
+    background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
     background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+
     color: white;
     background-color:gray;
     font-size: 1.3em;
@@ -185,7 +198,11 @@ hr{
 .statistics {
     border-radius: 25px;
     overflow: hidden;
+    background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
     background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+
 }
 
 .semicolumn {
@@ -222,10 +239,11 @@ hr{
   padding: 1.0em;
   text-align: center;
   color: #FFFFFF;
-  background-image: linear-gradient(-90deg, #008f88,#4fa46d);
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
+  background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
+  background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+
 
 }
 /*login css---------------------------------------------------------------------------------------------------------*/
@@ -291,7 +309,7 @@ button:hover {
 }
 /*footer for the  login*/
 .loginCard-footer{
-background-color: rgba(241,241,241,1);
+    background-color: rgba(241,241,241,1);
 }
 
 .container {
@@ -302,9 +320,8 @@ background-color: rgba(241,241,241,1);
 
 /* loginCard */
 .loginCard {
-margin-top: 8%;
-width: 50%;
-border: solid 1px;
+    width: 50%;
+    border: solid 1px ;
 }
 
 #scrollToTop {
@@ -312,12 +329,13 @@ border: solid 1px;
     bottom: 20px;
     right: 30px;
     z-index: 99;
-    font-size: 1.2;
+    font-size: 1.2em;
     outline: none;
     background-color: slateblue;
     cursor: pointer;
     padding: 0.8em;
     border-radius: 4px;
+    display: none;
 }
 
 /* login Content/Box */
@@ -572,7 +590,7 @@ div.divCategoryButtons button{
   cursor: pointer;
 }
 .customLink:visited{
-        color: rgb(85, 26, 139);
+    color: rgb(85, 26, 139);
 }
 
 .gallery .galleryBoard .galleryCaption h2{
@@ -722,13 +740,21 @@ div.divCategoryButtons button{
 	width: 15.0em;
 }
 .account-dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #6a5acd;
-  width: inherit;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+    display: none;
+    position: absolute;
+    background-color: #6a5acd;
+    width: inherit;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+
+    background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
+    background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+
+
+
 }
 
 
@@ -949,8 +975,12 @@ tr:nth-child(odd) {
     }
     .account-dropdown-content{
         position: relative;
-        background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
         display: block;
+        background: -moz-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* FF3.6-15 */
+        background: -webkit-linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d); /* Chrome10-25,Safari5.1-6 */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6A5ACD', endColorstr='#4fa46d',GradientType=0 ); /* IE6-9 */
+        background-image: linear-gradient(-90deg, #6A5ACD, #008f88,#4fa46d);
+
     }
 
 	/*wide screen login*/
