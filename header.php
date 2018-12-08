@@ -9,6 +9,13 @@
       session_start();
       if(isset($_POST['logOut'])){//log out request
         unset($_SESSION['Username']);
+        if(strstr($_SERVER['HTTP_REFERER'], "editProfile.php") || strstr($_SERVER['HTTP_REFERER'], "likedItems.php") ||strstr($_SERVER['HTTP_REFERER'], "userItems.php")  )
+        {
+          header("location: /index.php");
+					die();
+        }
+
+
       }
 
       $page = basename($_SERVER['PHP_SELF']);
@@ -67,7 +74,7 @@
           echo ' <li class="user account-dropdown">';  
           echo '<a href="#">'.$_SESSION["Username"].'</a>';
           echo '<div class="account-dropdown-content">';
-          echo '<a href="#" onclick="openModal("EditProfileModal")">Edit Profile</a>';
+          echo '<a href="editProfile.php">Edit Profile</a>';
           echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'">';
           echo '<input name="logOut" type="submit" value="LogOut"></input>';
           echo '</form>';

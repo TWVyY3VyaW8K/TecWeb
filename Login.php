@@ -19,7 +19,7 @@
 	require_once "DbConnector.php";
 	require_once "functions.php";
 	
-	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false)saveBackPage();
+	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false )saveBackPage();
 	$connectionError=$invalidPwd=$invalidUsw=false;
 
 	if(isset($_POST["pwd"])&&isset($_POST["usr"])){
