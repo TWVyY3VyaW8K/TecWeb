@@ -12,7 +12,7 @@
   <title>Artbit</title>
 </head>
 
-<body onload="eventListnerforLoginModal(); scrollFunction();">
+<body>
 
   <?php
   require_once "header.php";
@@ -25,13 +25,12 @@
 
       <div  id="uploadMessage" class="upload_message">
           <!--container for unfilled inputs-->
-                    <?php
+          <?php
           error_reporting(0);
-          if(isset($_POST["title"]) && isset($_FILES['artwork'])){ //l'upload può partire solo se il TITOLO e l'IMMAGINE sono stati selezionati
-            if(!isset($_SESSION["Username"])){
-              echo '<script type="text/javascript">openModal(\'LoginModal\')</script>';
-              //exit();
-            }
+          if(!isset($_SESSION["Username"])){
+            echo "You have to login before uploading!";
+          }
+          else if(isset($_POST["title"]) || isset($_POST["description"]) || isset($_POST["category"]) || isset($_FILES['artwork'])){
             if(isset($_SESSION["Username"])){
               $title = escapePathTraversal(htmlspecialchars($_POST["title"], ENT_QUOTES, "UTF-8"));
               $category = htmlspecialchars($_POST["category"], ENT_QUOTES, "UTF-8");
@@ -41,15 +40,22 @@
               $filesize = $_FILES['artwork']['size'];
               $username = $_SESSION["Username"];
               $time = date('Y-m-d h:i:s');
-              //connecting to db
               $myDb= new DbConnector();
               $myDb->openDBConnection();
-              if(!file_exists("./Images/Art/$username"))
+              if(!file_exists("./Images/Art/$username")) //controllo esistenza cartella utente
                 mkdir("./Images/Art/$username", 0777, true);
-              if($filesize>5242880*4 || $filesize==0)
+              else if(strlen($title)==0)
+                echo '<p>Title field is missing</p>';
+              else if(strlen($description)==0)
+                echo '<p>Description field is missing</p>';
+              else if(strlen($description)>1000)
+                echo '<p>Description is too long (Max 1000 characters)</p>';
+              else if($filesize>5242880*4) //controllo dimensione immagine
                 echo '<p>File size is too big (max 20Mb)</p>';
+              else if($filesize==0) //controllo se c'è l'immagine
+                echo '<p>Please select an image to upload</p>';
               else if($myDb->connected){
-                //check if title already exists
+                //controlla se esiste già un immagine con lo stesso tipo
                 $result = $myDb->doQuery("select Nome from opere where Nome='".$title."' and Artista='".$username."'");
                 if($result->num_rows>0)
                   echo '<p>You have already uploaded an artwork with this name</p>';
@@ -72,7 +78,6 @@
             }
           }
           function compress($source, $destination, $quality) {
-
               try{
                 if(!$info = getimagesize($source))
                   throw new Exception();
@@ -80,13 +85,10 @@
               catch(Exception $e) {
                 return false;
               }
-
               if ($info['mime'] == 'image/jpeg')
                   $image = imagecreatefromjpeg($source);
-
               elseif ($info['mime'] == 'image/jpg')
                   $image = imagecreatefromgif($source);
-
               elseif ($info['mime'] == 'image/png')
                   $image = imagecreatefrompng($source);
               else
@@ -98,27 +100,27 @@
       </div>
       <form action="" method="post" enctype="multipart/form-data" id="upload" onsubmit="return doUploadValidation(event)">
           <div class="container">
-          <label for="title">Title (Max 20 characters):</label>
-          <input id="title" type="text" placeholder="Title" name="title" maxlength="20" />
+            <label for="title">Title (Max 20 characters):</label>
+            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
 
-          <label for="category">Category:</label>
-          <select id="category" name="category">
-            <option value="landscape">Landscape</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="abstract">Abstract</option>
-            <option value="cartoon">Cartoon</option>
-            <option value="portrait">Portrait</option>
-            <option value="nature">Nature</option>
-            <option value="others">Others</option>
-          </select>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+              <option value="landscape" <?php if((isset($_POST['category'])) && $_POST['category']=="landscape") echo "selected=''"?>>Landscape</option>
+              <option value="fantasy" <?php if((isset($_POST['category'])) && $_POST['category']=="fantasy") echo "selected=''"?>>Fantasy</option>
+              <option value="abstract" <?php if((isset($_POST['category'])) && $_POST['category']=="abstract") echo "selected=''"?>>Abstract</option>
+              <option value="cartoon" <?php if((isset($_POST['category'])) && $_POST['category']=="cartoon") echo "selected=''"?>>Cartoon</option>
+              <option value="portrait" <?php if((isset($_POST['category'])) && $_POST['category']=="portrait") echo "selected=''"?>>Portrait</option>
+              <option value="nature" <?php if((isset($_POST['category'])) && $_POST['category']=="nature") echo "selected=''"?>>Nature</option>
+              <option value="others" <?php if((isset($_POST['category'])) && $_POST['category']=="others") echo "selected=''"?>>Others</option>
+            </select>
 
-          <label for="description">Description (max 1000 characters):</label>
-          <textarea id="description" placeholder="Description" name="description" rows="2" cols="1"></textarea>
+            <label for="description">Description (Max 1000 characters):</label>
+            <textarea id="description" name="description" rows="2" cols="1" ></textarea>
 
-          <label for="artwork">Artwork:</label>
-          <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
+            <label for="artwork">Artwork (Max 20Mb):</label>
+            <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
 
-          <button type="submit">Upload</button>
+            <button type="submit">Upload</button>
           </div>
         </form>
       </div>
