@@ -90,8 +90,11 @@ h2 {
     border: 0px;
     width: 100%;
 }
+.width-100{
+    width: 100%;
+}
 .menu a:hover,.activeMenuItem a, .notClickable,.menu input:hover{
-    color:black!important;
+    color:black;
     background-color:white;
     cursor: pointer;
 }
@@ -257,14 +260,14 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
+button, .btnLink {
 	background-color: #6a5acd;
 	color: white;
 	padding: 1em;
 	border: none;
 	cursor: pointer;
 }
-button:hover {
+button:hover, .btnLink:hover {
     background-color: rgba(106, 90, 205, 0.7);
 }
 .singleButton{
@@ -296,6 +299,9 @@ button:hover {
     text-align: center;
     text-decoration: none;
     padding: 1em;
+}
+#LikedByDiv .backButton{
+    width: 100%;
 }
 .backButton:hover{
 	/*background-color: #8B0000;*/
@@ -725,6 +731,11 @@ div.divCategoryButtons button{
 .btnPaginationActive{
     color: #fff;
     background-color: #44778F;
+}
+.pagination .notClickable:hover{
+    background-color: #44778F;
+    color: white;
+    cursor: default;
 }
 .display-none{
     display: none;

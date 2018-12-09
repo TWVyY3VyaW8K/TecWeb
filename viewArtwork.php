@@ -23,6 +23,17 @@
        // require_once "likedByModal.php";
        // saveBackPage();
 
+       if(isset($_GET['lNumI'])){
+        $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
+        if($numI != 0){
+            $_SESSION['giveLike'] = $numI;
+        }
+        $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
+        //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
+        
+        unset($_GET['lNumI']);
+       }
+
         $Title = $_GET['Title'];
         $Artist = $_GET['Artist'];
 
@@ -52,6 +63,10 @@
             $ArtistName = $row['Nome'] . " " . $row['Cognome'];
             $isLiked = false;
 
+            if(isset($_SESSION['giveLike']) && ($_SESSION['giveLike'] == 1)){
+              $tmp = giveLike($Artist,$Title);
+              unset($_SESSION['giveLike']);
+            }
             if ( is_session_started() === FALSE || (!isset($_SESSION['Username']))){
               $isLiked = false;
             }else if(isset($_SESSION['Username'])){
@@ -81,18 +96,26 @@
               Comments: <?php echo $Comments; ?>
 
               <?php
+                $url = $_SERVER['REQUEST_URI'];
+                //echo $url;
+                $query = parse_url($url, PHP_URL_QUERY);
+                if ($query) {
+                    $url .= '&lNumI=1';
+                } else {
+                    $url .= '?lNumI=1';
+                }
                 echo '<input type="hidden" value="'.$Artist.'" name="nameArtist"/></br>';
                 echo '<input type="hidden" value="'.$Title.'" name="nameImage"/></br>';
                 echo '<div class="wrapper">';
                 echo '<div class="width-15">';
                 if($isLiked == true){
-                  echo '<div class="like-btn like-btn-added" onclick="btnLikeOnClick(this)" id="LikeBtn_1"></div>';
+                  echo '              <a href="'.$url.'"><div class="like-btn like-btn-added"></div></a>';
                 }else{
-                  echo '<div class="like-btn" onclick="btnLikeOnClick(this)" id="LikeBtn_1"></div>';
+                  echo '              <a href="'.$url.'"><div class="like-btn"></div></a>';
                 }
                 echo '  </div>';
                 echo '  <div class="width-85">';
-                echo '<p class="customLink" id="Likes_1" onclick="btnLikedByOnClick(this)">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</p>';
+                echo '                  <p><a class="customLink" href="likedBy.php?artist='.$Artist.'&imgName='.$Title.'">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</a></p>';
                 echo '  </div></div>';
               ?>
                 <hr></hr>

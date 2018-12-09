@@ -17,11 +17,27 @@
 <body onload="eventListnerforLoginModal(); initializePagination(); scrollFunction();" >
     <?php
         require_once "header.php";
-      //  require_once "searchModal.php";
+        //  require_once "searchModal.php";
         //require_once "likedByModal.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-       // saveBackPage();
+        // saveBackPage();
+        if(isset($_GET['pagNum'])){
+            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;   
+            $_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
+        }elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
+            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
+        }
+        if(isset($_GET['lNumI'])){
+            $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
+            if($numI != 0){
+                $_SESSION['giveLike'] = $numI;
+            }
+            $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
+            //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
+            
+            unset($_GET['lNumI']);
+        }
     ?>
     <div class="gallery container1024" id="content">
         <form method="get" action="" name="formArtFilter">
@@ -31,6 +47,7 @@
                         if(isset($_GET['gallerySearch'])){
                             $gallerySearch = htmlspecialchars($_GET["gallerySearch"], ENT_QUOTES, "UTF-8");//cleaning the input
                             echo '<input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch" value="'.$gallerySearch.'"/>';
+                            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
                         }else{
                             echo '<input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch"/>';
                         }
@@ -48,6 +65,7 @@
                         if(!isset($_GET['galleryCategory'])){
                             $galleryCategory= $_SESSION['galleryCategory'];
                         }else{
+                            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
                             $galleryCategory = htmlspecialchars($_GET["galleryCategory"], ENT_QUOTES, "UTF-8");//cleaning the input
                             $_SESSION['galleryCategory'] = $galleryCategory;
                         }
@@ -55,13 +73,13 @@
                     <div class="div-center">
                         <div class="divCategoryButtons">
                             <button type="submit" name="galleryCategory" value="All" <?php if(isset($galleryCategory) && $galleryCategory=='All'){echo "class='active'";} ?>>All</button>
-                            <button type="submit" name="galleryCategory" value="Landscape" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Landscape'){echo "class='active'";} ?>>Landscape</button>
-                            <button type="submit" name="galleryCategory" value="Fantasy" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Fantasy'){echo "class='active'";} ?>>Fantasy</button>
-                            <button type="submit" name="galleryCategory" value="Abstract" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Abstract'){echo "class='active'";} ?>>Abstract</button>
-                            <button type="submit" name="galleryCategory" value="Cartoon" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Cartoon'){echo "class='active'";} ?>>Cartoon</button>
-                            <button type="submit" name="galleryCategory" value="Portrait" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Portrait'){echo "class='active'";} ?>>Portrait</button>
-                            <button type="submit" name="galleryCategory" value="Nature" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Nature'){echo "class='active'";} ?>>Nature</button>
-                            <button type="submit" name="galleryCategory" value="Others" onclick="deleteCookie('divPagNumber')" <?php if(isset($galleryCategory) && $galleryCategory=='Others'){echo "class='active'";} ?>>Others</button>
+                            <button type="submit" name="galleryCategory" value="Landscape" <?php if(isset($galleryCategory) && $galleryCategory=='Landscape'){echo "class='active'";} ?>>Landscape</button>
+                            <button type="submit" name="galleryCategory" value="Fantasy"<?php if(isset($galleryCategory) && $galleryCategory=='Fantasy'){echo "class='active'";} ?>>Fantasy</button>
+                            <button type="submit" name="galleryCategory" value="Abstract" <?php if(isset($galleryCategory) && $galleryCategory=='Abstract'){echo "class='active'";} ?>>Abstract</button>
+                            <button type="submit" name="galleryCategory" value="Cartoon" <?php if(isset($galleryCategory) && $galleryCategory=='Cartoon'){echo "class='active'";} ?>>Cartoon</button>
+                            <button type="submit" name="galleryCategory" value="Portrait" <?php if(isset($galleryCategory) && $galleryCategory=='Portrait'){echo "class='active'";} ?>>Portrait</button>
+                            <button type="submit" name="galleryCategory" value="Nature" <?php if(isset($galleryCategory) && $galleryCategory=='Nature'){echo "class='active'";} ?>>Nature</button>
+                            <button type="submit" name="galleryCategory" value="Others" <?php if(isset($galleryCategory) && $galleryCategory=='Others'){echo "class='active'";} ?>>Others</button>
                         </div>
                     </div>
                     <label for="orderBy">Order By:</label>
@@ -145,17 +163,17 @@
                     $myDb->disconnect();
                 }
                 if($result && ($result->num_rows > 0)){
-                    $mostraPagination = ($result->num_rows <= $GLOBALS['imagesPerPage']) ? false : true;
-                    $j = printGalleryItems($result,FALSE);
+                    $mostraPagination = ($result->num_rows > $GLOBALS['imagesPerPage']) ? true : false;
+                    $j = printGalleryItems($result,FALSE,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))]);
                 }elseif(!$result || ($result->num_rows == 0)){
                     echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
                 }
             ?>
         </div>
         <?php
-            printPagination($mostraPagination,$j);
+            printPagination($mostraPagination,$j,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))],basename($_SERVER['PHP_SELF']));
         ?>
     </div>
-	<?php require_once "footer.html"?>
+	<?php require_once "footer.html";?>
 </body>
 </html>

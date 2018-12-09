@@ -18,49 +18,77 @@
         return FALSE;
     }
 
-    function insertImageInGallery($artista,$nomeImmagine, $numFig,$boolDeleteButton){
+    function insertImageInGallery($artist,$imgName, $numFig,$boolDeleteButton){
+        if(isset($_SESSION['giveLike']) && ($_SESSION['giveLike'] == $numFig)){
+            $tmp = giveLike($artist,$imgName);
+            unset($_SESSION['giveLike']);
+        }
         if ( is_session_started() === FALSE || (!isset($_SESSION['Username']))){
             $isLiked = false;
         }else if(isset($_SESSION['Username'])){
-            $isLiked = boolImageLiked($artista,$_SESSION['Username'],$nomeImmagine)['Result'];
+            $isLiked = boolImageLiked($artist,$_SESSION['Username'],$imgName)['Result'];
         }
-        echo '<div class="liFigures">';
-        echo     '<div class="galleryFigureWrapper" id="figureWrapper_'.$numFig.'">';
-        echo '      <div class="background-color-90929294"><a href="viewArtwork.php?Title='.$nomeImmagine.'&amp;Artist='.$artista.'"><img alt="'.$nomeImmagine.'" src="Images/Art/'.rawurlencode($artista).'/'.rawurlencode($nomeImmagine).'.jpeg"/></a></div>';
-        echo '      <input type="hidden" value="'.$artista.'" name="nameArtist"/>';
-        echo '      <input type="hidden" value="'.$nomeImmagine.'" name="nameImage"/>';
-        echo '      <div class="galleryCaption">';
-        echo '              <h2>'.$nomeImmagine.'</h2>';
-        echo '          <div class="wrapper">';
-        echo '              <div class="width-15">';
-        if($isLiked == true){
-            echo '              <div class="like-btn like-btn-added" onclick="btnLikeOnClick(this)" id="LikeBtn_'.$numFig.'"></div>';
+        if(isset($_SESSION['deleteImage']) && ($_SESSION['deleteImage'] == $numFig)){
+            $tmp = deleteItem($artist,$imgName);
+            unset($_SESSION['deleteImage']);
         }else{
-            echo '              <div class="like-btn" onclick="btnLikeOnClick(this)" id="LikeBtn_'.$numFig.'"></div>';
+            echo '<div class="liFigures">';
+            echo     '<div class="galleryFigureWrapper" id="figureWrapper_'.$numFig.'">';
+            echo '      <div class="background-color-90929294"><a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'"><img alt="'.$imgName.'" src="Images/Art/'.rawurlencode($artist).'/'.rawurlencode($imgName).'.jpeg"/></a></div>';
+            echo '      <input type="hidden" value="'.$artist.'" name="nameArtist"/>';
+            echo '      <input type="hidden" value="'.$imgName.'" name="nameImage"/>';
+            echo '      <div class="galleryCaption">';
+            echo '              <h2>'.$imgName.'</h2>';
+            echo '          <div class="wrapper">';
+            echo '              <div class="width-15">';
+            //saveBackPage();
+            $url = $_SERVER['REQUEST_URI'];
+            //echo $url;
+            $query = parse_url($url, PHP_URL_QUERY);
+            if ($query) {
+                $url .= '&lNumI='.$numFig;
+            } else {
+                $url .= '?lNumI='.$numFig;
+            }
+            
+            //$url = addParameterTo($_SERVER['REQUEST_URI'],'lNumI',$numFig);
+            if($isLiked == true){
+                echo '              <a href="'.$url.'"><div class="like-btn like-btn-added"></div></a>';
+            }else{
+                echo '              <a href="'.$url.'"><div class="like-btn"></div></a>';
+            }
+            echo '              </div>';
+            echo '              <div class="width-85">';
+            echo '                  <a class="customLink" href="gallery.php?gallerySearch='.$artist.'">Artist: '.$artist.'</a>';
+            echo '                  <p><a class="customLink" href="likedBy.php?artist='.$artist.'&imgName='.$imgName.'">Likes: '.getLikesByItem($artist,$imgName)['Result'].'</a></p>';       
+            echo '              </div>';
+            echo '          </div>';
+            echo '                  <a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'"><button class="btnDiscover" type="submit" id="DelBtn_'.$numFig.'">Details</button></a>';
+            $url = $_SERVER['REQUEST_URI'];
+            //echo $url;
+            $query = parse_url($url, PHP_URL_QUERY);
+            if ($query) {
+                $url .= '&dNumI='.$numFig;
+            } else {
+                $url .= '?dNumI='.$numFig;
+            }
+            if($boolDeleteButton == TRUE){
+                echo '<a href="'.$url.'"><button class="btnDelete" type="submit">Delete</button></a>';
+            }
+            echo '      </div>';
+            echo '   </div>';
+            echo '</div>';
+            echo "\r\n";
         }
-        echo '              </div>';
-        echo '              <div class="width-85">';
-        echo '                  <a class="customLink" href="gallery.php?gallerySearch='.$artista.'">Artist: '.$artista.'</a>';
-        echo '                  <p class="customLink" id="Likes_'.$numFig.'" onclick="btnLikedByOnClick(this)">Likes: '.getLikesByItem($artista,$nomeImmagine)['Result'].'</p>';       
-        echo '              </div>';
-        echo '          </div>';
-        echo '                  <a href="viewArtwork.php?Title='.$nomeImmagine.'&amp;Artist='.$artista.'"><button class="btnDiscover" type="submit" id="DelBtn_'.$numFig.'">Details</button></a>';
-        if($boolDeleteButton == TRUE){
-            echo '<button class="btnDelete" type="submit" id="DelBtn_'.$numFig.'" onclick="btnDeleteOnClick(this)">Delete</button>';
-        }
-        echo '      </div>';
-        echo '   </div>';
-        echo '</div>';
-        echo "\r\n";
     }
 
     //return true if image is already liked
-    function boolImageLiked($artista,$username,$nomeImmagine){
+    function boolImageLiked($artist,$username,$imgName){
         $myDb= new DbConnector();
         $myDb->openDBConnection();
         $resArr=array();
         if($myDb->connected){
-            $result = $myDb->doQuery('SELECT Utente FROM likes WHERE opera="'.$nomeImmagine.'" AND Utente="'.strtolower($username).'" AND Creatore="'.$artista.'";');
+            $result = $myDb->doQuery('SELECT Utente FROM likes WHERE opera="'.$imgName.'" AND Utente="'.strtolower($username).'" AND Creatore="'.$artist.'";');
             if($result){
                 if($result->num_rows==0){//significa che il like non è ancora presente per l'opera
                     $resArr['Result'] = false;        
@@ -78,17 +106,60 @@
         $myDb->disconnect();
     }
 
+    function giveLike($artist,$imgName){
+
+        if ( is_session_started() === FALSE ) session_start();
+        $resArr = array();
+        if(!isset($_SESSION["Username"])){
+            $resArr['Result'] = 0; //utente non loggato
+        }else{
+            //connecting to db
+            $myDb= new DbConnector();
+            $myDb->openDBConnection();
+            
+            if($myDb->connected){
+                //echo 'INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$imgName.'", "'.$_SESSION["Username"].'", "'.$artist.'");';
+                //$result = $myDb->doQuery('INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$imgName.'", "'.$_SESSION['Username'].'", "'.$artist.'");');//excecute query
+                $result = $myDb->doQuery('SELECT Utente FROM likes WHERE Opera="'.$imgName.'" AND Utente="'.$_SESSION['Username'].'" AND Creatore="'.$artist.'";');
+                //echo $myDb->getLastErrorString();
+                if($result){
+                    if($result->num_rows==0){//significa che il like non è ancora presente per l'opera
+                        $result = $myDb->doQuery('INSERT INTO likes (Opera, Utente, Creatore) VALUES ("'.$imgName.'", "'.$_SESSION['Username'].'", "'.$artist.'");');//excecute query
+                        if($result)
+                        $resArr['Result'] = 1;    
+                    }else if($result->num_rows==1){
+                        $result = $myDb->doQuery('DELETE FROM likes WHERE Opera="'.$imgName.'" AND Utente="'.$_SESSION['Username'].'" AND Creatore="'.$artist.'";');//excecute query
+                        if($result)
+                            $resArr['Result'] = 2;
+                    }
+                }else{
+                    $resArr['Result'] = 3;
+                }
+            }
+            else 
+                $resArr['Result'] = "Connection Error";
+            $myDb->disconnect();
+        }
+    }
+
     //prints div containing buttons for pagination in the gallery page
     //IN:
     // - $i: number of buttons to be displayed
-    function printDivPagination($i){
-        echo '<div class="div-center">';
+    function printDivPagination($i,$currentPagNum, $currentPageName){
+        echo '<div class="div-center pagination">';
         echo '   <div class="div-bar gal-pag-border gal-border-round">';
-        echo '      <a href="#" class="div-bar-item gal-pag-button" id="btnPagBack" onclick="btnPagBackOnClick()">&laquo;</a>';
-        for($j=1; $j < $i; $j++){
-            echo '  <a href="#" class="div-bar-item gal-pag-button" id="btnPagination'.$j.'" onclick="btnPaginationOnClick(this.id)">'.$j.'</a>';
+        if($currentPagNum > 1){
+            echo '      <a href="'.$currentPageName.'?pagNum='.(string)($currentPagNum-1).'" class="div-bar-item gal-pag-button" id="btnPagBack">&laquo;</a>';
         }
-        echo '      <a href="#" class="div-bar-item gal-pag-button" id="btnPagForward" onclick="btnPagForwardOnClick()">&raquo;</a>';
+        for($j=1; $j <= $i; $j++){
+            if($j==$currentPagNum)
+                echo '  <div href="'.$currentPageName.'?pagNum='.(string)($j).'" class="div-bar-item gal-pag-button btnPaginationActive notClickable" id="btnPagination'.$j.'" onclick="btnPaginationOnClick(this.id)">'.$j.'</div>';
+            else
+                echo '  <a href="'.$currentPageName.'?pagNum='.(string)($j).'" class="div-bar-item gal-pag-button" id="btnPagination'.$j.'" onclick="btnPaginationOnClick(this.id)">'.$j.'</a>';
+        }
+        if($currentPagNum < $i){
+            echo '      <a href="'.$currentPageName.'?pagNum='.(string)($currentPagNum+1).'" class="div-bar-item gal-pag-button" id="btnPagForward">&raquo;</a>';
+        }
         echo '  </div>';
         echo '</div>';
     }
@@ -100,38 +171,45 @@
     * OUT:
     *   - $j: number of pages to be displayed
     */
-    function printGalleryItems($result,$boolDeleteButton){
-        $j=0;//solo una pagina
+    function printGalleryItems($result,$boolDeleteButton,$paginationNumber){
         $j=1;
-        $boolChiudi = False;
+        $tmp=0;
+        $boolPrint = False;
+        $exitLoop = False;
+        echo "<div class='liPaginationBlock'>";
         for ($i = 0; $i < $result->num_rows; $i++) {
             if($i%($GLOBALS['imagesPerPage']) == 0){
-                if($boolChiudi == FALSE){
-                    echo "<div id='galImgPag".$j."' class='liPaginationBlock'>";
-                    $j++;
-                    $boolChiudi = TRUE; 
+                if(($j == $paginationNumber) && ($boolPrint == FALSE)){
+                    $boolPrint = TRUE;       
                 }else{
-                    echo "</div>";
-                    echo "<div id='galImgPag".$j."' class='liPaginationBlock'>";
                     $j++;
                 }
             }
             $row = $result->fetch_assoc();
-            insertImageInGallery($row['Artista'],$row['Nome'],$i+1,$boolDeleteButton);
+            if($boolPrint == TRUE){
+                insertImageInGallery($row['Artista'],$row['Nome'],$i+1,$boolDeleteButton);
+                $tmp++;
+                if($tmp == $GLOBALS['imagesPerPage']){//exiting the for
+                    $boolPrint = FALSE; 
+                    $j++;
+                }
+            }
         }
-        if($boolChiudi == TRUE || ($i%($result->num_rows)!= 1)){
-            echo "</div>";
-        }
-        return $j;
+        echo "</div>";
+        return ceil($result->num_rows/$GLOBALS['imagesPerPage']);
     }
 
-    function getLikesByItem($artista, $nomeImmagine){
+    function resetSessionPaginationNum($sessionName){
+        $_SESSION[$sessionName] = 1;
+    }
+
+    function getLikesByItem($artist, $imgName){
         $myDb= new DbConnector();
         $myDb->openDBConnection();
         
         $resArr = array();
         if($myDb->connected){
-            $qrStr= "SELECT COUNT(Opera) as Likes FROM likes WHERE Creatore='".$artista."' AND Opera='".$nomeImmagine."'";
+            $qrStr= "SELECT COUNT(Opera) as Likes FROM likes WHERE Creatore='".$artist."' AND Opera='".$imgName."'";
             $result = $myDb->doQuery($qrStr);
             if($result && $result->num_rows == 1){
                 if($result && $result->num_rows == 1){
@@ -147,16 +225,16 @@
         $myDb->disconnect();
     }
 
-    function deleteItem($artista, $nomeImmagine){
+    function deleteItem($artist, $imgName){
         $myDb= new DbConnector();
         $myDb->openDBConnection();
 
         $resArr = array();
         if($myDb->connected){
-            $qrStr= "DELETE FROM opere WHERE Artista='".$artista."' AND Nome='".$nomeImmagine."'";
+            $qrStr= "DELETE FROM opere WHERE Artista='".$artist."' AND Nome='".$imgName."'";
             $result = $myDb->doQuery($qrStr);
             if ($result == TRUE) {
-                deleteFileFromFileSystem($artista,$nomeImmagine);
+                deleteFileFromFileSystem($artist,$imgName);
                 $resArr['Result'] = 1;
                 //echo 1;
             } else { //Error
@@ -178,9 +256,9 @@
         }
     }
 
-    function printPagination($mostraPagination,$j){
-        if($mostraPagination == TRUE && ($j > 2)){
-            printDivPagination($j);
+    function printPagination($mostraPagination,$j,$currentPagNum,$currentPageName){
+        if($mostraPagination == TRUE && ($j >= 2)){
+            printDivPagination($j,$currentPagNum,$currentPageName);
         }
     }
 
@@ -202,12 +280,16 @@
     //save the back page
     function saveBackPage(){
        // echo  $_SERVER['HTTP_REFERER'];
+        unset($_SESSION["backPage"]);
+        $_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
         $_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
        // $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
        // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
     }
-
+    function getBackPageURL(){
+        return $_SESSION["backPage"];
+    }
 
     function randomPassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -219,4 +301,12 @@
         return implode($pwd); //turn the array into a string
     }
 
+    function removeqsvar($url, $varname) {
+        list($urlpart, $qspart) = array_pad(explode('?', $url), 2, '');
+        parse_str($qspart, $qsvars);
+        unset($qsvars[$varname]);
+        $newqs = http_build_query($qsvars);
+        $r = (strlen($newqs) > 0) ? $urlpart . '?' . $newqs : $urlpart;
+        return $r;
+    }
 ?>

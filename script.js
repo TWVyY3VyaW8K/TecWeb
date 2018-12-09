@@ -93,6 +93,7 @@ function orderByGalleryChanged(){
 /*
 Delete function
 */
+/*
 function btnDeleteOnClick(obj){
 	if(confirm("Do you really want to delete this image?")){
 		// creating ajax object
@@ -128,7 +129,8 @@ function btnDeleteOnClick(obj){
 		xhttp.send("art="+artist+"&nomeImg="+immg);
 	}
 }
-
+*/
+/*
 function btnLikedByOnClick(obj){
 	// creating ajax object
 	var xhttp;
@@ -176,6 +178,7 @@ function btnLikedByOnClick(obj){
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("art="+artist+"&nomeImg="+immg);
 }
+*/
 
 /*
 Function by page gallery.php
@@ -262,7 +265,7 @@ function updateLikeCounter(idNumber,artist,imageName){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("art="+artist+"&nomeImg="+imageName);
 }
-
+/*
 //onclick function for pagination buttons
 function btnPaginationOnClick(id){
 	var arr = document.querySelectorAll('[id^="galImgPag"]');
@@ -308,7 +311,8 @@ function btnPaginationOnClick(id){
 	//cookie
 	setCookie("divPagNumber",divNumber,1,window.location.pathname);
 }
-
+*/
+/*
 //btn pagination back on click
 function btnPagBackOnClick(){
 	var activeBtnPag = document.querySelector('.btnPaginationActive');
@@ -326,7 +330,7 @@ function btnPagForwardOnClick(){
 		btnPaginationOnClick("btnPagination"+(num+1));
 	}
 }
-
+*/
 function doUploadValidation(event){
 	//event.preventDefault()//prevents to reload the page if login data arent correct
     var title=document.getElementById('title').value;

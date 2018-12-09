@@ -23,6 +23,23 @@
 //	saveBackPage();
   $myDb= new DbConnector();
 	$myDb->openDBConnection();
+
+	if(isset($_GET['pagNum'])){
+			$pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;   
+			$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
+	}elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
+			resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
+	}
+	if(isset($_GET['lNumI'])){
+		$numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
+		if($numI != 0){
+				$_SESSION['giveLike'] = $numI;
+		}
+		$_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
+		//$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
+		
+		unset($_GET['lNumI']);
+	}
   ?>
   <div class="description"><!--general description-->
       <div class="overlay font_medium">
@@ -81,9 +98,9 @@
 											GROUP BY Nome, Artista ORDER BY COUNT(Nome) DESC LIMIT 4");
 
 					if($result && ($result->num_rows > 0)){
-						$j = printGalleryItems($result,FALSE);
+						$j = printGalleryItems($result,FALSE,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))]);
 					}elseif(!$result || ($result->num_rows == 0)){
-							echo "<li class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></li>";
+						echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
 					}
 				?>
 			</ul>
