@@ -265,6 +265,43 @@ function updateLikeCounter(idNumber,artist,imageName){
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("art="+artist+"&nomeImg="+imageName);
 }
+
+function parse_query_string(query) {
+	var vars = query.split("&");
+	var query_string = {};
+	for (var i = 0; i < vars.length; i++) {
+	  var pair = vars[i].split("=");
+	  var key = decodeURIComponent(pair[0]);
+	  var value = decodeURIComponent(pair[1]);
+	  // If first entry with this name
+	  if (typeof query_string[key] === "undefined") {
+		query_string[key] = decodeURIComponent(value);
+		// If second entry with this name
+	  } else if (typeof query_string[key] === "string") {
+		var arr = [query_string[key], decodeURIComponent(value)];
+		query_string[key] = arr;
+		// If third or later entry with this name
+	  } else {
+		query_string[key].push(decodeURIComponent(value));
+	  }
+	}
+	return query_string;
+}
+
+function scrollToElement(id){
+	document.getElementById(id).scrollIntoView();
+}
+
+function scrollToImage(){
+	var query = window.location.search.substring(1);
+	var res = parse_query_string(query);
+	if("lNumI" in res){
+		var num = parseInt(res["lNumI"]);
+		if(num !== "" && num !== null && num !== 0){
+			scrollToElement('f'+num);		
+		}
+	}
+}
 /*
 //onclick function for pagination buttons
 function btnPaginationOnClick(id){
