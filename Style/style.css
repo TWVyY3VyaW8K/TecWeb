@@ -77,8 +77,14 @@ h2 {
 	border-radius:100%;
 	margin: 0em 1em;
 }
+.menu .inputSearch{
+    width: 16em;
+}
 .menu .btnSearch{
   width: auto;
+}
+.menu .inputSearch input[type=text]{
+    background: #ffffffa1;
 }
 .menu a, .menu p, .hamburgerMenuContainer, .notClickable,.menu input{
   color: #FFFFFF;
@@ -753,7 +759,7 @@ div.divCategoryButtons button{
 /* *************************************************** GALLERY PAGE ******************************************************************************/
 /* Dropdown content (hidden by default) */
 .account-dropdown {
-	width: 15.0em;
+	width: 7.0em;
 }
 .account-dropdown-content {
     display: none;

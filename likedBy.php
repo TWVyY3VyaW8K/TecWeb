@@ -19,7 +19,12 @@
 	require_once "DbConnector.php";
 	require_once "functions.php";
 
-	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false)saveBackPage();
+	if(isset($_SERVER['HTTP_REFERER'])
+        && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false
+        && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false
+        && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false){
+			saveBackPage();
+    }
   ?>
   <div class="fullScreenHeight loginTopPadding">
   <div class="loginCard container1024" id="LikedByDiv">

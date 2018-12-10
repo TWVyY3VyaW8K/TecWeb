@@ -34,7 +34,7 @@
             $filetmp = $_FILES['artwork']['tmp_name'];
             $filesize = $_FILES['artwork']['size'];
             if(!isset($_SESSION["Username"])){
-              header("location: login.php");
+              header("location: Login.php");
             }
             if(isset($_SESSION["Username"])){
               $username = $_SESSION["Username"];

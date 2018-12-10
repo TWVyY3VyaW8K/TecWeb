@@ -29,11 +29,9 @@
             $tmp = deleteItem($artist,$imgName);
             unset($_SESSION['deleteImage']);
         }else{
-            echo '<div class="liFigures">';
-            echo     '<div class="galleryFigureWrapper" id="figureWrapper_'.$numFig.'">';
+            echo '<div class="liFigures" id="f'.$numFig.'">';
+            echo     '<div class="galleryFigureWrapper">';
             echo '      <div class="background-color-90929294"><a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'"><img alt="'.$imgName.'" src="Images/Art/'.rawurlencode($artist).'/'.rawurlencode($imgName).'.jpeg"/></a></div>';
-            echo '      <input type="hidden" value="'.$artist.'" name="nameArtist"/>';
-            echo '      <input type="hidden" value="'.$imgName.'" name="nameImage"/>';
             echo '      <div class="galleryCaption">';
             echo '              <h2>'.$imgName.'</h2>';
             echo '          <div class="wrapper">';
@@ -47,6 +45,7 @@
             } else {
                 $url .= '?lNumI='.$numFig;
             }
+            //$url .= ('#f'.$numFig);
 
             //$url = addParameterTo($_SERVER['REQUEST_URI'],'lNumI',$numFig);
             if($isLiked == true){
@@ -261,7 +260,12 @@
        // echo  $_SERVER['HTTP_REFERER'];
         unset($_SESSION["backPage"]);
         $_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
-        $_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
+        if(isset($_SESSION['backPageRedirect'])){
+            $_SESSION["backPage"] = $_SESSION['backPageRedirect'];
+            unset($_SESSION['backPageRedirect']);
+        }else{
+            $_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
+        }
        // $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
        // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
     }

@@ -13,7 +13,7 @@
   <title>Artbit</title>
 </head>
 
-<body onload="eventListnerforLoginModal(); initializePagination(); scrollFunction();" >
+<body onload="eventListnerforLoginModal(); scrollFunction();" >
   <?php
 	require_once "header.php";
 	//require_once "searchModal.php";
@@ -31,11 +31,12 @@
 			resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
 	}
 	if(isset($_GET['lNumI'])){
+		$_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
+		$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
 		$numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
 		if($numI != 0){
 				$_SESSION['giveLike'] = $numI;
 		}
-		$_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
 		//$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
 		
 		unset($_GET['lNumI']);

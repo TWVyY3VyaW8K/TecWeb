@@ -13,7 +13,7 @@
     <title>Artbit</title>
 </head>
 
-<body onload="eventListnerforLoginModal(); initializePagination(); scrollFunction();" >
+<body onload="eventListnerforLoginModal(); scrollFunction();" >
     <?php
         require_once "header.php";
         require_once "DbConnector.php";

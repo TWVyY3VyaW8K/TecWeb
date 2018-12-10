@@ -23,8 +23,8 @@
         && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false
         && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false
         && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false){
-      saveBackPage();
-    }
+			saveBackPage();
+  }
 	$connectionError=$invalidPwd=$invalidUsw=false;
 	if(isset($_POST["pwd"])&&isset($_POST["usr"])){
 			$pwd= htmlspecialchars($_POST["pwd"], ENT_QUOTES, "UTF-8");//cleaning the input
