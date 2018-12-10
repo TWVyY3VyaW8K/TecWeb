@@ -77,7 +77,9 @@ h2 {
 	border-radius:100%;
 	margin: 0em 1em;
 }
-
+.menu .btnSearch{
+  width: auto;
+}
 .menu a, .menu p, .hamburgerMenuContainer, .notClickable,.menu input{
   color: #FFFFFF;
   display: block;
@@ -427,12 +429,12 @@ button:hover, .btnLink:hover {
     font-size: initial;
     width: 20%;
 }
-
+/*
 .menu .btnSearch{
     padding: 1.5em 1.5em 1.7em 1.5em;
     width: 100%;
 }
-
+*/
 .inputSearch .btnSearch{
     border: 0.05em solid grey;
 }

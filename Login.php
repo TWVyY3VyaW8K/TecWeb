@@ -18,10 +18,14 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-	
-	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false)saveBackPage();
-	$connectionError=$invalidPwd=$invalidUsw=false;
 
+	if(isset($_SERVER['HTTP_REFERER'])
+        && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false
+        && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false
+        && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false){
+      saveBackPage();
+    }
+	$connectionError=$invalidPwd=$invalidUsw=false;
 	if(isset($_POST["pwd"])&&isset($_POST["usr"])){
 			$pwd= htmlspecialchars($_POST["pwd"], ENT_QUOTES, "UTF-8");//cleaning the input
 			$usr= htmlspecialchars($_POST["usr"], ENT_QUOTES, "UTF-8");
@@ -37,7 +41,7 @@
 					if (password_verify($pwd, $row["Password"]))
 					{
 						$_SESSION["Username"] = $usr;
-				
+
 						if(isset($_SESSION['backPage'])) {
 							header("location: ".$_SESSION['backPage']);
 							die();
@@ -52,12 +56,10 @@
 				else
 						$invalidUsw=true;
 			}
-			else 
+			else
 					$connectionError=true;
 			$myDb->disconnect();
 	}
-
-
   ?>
   <div class="fullScreenHeight loginTopPadding">
   <div id="LoginCard" class="loginCard container1024">
@@ -75,12 +77,12 @@
   		</div>
   		<div class="container" id="InvalidLogin">
   			<!--container for invalid login message-->
-				<?php 
+				<?php
 					if($connectionError)echo "Connection Error. Try again later.";
 					if($invalidPwd)echo "Invalid Password";
 					if($invalidUsw)echo "Invalid Username";
-				
-				
+
+
 				?>
   		</div>
 

@@ -31,8 +31,8 @@
     <li class="<?php if(($page)=="upload.php")echo "activeMenuItem";?>">
       <?php if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>'; else echo '<div class="notClickable">Upload</div>';?>
     </li>
-    
-    
+
+
     <?php
       //Se l'utente è loggato allora può vedere i suoi preferiti
       if(isset($_SESSION['Username'])){
@@ -63,15 +63,18 @@
 
     <li><a href="index.php#team">Team</a></li>
     <li>
-      <a class="btnSearch" href="#" onclick="openModal('SearchModal')"><span class="searchIcon"></span></a>
+      <div class="inputSearch">
+          <input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch" />
+          <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
+      </div>
     </li>
       <?php //To Edit Profile and logOut
- 
 
 
-        
+
+
         if(isset($_SESSION['Username'])){
-          echo ' <li class="user account-dropdown">';  
+          echo ' <li class="user account-dropdown">';
           echo '<a href="#">'.$_SESSION["Username"].'</a>';
           echo '<div class="account-dropdown-content">';
           echo '<a href="editProfile.php">Edit Profile</a>';
@@ -81,13 +84,13 @@
           echo '</div>';
           echo '</li>';
         }
-      
+
 
 
       ?>
 
 
-    <?php 
+    <?php
       if(!isset($_SESSION['Username'])){
 
 
@@ -105,13 +108,13 @@
 
     <?php
       if(!isset($_SESSION['Username']))
-        if(($page)=="login.php")
+        if(strtolower($page)=="login.php")
           echo '<li class="user activeMenuItem"><div class="notClickable">Login</div></li>';
       else{
         echo '<li class="user "><a href="login.php">Login</a></li>';
 
       }
-    
+
 
     ?>
 
@@ -129,7 +132,7 @@
 
 <div class=" breadcrumb">
   <div class="container1024">
-      <?php 
+      <?php
       echo "You are on: ";
       if($page=="index.php")
           echo "HOME";
@@ -145,7 +148,7 @@
           echo "SIGN UP";
       if($page=="resetPassword.php")
           echo "RESET PASSWORD";
-      if($page=="login.php")
+      if(strtolower($page)=="login.php")
           echo "LOGIN";
       if($page=="editProfile.php")
           echo "EDIT PROFILE";

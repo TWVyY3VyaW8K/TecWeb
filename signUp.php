@@ -18,29 +18,29 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-	
-	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false)saveBackPage();
+
+	if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false)saveBackPage();
     $invalidPwdMinLenght = false;
     $invalidConfirmPwd = false;
     $invalidEmail = false;
     $notAllFieldsFilled=false;
     $invalidUsername=false;
     $connectionError=false;
-  
+
 
 
     if(!isset($_POST["pwdSignUp"])|| !isset($_POST["usrSignUp"]) || !isset($_POST["name"]) || !isset($_POST["surname"]) || !isset($_POST["emailSignUp"]) || !isset($_POST["pwdConfirmSignUp"] )){
-       
+
         $notAllFieldsFilled = true;
     }
     else{
         if(empty($_POST["pwdSignUp"])|| empty($_POST["usrSignUp"]) || empty($_POST["name"]) || empty($_POST["surname"]) || empty($_POST["emailSignUp"]) || empty($_POST["pwdConfirmSignUp"] ))
             $notAllFieldsFilled = true;
-        
+
 
 
     }
-    
+
     if(!$notAllFieldsFilled){
         $pwd= htmlspecialchars($_POST["pwdSignUp"], ENT_QUOTES, "UTF-8");//cleaning the input
         $usr= htmlspecialchars($_POST["usrSignUp"], ENT_QUOTES, "UTF-8");
@@ -48,7 +48,7 @@
         $surname= htmlspecialchars($_POST["surname"], ENT_QUOTES, "UTF-8");
         $email= htmlspecialchars($_POST["emailSignUp"], ENT_QUOTES, "UTF-8");
         $pwdConfirm= htmlspecialchars($_POST["pwdConfirmSignUp"], ENT_QUOTES, "UTF-8");
-        
+
         if(strlen($pwd)<5)$invalidPwdMinLenght=true;
         if($pwd !== $pwdConfirm)$invalidConfirmPwd=true;
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))$invalidEmail=true;
@@ -90,7 +90,7 @@
                     //echo 'Username already exists. Try another one';
                 }
             }
-            else 
+            else
                 $connectionError=true;
             $myDb->disconnect();
         }
@@ -111,8 +111,8 @@
             </div>
             <div class="container">
                 <label for="usrSignUp">
-                    Username 
-                    <?php 
+                    Username
+                    <?php
                     if(!isset($_POST['usrSignUp']) ||$_POST['usrSignUp'] =="" )
                     {
                         echo "(You MUST fill this field)";
@@ -127,7 +127,7 @@
 
                 <label for="emailSignUp">
                     Email
-                    <?php 
+                    <?php
                     if(!isset($_POST['emailSignUp']))
                     {
                         echo "(You MUST fill this field)";
@@ -141,7 +141,7 @@
                 <input id="emailSignUp" type="text"  name="emailSignUp" <?php if(isset($_POST['emailSignUp']) && !$invalidEmail)echo 'value="'.$_POST['emailSignUp'].'"'?> />
 
                 <label for="pwdSignUp">Password (minimum length 5 characters)
-                    <?php 
+                    <?php
                         if(!isset($_POST['pwdSignUp']) || $_POST['pwdSignUp']=="")
                         {
                             echo "(You MUST fill this field)";
@@ -156,7 +156,7 @@
 
                 <label for="pwdConfirmSignUp">
                     Confirm Password
-                    <?php 
+                    <?php
                         if(!isset($_POST['pwdConfirmSignUp']) || $_POST['pwdConfirmSignUp']=="" )
                         {
                             echo "(You MUST fill this field)";
@@ -171,7 +171,7 @@
 
                 <label for="name">
                     Name
-                    <?php 
+                    <?php
                         if(!isset($_POST['name'])||$_POST['name']=="")
                         {
                             echo "(You MUST fill this field)";
@@ -182,7 +182,7 @@
 
                 <label for="surname">
                     Surname
-                    <?php 
+                    <?php
                         if(!isset($_POST['surname'])||$_POST['surname']=="")
                         {
                             echo "(You MUST fill this field)";

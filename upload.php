@@ -28,7 +28,8 @@
           <?php
           error_reporting(0);
           if(!isset($_SESSION["Username"])){
-            echo "You have to login before uploading!";
+            //echo "You have to login before uploading!";
+            header("location: login.php");
           }
           else if(isset($_POST["title"]) || isset($_POST["description"]) || isset($_POST["category"]) || isset($_FILES['artwork'])){
             if(isset($_SESSION["Username"])){
@@ -118,7 +119,8 @@
             <textarea id="description" name="description" rows="2" cols="1" ></textarea>
 
             <label for="artwork">Artwork (Max 20Mb):</label>
-            <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
+            <?php  //var_dump($_FILES['artwork']); ?>
+            <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" <?php if(isset($_FILES['artwork']['name']))echo 'value="'.$_FILES['artwork']['name'].'"';?>/>
 
             <button type="submit">Upload</button>
           </div>

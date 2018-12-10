@@ -356,7 +356,8 @@ function doUploadValidation(event){
 
     return returnValue;
 }
-
+/**/
+/*
 function initializePagination(){
 
 	if(getCookie('divPagNumber') == "")
@@ -364,7 +365,8 @@ function initializePagination(){
 	else
 		btnPaginationOnClick("btnPagination"+getCookie('divPagNumber'));
 }
-
+*/
+/*
 function setCookie(cname, cvalue, exdays, path) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -390,3 +392,4 @@ function getCookie(cname) {
     }
     return "";
 }
+*/
