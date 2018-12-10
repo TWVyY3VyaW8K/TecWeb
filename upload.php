@@ -16,29 +16,27 @@
 
   <?php
   require_once "header.php";
-  //require_once "searchModal.php";
   require_once "DbConnector.php";
   require_once "functions.php";
-?>
+  ?>
     <div class="Uploadsection container1024" id="content"><!--upload form-->
       <div class="title"><h1>Register your artwork</h1></div>
 
       <div  id="uploadMessage" class="upload_message">
           <!--container for unfilled inputs-->
-          <?php
-          error_reporting(0);
-          if(!isset($_SESSION["Username"])){
-            //echo "You have to login before uploading!";
-            header("location: login.php");
-          }
-          else if(isset($_POST["title"]) || isset($_POST["description"]) || isset($_POST["category"]) || isset($_FILES['artwork'])){
+        <?php
+        error_reporting(0);
+        $title = trim(escapePathTraversal(htmlspecialchars($_POST["title"], ENT_QUOTES, "UTF-8")));
+        $category = htmlspecialchars($_POST["category"], ENT_QUOTES, "UTF-8");
+        $description = trim(htmlspecialchars($_POST["description"], ENT_QUOTES, "UTF-8"));
+        if(isset($_POST["title"]) || isset($_POST["description"]) || isset($_FILES['artwork'])){
+            $filename = $_FILES['artwork']['name'];
+            $filetmp = $_FILES['artwork']['tmp_name'];
+            $filesize = $_FILES['artwork']['size'];
+            if(!isset($_SESSION["Username"])){
+              header("location: login.php");
+            }
             if(isset($_SESSION["Username"])){
-              $title = escapePathTraversal(htmlspecialchars($_POST["title"], ENT_QUOTES, "UTF-8"));
-              $category = htmlspecialchars($_POST["category"], ENT_QUOTES, "UTF-8");
-              $description = htmlspecialchars($_POST["description"], ENT_QUOTES, "UTF-8");
-              $filename = $_FILES['artwork']['name'];
-              $filetmp = $_FILES['artwork']['tmp_name'];
-              $filesize = $_FILES['artwork']['size'];
               $username = $_SESSION["Username"];
               $time = date('Y-m-d h:i:s');
               $myDb= new DbConnector();
@@ -67,6 +65,10 @@
                     //update database
                     $result = $myDb->doQuery("insert into opere values ('$title','$description','$time','$username','$category')");
                     echo '<p id="success_message" class="success_message">Update successfully</p>';
+                    unset($_POST);
+                    unset($description);
+                    unset($title);
+                    unset($category);
                   }
                   else {
                     echo '<p>Selected file is not an image</p>';
@@ -101,7 +103,9 @@
       </div>
       <form action="" method="post" enctype="multipart/form-data" id="upload" onsubmit="return doUploadValidation(event)">
           <div class="container">
-            <label for="title">Title (Max 20 characters):</label>
+            <label for="title">Title (Max 20 characters):
+              <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>
+            </label>
             <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
 
             <label for="category">Category:</label>
@@ -115,12 +119,13 @@
               <option value="others" <?php if((isset($_POST['category'])) && $_POST['category']=="others") echo "selected=''"?>>Others</option>
             </select>
 
-            <label for="description">Description (Max 1000 characters):</label>
-            <textarea id="description" name="description" rows="2" cols="1" ></textarea>
+            <label for="description">Description (Max 1000 characters):
+              <?php if(isset($description) && strlen($description)===0)echo '(MUST BE FILLED)';?>
+            </label>
+            <textarea id="description" name="description" rows="2" cols="1" ><?php echo($description)?></textarea>
 
             <label for="artwork">Artwork (Max 20Mb):</label>
-            <?php  //var_dump($_FILES['artwork']); ?>
-            <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" <?php if(isset($_FILES['artwork']['name']))echo 'value="'.$_FILES['artwork']['name'].'"';?>/>
+            <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
 
             <button type="submit">Upload</button>
           </div>

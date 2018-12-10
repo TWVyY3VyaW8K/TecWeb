@@ -63,10 +63,12 @@
 
     <li><a href="index.php#team">Team</a></li>
     <li>
-      <div class="inputSearch">
-          <input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch" />
-          <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
-      </div>
+      <form method="get" action="gallery.php">
+        <div class="inputSearch">
+            <input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch" />
+            <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
+        </div>
+      </form>
     </li>
       <?php //To Edit Profile and logOut
 
