@@ -65,7 +65,7 @@
     <li>
       <form method="get" action="gallery.php">
         <div class="inputSearch">
-            <input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch" />
+            <input type="text" name="gallerySearch" />
             <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
         </div>
       </form>
@@ -114,20 +114,12 @@
           echo '<li class="user activeMenuItem"><div class="notClickable">Login</div></li>';
       else{
         echo '<li class="user "><a href="login.php">Login</a></li>';
-
       }
-
-
     ?>
+  <!--<div class="hamburgerMenu">
+    <button type="submit">Menù</button>
+  </div>-->
 
-
-    <li class="hamburgerMenu">
-        <div class="hamburgerMenuContainer" onclick="openDrobDownMenu(this)">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
-        </div>
-    </li>
   </ul>
   </div>
 </div>

@@ -331,31 +331,6 @@ function btnPagForwardOnClick(){
 	}
 }
 */
-function doUploadValidation(event){
-	//event.preventDefault()//prevents to reload the page if login data arent correct
-    var title=document.getElementById('title').value;
-   	var description=document.getElementById('description').value;
-    var returnValue =true;
-	if (document.getElementById("success_message") !=null) {
-		document.getElementById("success_message").innerHTML ="";
-    }
-
-    if((title==="")||(description==="")){
- 		document.getElementById("uploadMessage").innerHTML ="Please Fill all the fields";
-        returnValue=false;
-    }else{
-    	if( document.getElementById("artwork").files.length == 0 ){
-        	document.getElementById("uploadMessage").innerHTML ="Please Select an image";
-        	returnValue=false;
-    	}
-    }
-	if(description.length>1000){
-		document.getElementById("uploadMessage").innerHTML ="Description is too long";
-		returnValue=false;
-	}
-
-    return returnValue;
-}
 /**/
 /*
 function initializePagination(){
