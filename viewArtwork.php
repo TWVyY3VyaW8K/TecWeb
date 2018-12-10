@@ -17,22 +17,13 @@
     <body onload="eventListnerforLoginModal(); magnify(); /*setResizeListner();*/" >
       <?php
         require_once "header.php";
-        //require_once "searchModal.php";
+        require_once "loginModal.php";
+        require_once "searchModal.php";
+        require_once "signUpModal.php";
+        require_once "editProfileModal.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-       // require_once "likedByModal.php";
-       // saveBackPage();
-
-       if(isset($_GET['lNumI'])){
-        $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
-        if($numI != 0){
-            $_SESSION['giveLike'] = $numI;
-        }
-        $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
-        //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
-        
-        unset($_GET['lNumI']);
-       }
+        require_once "likedByModal.php";
 
         $Title = $_GET['Title'];
         $Artist = $_GET['Artist'];
@@ -63,19 +54,20 @@
             $ArtistName = $row['Nome'] . " " . $row['Cognome'];
             $isLiked = false;
 
-            if(isset($_SESSION['giveLike']) && ($_SESSION['giveLike'] == 1)){
-              $tmp = giveLike($Artist,$Title);
-              unset($_SESSION['giveLike']);
-            }
             if ( is_session_started() === FALSE || (!isset($_SESSION['Username']))){
               $isLiked = false;
             }else if(isset($_SESSION['Username'])){
               $isLiked = boolImageLiked($Artist,$_SESSION['Username'],$Title)['Result'];
             }
           }
+          else
+             echo "<script> window.location.replace('404.php') </script>";
          }
+         else
+           echo "<script> window.location.replace('404.php') </script>";
         }
-
+        else
+          echo '<script>alert(\'Database problem!\');</script>';
       ?>
       <div class="container1024">
       <h1 id="artworkTitle"><?php echo $Title; ?></h1>
@@ -96,26 +88,18 @@
               Comments: <?php echo $Comments; ?>
 
               <?php
-                $url = $_SERVER['REQUEST_URI'];
-                //echo $url;
-                $query = parse_url($url, PHP_URL_QUERY);
-                if ($query) {
-                    $url .= '&lNumI=1';
-                } else {
-                    $url .= '?lNumI=1';
-                }
                 echo '<input type="hidden" value="'.$Artist.'" name="nameArtist"/></br>';
                 echo '<input type="hidden" value="'.$Title.'" name="nameImage"/></br>';
                 echo '<div class="wrapper">';
                 echo '<div class="width-15">';
                 if($isLiked == true){
-                  echo '              <a href="'.$url.'"><div class="like-btn like-btn-added"></div></a>';
+                  echo '<div class="like-btn like-btn-added" onclick="btnLikeOnClick(this)" id="LikeBtn_1"></div>';
                 }else{
-                  echo '              <a href="'.$url.'"><div class="like-btn"></div></a>';
+                  echo '<div class="like-btn" onclick="btnLikeOnClick(this)" id="LikeBtn_1"></div>';
                 }
                 echo '  </div>';
                 echo '  <div class="width-85">';
-                echo '                  <p><a class="customLink" href="likedBy.php?artist='.$Artist.'&imgName='.$Title.'">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</a></p>';
+                echo '<p class="customLink" id="Likes_1" onclick="btnLikedByOnClick(this)">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</p>';
                 echo '  </div></div>';
               ?>
                 <hr></hr>
@@ -125,6 +109,7 @@
           </div>
           </div>
           <div id="commentSection" class="container1024">
+          <form action="/AddComment.php" method="post">
           <div class="comment" id="topComment">
           <?php
             if($myDb->connected && isset($_SESSION['Username']))
@@ -134,12 +119,15 @@
            ?>
            <?php
             $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : "";
-            $dis = !isset($_SESSION['Username']) ? "openModal('LoginModal')" : "doComment('$Title','$Artist')";
            ?>
-           <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
+           <textarea name="Commento" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
         <?php
-            echo '<input type="button" value="Send" id="comment-btn" onclick="'.$dis.'"/></div>';
-          ?>
+            echo '<input type="submit" value="Send" id="comment-btn" '.$en.'/></div>';
+          ?>  
+          <input type="hidden" name="Opera" value=<?php echo '"'.$Title.'"' ?>>
+          <input type="hidden" name="Creatore" value=<?php echo '"'.$Artist.'"' ?>>
+        </form> 
+      </div>
           <?php
               if($myDb->connected)
               {
@@ -150,8 +138,9 @@
                   while($row = $result->fetch_assoc())
                   {
                     echo '<div class="comment">';
-                    if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin')
-                    	echo '<div class="delComment" onclick="removeComment(this, '.$row['ID'].')"> x </div>';
+                    if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin') {
+                    	echo '<div class="delComment"> <a href="RemoveComment.php?ID='.$row['ID'].' x</a></div>';
+                    }
                     echo '<a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a>';
                     echo $row['Commento']."</div>";
                   }
