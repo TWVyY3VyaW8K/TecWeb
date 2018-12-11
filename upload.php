@@ -26,10 +26,10 @@
           <!--container for unfilled inputs-->
         <?php
         error_reporting(0);
-        $title = trim(escapePathTraversal(htmlspecialchars($_POST["title"], ENT_QUOTES, "UTF-8")));
-        $category = htmlspecialchars($_POST["category"], ENT_QUOTES, "UTF-8");
-        $description = trim(htmlspecialchars($_POST["description"], ENT_QUOTES, "UTF-8"));
-        if(isset($_POST["title"]) || isset($_POST["description"]) || isset($_FILES['artwork'])){
+        $title = trim(escapePathTraversal(htmlspecialchars($_GET["title"], ENT_QUOTES, "UTF-8")));
+        $category = htmlspecialchars($_GET["category"], ENT_QUOTES, "UTF-8");
+        $description = trim(htmlspecialchars($_GET["description"], ENT_QUOTES, "UTF-8"));
+        if(isset($_GET["title"]) || isset($_GET["description"]) || isset($_FILES['artwork'])){
             $filename = $_FILES['artwork']['name'];
             $filetmp = $_FILES['artwork']['tmp_name'];
             $filesize = $_FILES['artwork']['size'];
@@ -101,22 +101,22 @@
           }
         ?>
       </div>
-      <form action="" method="post" enctype="multipart/form-data" id="upload" onsubmit="return doUploadValidation(event)">
+      <form action="" method="get" enctype="multipart/form-data" id="upload" onsubmit="return doUploadValidation(event)">
           <div class="container">
             <label for="title">Title (Max 20 characters):
               <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>
             </label>
-            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
+            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_GET['title']))echo 'value="'.$_GET['title'].'"'?>/>
 
             <label for="category">Category:</label>
             <select id="category" name="category">
-              <option value="landscape" <?php if((isset($_POST['category'])) && $_POST['category']=="landscape") echo "selected=''"?>>Landscape</option>
-              <option value="fantasy" <?php if((isset($_POST['category'])) && $_POST['category']=="fantasy") echo "selected=''"?>>Fantasy</option>
-              <option value="abstract" <?php if((isset($_POST['category'])) && $_POST['category']=="abstract") echo "selected=''"?>>Abstract</option>
-              <option value="cartoon" <?php if((isset($_POST['category'])) && $_POST['category']=="cartoon") echo "selected=''"?>>Cartoon</option>
-              <option value="portrait" <?php if((isset($_POST['category'])) && $_POST['category']=="portrait") echo "selected=''"?>>Portrait</option>
-              <option value="nature" <?php if((isset($_POST['category'])) && $_POST['category']=="nature") echo "selected=''"?>>Nature</option>
-              <option value="others" <?php if((isset($_POST['category'])) && $_POST['category']=="others") echo "selected=''"?>>Others</option>
+              <option value="landscape" <?php if((isset($_GET['category'])) && $_GET['category']=="landscape") echo "selected=''"?>>Landscape</option>
+              <option value="fantasy" <?php if((isset($_GET['category'])) && $_GET['category']=="fantasy") echo "selected=''"?>>Fantasy</option>
+              <option value="abstract" <?php if((isset($_GET['category'])) && $_GET['category']=="abstract") echo "selected=''"?>>Abstract</option>
+              <option value="cartoon" <?php if((isset($_GET['category'])) && $_GET['category']=="cartoon") echo "selected=''"?>>Cartoon</option>
+              <option value="portrait" <?php if((isset($_GET['category'])) && $_GET['category']=="portrait") echo "selected=''"?>>Portrait</option>
+              <option value="nature" <?php if((isset($_GET['category'])) && $_GET['category']=="nature") echo "selected=''"?>>Nature</option>
+              <option value="others" <?php if((isset($_GET['category'])) && $_GET['category']=="others") echo "selected=''"?>>Others</option>
             </select>
 
             <label for="description">Description (Max 1000 characters):
