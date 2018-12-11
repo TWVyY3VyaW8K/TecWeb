@@ -188,6 +188,28 @@
         echo "</div>";
         return ceil($result->num_rows/$GLOBALS['imagesPerPage']);
     }
+
+    function getQueryForLikedImages(){
+        return 
+            "SELECT Nome, Artista FROM opere o LEFT JOIN likes on Nome=Opera and Artista=Creatore
+            WHERE likes.Utente='".$_SESSION['Username']."'
+            GROUP BY o.Nome, o.Artista ORDER BY COUNT(Nome) DESC";
+    }
+
+    function getQueryForTopRatedImages(){
+        return
+            "SELECT Nome, Artista FROM opere JOIN likes on Nome=Opera and Artista=Creatore
+            GROUP BY Nome, Artista ORDER BY COUNT(Nome) DESC LIMIT 4";
+    }
+
+    function getImageAtPosition($result,$pos){
+        $row = NULL;
+        for ($i = 0; $i < $result->num_rows && ($i < $pos); $i++) {
+            $row = $result->fetch_assoc();
+        }
+        return $row;
+    }
+
     function resetSessionPaginationNum($sessionName){
         $_SESSION[$sessionName] = 1;
     }
@@ -250,7 +272,7 @@
     //generates the code for the back button
     function getBackButton(){
         if(isset($_SESSION['backPage'])) {
-            return '<a href="'.$_SESSION['backPage'].'" class="backButton">Back</a>';
+            return '<a href="'.removeqsvar($_SESSION['backPage'], 'lNumI').'" class="backButton">Back</a>';
         } else {
             return '<a href="/index.php" class="backButton">Back</a>';
         }
@@ -259,13 +281,16 @@
     function saveBackPage(){
 
       //  echo  $_SERVER['HTTP_REFERER'];
-        unset($_SESSION["backPage"]);
-        $_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
+        //unset($_SESSION["backPage"]);
+        //$_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
         if(isset($_SESSION['backPageRedirect'])){
             $_SESSION["backPage"] = $_SESSION['backPageRedirect'];
             unset($_SESSION['backPageRedirect']);
         }else{
             $_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
+            if(strstr($_SERVER['REQUEST_URI'], "likedBy.php")==true){
+                $_SESSION['backPage'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
+            }
         }
 
         //$_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
@@ -273,6 +298,37 @@
        // $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
        // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
     }
+
+    function galleryImageNumberFromUrl(){
+        $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
+        if($numI != 0){
+            $_SESSION['giveLike'] = $numI;
+        }
+        if(!isset($_SESSION["Username"])){
+            header("location: Login.php");
+        }
+    }
+
+    function galleryPagNumberFromUrl(){
+        $pagNumber=1;
+        if(isset($_GET['pagNum'])){
+            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;   
+            $_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
+        }elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
+            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
+        }
+        return $pagNumber;
+    }
+
+    function galleryDeleteImageNumberFromUrl(){
+        $numI = (intval(htmlspecialchars($_GET['dNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['dNumI'], ENT_QUOTES, "UTF-8")) : 0;
+        if($numI != 0){
+            $_SESSION['deleteImage'] = $numI;
+        }
+        $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'dNumI');
+        //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
+    }
+
     function getBackPageURL(){
         return $_SESSION["backPage"];
     }

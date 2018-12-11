@@ -23,7 +23,7 @@
         && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false
         && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false
         && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false){
-			saveBackPage();
+            saveBackPage();
     }
   ?>
   <div class="fullScreenHeight loginTopPadding">

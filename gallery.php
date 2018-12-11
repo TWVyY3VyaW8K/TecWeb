@@ -17,30 +17,12 @@
 <body onload="eventListnerforLoginModal(); scrollFunction(); scrollToImage();" >
     <?php
         require_once "header.php";
-        //  require_once "searchModal.php";
-        //require_once "likedByModal.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-        // saveBackPage();
-        if(isset($_GET['pagNum'])){
-            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;
-            $_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
-        }elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
-            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
-        }
+        $pagNumber = galleryPagNumberFromUrl();
         if(isset($_GET['lNumI'])){
             $_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
-            $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
-            if($numI != 0){
-                $_SESSION['giveLike'] = $numI;
-            }
-            $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
-            if(!isset($_SESSION["Username"])){
-                header("location: Login.php");
-            }
-            //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
-            unset($_GET['lNumI']);
-
+            galleryImageNumberFromUrl();
         }
     ?>
     <div class="gallery container1024" id="content">

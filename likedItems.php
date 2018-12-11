@@ -18,27 +18,10 @@
         require_once "header.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-       // require_once "searchModal.php";
-        //require_once "likedByModal.php";
 
-        if(isset($_GET['pagNum'])){
-            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;   
-            $_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
-        }elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
-            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
-        }
+        $pagNumber = galleryPagNumberFromUrl();
         if(isset($_GET['lNumI'])){
-            $_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
-            $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
-            if($numI != 0){
-                $_SESSION['giveLike'] = $numI;
-            }
-            $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
-            if(!isset($_SESSION["Username"])){
-                header("location: Login.php");
-            }
-            //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
-            unset($_GET['lNumI']);
+            galleryImageNumberFromUrl();
         }
     ?>
     <div id="imgLoader" class="image-loader display-none">
@@ -54,11 +37,16 @@
                     $myDb->openDBConnection();
                     $result = array();
                     if($myDb->connected){
-                        $qrStr = "SELECT Nome, Artista FROM opere o LEFT JOIN likes on Nome=Opera and Artista=Creatore
-                                    WHERE likes.Utente='".$_SESSION['Username']."'
-                                    GROUP BY o.Nome, o.Artista ORDER BY COUNT(Nome) DESC";
+                        $qrStr = getQueryForLikedImages();
                         $result = $myDb->doQuery($qrStr);
-                        echo $qrStr;
+                        //removing like from a specific image
+                        if(isset($_SESSION['giveLike']) && $result){
+                            $row = getImageAtPosition($result, $_SESSION['giveLike']);
+                            $tmp = giveLike($row['Artista'],$row['Nome']);
+                            unset($_SESSION['giveLike']);
+                            $qrStr = getQueryForLikedImages();
+                            $result = $myDb->doQuery($qrStr);
+                        }
                     }
                     else 
                         echo "<li class='liPaginationBlock'>Errore connessione</li>";

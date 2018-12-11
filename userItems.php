@@ -21,34 +21,12 @@
        // require_once "likedByModal.php";
         //require_once "searchModal.php";
 
-        if(isset($_GET['pagNum'])){
-            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;   
-            $_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
-        }elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
-            resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
-        }
+        $pagNumber = galleryPagNumberFromUrl();
         if(isset($_GET['lNumI'])){
-            $_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
-            $numI = (intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['lNumI'], ENT_QUOTES, "UTF-8")) : 0;
-            if($numI != 0){
-                $_SESSION['giveLike'] = $numI;
-            }
-            $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
-            if(!isset($_SESSION["Username"])){
-                header("location: Login.php");
-            }
-            //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
-            unset($_GET['lNumI']);
+            galleryImageNumberFromUrl();
         }
         if(isset($_GET['dNumI'])){
-            $numI = (intval(htmlspecialchars($_GET['dNumI'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['dNumI'], ENT_QUOTES, "UTF-8")) : 0;
-            if($numI != 0){
-                $_SESSION['deleteImage'] = $numI;
-            }
-            $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'dNumI');
-            //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
-            
-            unset($_GET['dNumI']);
+            galleryDeleteImageNumberFromUrl();
         }
     ?>
     <div id="imgLoader" class="image-loader display-none">
