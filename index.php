@@ -26,6 +26,7 @@
 
 	$pagNumber = galleryPagNumberFromUrl();
 	if(isset($_GET['lNumI'])){
+		$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
 		galleryImageNumberFromUrl();
 	}
   ?>
