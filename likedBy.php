@@ -18,13 +18,14 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-
+  /*
 	if(isset($_SERVER['HTTP_REFERER'])
         && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false
         && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false
         && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false){
             saveBackPage();
     }
+  */
   ?>
   <div class="fullScreenHeight loginTopPadding">
   <div class="loginCard container1024" id="LikedByDiv">
@@ -32,14 +33,14 @@
   			<h1>Liked By</h1>
   		</div>
   		<div class="container">
-        <?php  
+        <?php
             if ( is_session_started() === FALSE ) session_start();
             $artist= isset($_GET["artist"]) ? htmlspecialchars($_GET["artist"], ENT_QUOTES, "UTF-8") : "";//cleaning the input
             $imgName= isset($_GET["imgName"]) ? htmlspecialchars($_GET["imgName"], ENT_QUOTES, "UTF-8") : "";
             //connecting to db
             $myDb= new DbConnector();
             $myDb->openDBConnection();
-            
+
             $tmpArr = array();
             if($myDb->connected){
                 //echo 'INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$nomeImmagine.'", "'.$_SESSION["Username"].'", "'.$artista.'");';
@@ -50,7 +51,7 @@
                     if($result->num_rows > 0){
                         for($i=0; $i < $result->num_rows; $i++){
                             $row = $result->fetch_assoc();
-                            echo '<div class="comment"><a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a></div>';         
+                            echo '<div class="comment"><a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a></div>';
                         }
                     }else{
                         echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
@@ -59,7 +60,7 @@
                     echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
                 }
             }
-            else 
+            else
                 echo "<div class='liPaginationBlock'><div class='div-center'><p>Connection error! </p></div></div>";
             $myDb->disconnect();
         ?>

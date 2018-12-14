@@ -190,7 +190,7 @@
     }
 
     function getQueryForLikedImages(){
-        return 
+        return
             "SELECT Nome, Artista FROM opere o LEFT JOIN likes on Nome=Opera and Artista=Creatore
             WHERE likes.Utente='".$_SESSION['Username']."'
             GROUP BY o.Nome, o.Artista ORDER BY COUNT(Nome) DESC";
@@ -283,6 +283,12 @@
       //  echo  $_SERVER['HTTP_REFERER'];
         //unset($_SESSION["backPage"]);
         //$_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
+       //echo '<br/>before '.$_SESSION["backPage"];
+      $_SESSION["backPage"] =  $_SERVER['REQUEST_URI'];
+        //echo '<br/>'.$_SESSION["backPage"];
+/*
+        echo '<br/>'.$_SERVER['HTTP_REFERER'];
+
         if(isset($_SESSION['backPageRedirect'])){
             $_SESSION["backPage"] = $_SESSION['backPageRedirect'];
             unset($_SESSION['backPageRedirect']);
@@ -294,9 +300,12 @@
         }
 
         //$_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
-      //  echo "<br>".$_SESSION["backPage"];
+        echo "<br>".$_SESSION["backPage"];*/
        // $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
        // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
+    }
+    function getBackPageURL(){
+        return $_SESSION["backPage"];
     }
 
     function galleryImageNumberFromUrl(){
@@ -304,15 +313,16 @@
         if($numI != 0){
             $_SESSION['giveLike'] = $numI;
         }
+              //echo '<br/>'.$_SESSION["backPage"];
         if(!isset($_SESSION["Username"])){
-            header("location: Login.php");
+            header("location: login.php");
         }
     }
 
     function galleryPagNumberFromUrl(){
         $pagNumber=1;
         if(isset($_GET['pagNum'])){
-            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;   
+            $pagNumber = (intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) >= 1) ? intval(htmlspecialchars($_GET['pagNum'], ENT_QUOTES, "UTF-8")) : 1;
             $_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))] = $pagNumber;
         }elseif(!isset($_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))])){
             resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
@@ -329,9 +339,7 @@
         //$_SERVER['REQUEST_URI'] = modifyGetParameterInURI($_GET,'lNumI');
     }
 
-    function getBackPageURL(){
-        return $_SESSION["backPage"];
-    }
+
     function randomPassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pwd = array(); // to declare $pass as an array
@@ -344,6 +352,7 @@
     function removeqsvar($url, $varname) {
         list($urlpart, $qspart) = array_pad(explode('?', $url), 2, '');
         parse_str($qspart, $qsvars);
+        //unset($qsvars[$varname[$i]]);
         unset($qsvars[$varname]);
         $newqs = http_build_query($qsvars);
         $r = (strlen($newqs) > 0) ? $urlpart . '?' . $newqs : $urlpart;

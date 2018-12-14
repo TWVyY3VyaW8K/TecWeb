@@ -9,9 +9,9 @@
       session_start();
       if(isset($_POST['logOut'])){//log out request
         unset($_SESSION['Username']);
-        if(strstr($_SERVER['HTTP_REFERER'], "editProfile.php") || strstr($_SERVER['HTTP_REFERER'], "likedItems.php") ||strstr($_SERVER['HTTP_REFERER'], "userItems.php")  )
+        if(strstr($_SERVER['HTTP_REFERER'], "upload.php") || strstr($_SERVER['HTTP_REFERER'], "editProfile.php") || strstr($_SERVER['HTTP_REFERER'], "likedItems.php") ||strstr($_SERVER['HTTP_REFERER'], "userItems.php")  )
         {
-          header("location: /index.php");
+          header("location: /dliu/TecWeb/index.php");
 					die();
         }
 

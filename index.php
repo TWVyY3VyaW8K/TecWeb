@@ -7,6 +7,7 @@
   <meta name="keywords" content="artwork,picture,image,database"/>
   <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="Images/logo.png"/>
 	<link rel="stylesheet" href="Style/style.css"/>
 	<link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
 	<script type="text/javascript" src="script.js" ></script>
@@ -25,7 +26,8 @@
 	$myDb->openDBConnection();
 
 	$pagNumber = galleryPagNumberFromUrl();
-	$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
+  saveBackPage();
+//	$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
 	if(isset($_GET['lNumI'])){
 		galleryImageNumberFromUrl();
 	}

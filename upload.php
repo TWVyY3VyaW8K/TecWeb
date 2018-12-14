@@ -18,6 +18,9 @@
   require_once "header.php";
   require_once "DbConnector.php";
   require_once "functions.php";
+
+  unset($_SESSION['backPageRedirect']);
+  //$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
   ?>
     <div class="Uploadsection container1024" id="content"><!--upload form-->
       <div class="title"><h1>Register your artwork</h1></div>
@@ -33,8 +36,9 @@
             $filename = $_FILES['artwork']['name'];
             $filetmp = $_FILES['artwork']['tmp_name'];
             $filesize = $_FILES['artwork']['size'];
+            var_dump($_FILES['artwork']);
             if(!isset($_SESSION["Username"])){
-              header("location: Login.php");
+              header("location: login.php");
             }
             if(isset($_SESSION["Username"])){
               $username = $_SESSION["Username"];
@@ -101,7 +105,7 @@
           }
         ?>
       </div>
-      <form action="" method="get" enctype="multipart/form-data" id="upload" onsubmit="return doUploadValidation(event)">
+      <form action="" method="get" enctype="multipart/form-data" id="upload">
           <div class="container">
             <label for="title">Title (Max 20 characters):
               <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>

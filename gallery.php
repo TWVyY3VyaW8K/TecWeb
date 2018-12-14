@@ -20,7 +20,8 @@
         require_once "DbConnector.php";
         require_once "functions.php";
         $pagNumber = galleryPagNumberFromUrl();
-        $_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
+        saveBackPage();
+        //  $_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
         if(isset($_GET['lNumI'])){
             galleryImageNumberFromUrl();
         }

@@ -18,7 +18,7 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-	
+
 	//if(isset($_SERVER['HTTP_REFERER'])&&strstr($_SERVER['HTTP_REFERER'], "login.php")==false && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false )saveBackPage();
 	$connectionError=$resetSuccess=$resetEmail=false;
 
@@ -34,7 +34,7 @@
 			{
 
                 $result = $myDb->doQuery("select * from artisti where Username ='$usr' and Email='$email'");//excecute query
-               
+
                 if($result->num_rows===1)
                 {
 
@@ -51,14 +51,14 @@
                         'X-Mailer: PHP/' . phpversion();
 
                         $resetEmail= mail($to, $subject, $message, $headers);
-        
+
                     }
                     else
                         $resetSuccess=false;
                 }else
                     $resetSuccess=false;
 			}
-			else 
+			else
 					$connectionError=true;
 			$myDb->disconnect();
 	}
@@ -80,8 +80,8 @@
 
   		</div>
   		<div class="container" id="InvalidLogin">
-  			
-				<?php 
+
+				<?php
                     if($connectionError)
                         echo "Connection Error. Try again later.";
                     else
@@ -92,7 +92,7 @@
                                 echo "Invalid combination of Username and Password";
                         else
                             if(!$resetEmail)
-                                echo "Your Password was resetted to a new randome one, but we wasn't enable to send you the new password by email. Please try to reset later.";
+                                echo "Your Password was resetted to a new randome one, but we weren't enable to send you the new password by email. Please try to reset later.";
                             else
                                 echo "Password resetted successfully. Check the new password in your email.";
 
