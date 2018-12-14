@@ -28,9 +28,14 @@
       <?php if(($page)!="gallery.php")echo '<a href="gallery.php">Gallery</a>'; else echo '<div class="notClickable">Gallery</div>';?>
     </li>
 
-    <li class="<?php if(($page)=="upload.php")echo "activeMenuItem";?>">
-      <?php if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>'; else echo '<div class="notClickable">Upload</div>';?>
-    </li>
+    <?php
+      if(isset($_SESSION['Username'])){
+        echo '<li class="<?php if(($page)=="upload.php")echo "activeMenuItem";">';
+        if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>';
+        else echo '<div class="notClickable">Upload</div>';
+        echo '</li>';
+      }
+    ?>
 
 
     <?php

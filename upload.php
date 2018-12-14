@@ -19,7 +19,7 @@
   require_once "DbConnector.php";
   require_once "functions.php";
 
-  unset($_SESSION['backPageRedirect']);
+  //unset($_SESSION['backPageRedirect']);
   //$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
   ?>
     <div class="Uploadsection container1024" id="content"><!--upload form-->
@@ -28,17 +28,18 @@
       <div  id="uploadMessage" class="upload_message">
           <!--container for unfilled inputs-->
         <?php
-        error_reporting(0);
-        $title = trim(escapePathTraversal(htmlspecialchars($_GET["title"], ENT_QUOTES, "UTF-8")));
-        $category = htmlspecialchars($_GET["category"], ENT_QUOTES, "UTF-8");
-        $description = trim(htmlspecialchars($_GET["description"], ENT_QUOTES, "UTF-8"));
-        if(isset($_GET["title"]) || isset($_GET["description"]) || isset($_FILES['artwork'])){
+        //error_reporting(0);
+        $title = "";
+        $description = "";
+        if(isset($_POST["submit"])){
+            $title = trim(escapePathTraversal(htmlspecialchars($_POST["title"], ENT_QUOTES, "UTF-8")));
+            $category = htmlspecialchars($_POST["category"], ENT_QUOTES, "UTF-8");
+            $description = trim(htmlspecialchars($_POST["description"], ENT_QUOTES, "UTF-8"));
             $filename = $_FILES['artwork']['name'];
             $filetmp = $_FILES['artwork']['tmp_name'];
             $filesize = $_FILES['artwork']['size'];
-            var_dump($_FILES['artwork']);
             if(!isset($_SESSION["Username"])){
-              header("location: login.php");
+              echo '<p>You have to sign up before uploading!</p>';
             }
             if(isset($_SESSION["Username"])){
               $username = $_SESSION["Username"];
@@ -69,10 +70,9 @@
                     //update database
                     $result = $myDb->doQuery("insert into opere values ('$title','$description','$time','$username','$category')");
                     echo '<p id="success_message" class="success_message">Update successfully</p>';
+                    unset($_FILES);
                     unset($_POST);
-                    unset($description);
-                    unset($title);
-                    unset($category);
+                    $description="";
                   }
                   else {
                     echo '<p>Selected file is not an image</p>';
@@ -105,22 +105,22 @@
           }
         ?>
       </div>
-      <form action="" method="get" enctype="multipart/form-data" id="upload">
+      <form action="" method="POST" enctype="multipart/form-data" id="upload">
           <div class="container">
             <label for="title">Title (Max 20 characters):
               <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>
             </label>
-            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_GET['title']))echo 'value="'.$_GET['title'].'"'?>/>
+            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
 
             <label for="category">Category:</label>
             <select id="category" name="category">
-              <option value="landscape" <?php if((isset($_GET['category'])) && $_GET['category']=="landscape") echo "selected=''"?>>Landscape</option>
-              <option value="fantasy" <?php if((isset($_GET['category'])) && $_GET['category']=="fantasy") echo "selected=''"?>>Fantasy</option>
-              <option value="abstract" <?php if((isset($_GET['category'])) && $_GET['category']=="abstract") echo "selected=''"?>>Abstract</option>
-              <option value="cartoon" <?php if((isset($_GET['category'])) && $_GET['category']=="cartoon") echo "selected=''"?>>Cartoon</option>
-              <option value="portrait" <?php if((isset($_GET['category'])) && $_GET['category']=="portrait") echo "selected=''"?>>Portrait</option>
-              <option value="nature" <?php if((isset($_GET['category'])) && $_GET['category']=="nature") echo "selected=''"?>>Nature</option>
-              <option value="others" <?php if((isset($_GET['category'])) && $_GET['category']=="others") echo "selected=''"?>>Others</option>
+              <option value="landscape" <?php if((isset($_POST['category'])) && $_POST['category']=="landscape") echo "selected=''"?>>Landscape</option>
+              <option value="fantasy" <?php if((isset($_POST['category'])) && $_POST['category']=="fantasy") echo "selected=''"?>>Fantasy</option>
+              <option value="abstract" <?php if((isset($_POST['category'])) && $_POST['category']=="abstract") echo "selected=''"?>>Abstract</option>
+              <option value="cartoon" <?php if((isset($_POST['category'])) && $_POST['category']=="cartoon") echo "selected=''"?>>Cartoon</option>
+              <option value="portrait" <?php if((isset($_POST['category'])) && $_POST['category']=="portrait") echo "selected=''"?>>Portrait</option>
+              <option value="nature" <?php if((isset($_POST['category'])) && $_POST['category']=="nature") echo "selected=''"?>>Nature</option>
+              <option value="others" <?php if((isset($_POST['category'])) && $_POST['category']=="others") echo "selected=''"?>>Others</option>
             </select>
 
             <label for="description">Description (Max 1000 characters):
@@ -131,7 +131,7 @@
             <label for="artwork">Artwork (Max 20Mb):</label>
             <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
 
-            <button type="submit">Upload</button>
+            <button type="submit" name="submit">Upload</button>
           </div>
         </form>
       </div>
