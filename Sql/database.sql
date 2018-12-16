@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `artisti` (
   `Password` varchar(256) NOT NULL,
   `Nome` varchar(100) CHARACTER SET utf8 NOT NULL,
   `Cognome` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `Email` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `Email` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT "test@test.com",
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -18,7 +18,7 @@
         require_once "header.php";
         require_once "DbConnector.php";
         require_once "functions.php";
-        saveBackPage();
+
         $Title = $_GET['Title'];
         $Artist = $_GET['Artist'];
 
@@ -32,6 +32,7 @@
           $result = $myDb->doQuery($qrStr);
           if(isset($result) && ($result->num_rows === 1))
           {
+            $Error= "";
             $row = $result->fetch_assoc();
             $Title = $row['Nome'];
             $Artist = $row['Artista'];
@@ -48,20 +49,44 @@
             $ArtistName = $row['Nome'] . " " . $row['Cognome'];
             $isLiked = false;
 
-            if ( is_session_started() === FALSE || (!isset($_SESSION['Username']))){
-              $isLiked = false;
-            }else if(isset($_SESSION['Username'])){
-              $isLiked = boolImageLiked($Artist,$_SESSION['Username'],$Title)['Result'];
+            if(isset($_GET['Remove']))
+            {
+              $ID = $_GET['Remove'];
+              $qrstr = "SELECT ID FROM commenti WHERE ID=".$ID;
+              if ($_SESSION['Username'] !== 'Admin')
+                $qrstr .= " AND Utente='".$_SESSION['Username']."'";
+              if($myDb->doQuery($qrstr)->num_rows !== 1)
+                $Error = 'Artwork not found or wrong artwork owner';
+              else
+                 {
+                  $qrstr = "DELETE FROM commenti WHERE ID=".$ID;
+                  $myDb->doQuery($qrstr);
+                 }
             }
+            else if(isset($_GET['input-comment']))
+            {
+              $Comment = htmlspecialchars($_GET['input-comment'], ENT_QUOTES, "UTF-8");
+              if(empty(trim($Comment)))
+                $Error = 'Empty field!';
+              else
+              {
+                $qrStr = "INSERT INTO `commenti`(`Opera`, `Utente`, `Creatore`, `Commento`) VALUES ('".$Title."','".$_SESSION['Username']."','".$Artist."','".$Comment."')";
+                if(!$myDb->doQuery($qrStr))
+                  $Error = 'Query failed!';
+              }
+            }
+          }
+          if ( is_session_started() === FALSE || (!isset($_SESSION['Username']))){
+             $isLiked = false;
+           }else if(isset($_SESSION['Username'])){
+             $isLiked = boolImageLiked($Artist,$_SESSION['Username'],$Title)['Result'];
+           }
           }
           else
              echo "<script> window.location.replace('404.php') </script>";
          }
          else
-           echo "<script> window.location.replace('404.php') </script>";
-        }
-        else
-          echo '<script>alert(\'Database problem!\');</script>';
+           echo "<script>alert(\'Database problem!\');</script>";
       ?>
       <div class="container1024">
       <h1 id="artworkTitle"><?php echo $Title; ?></h1>
@@ -95,28 +120,29 @@
                 echo '  <div class="width-85">';
                 echo '<p class="customLink" id="Likes_1" onclick="btnLikedByOnClick(this)">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</p>';
                 echo '  </div></div>';
-              ?>
-            </div>
+              ?>            </div>
 
             <div id="main-description"><?php echo $Description; ?></div>
           </div>
           </div>
           <div id="commentSection" class="container1024">
           <div class="comment" id="topComment">
-          <form action="/AddComment.php" method="post">
-            <?php
-              if($myDb->connected && isset($_SESSION['Username']))
-                  echo $_SESSION['Username'];
-                else
-                  echo "Login to add a comment."
-             ?>
-             <?php $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : ""; ?>
-             <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
-             <input type="hidden" name="Opera" value=<?php echo '"'.$Title.'"' ?>/>
-            <input type="hidden" name="Creatore" value=<?php echo '"'.$Artist.'"' ?>/>
-            <?php
-              echo '<input type="submit" value="Send" id="comment-btn" '.$en.'/>';
-            ?>
+          <form action="viewArtwork.php" method="get">
+          <?php
+            if($myDb->connected && isset($_SESSION['Username']))
+                echo $_SESSION['Username'];
+              else
+                echo "Login to add a comment.";
+              if(!empty($Error))
+                echo ' ('.$Error.') ';
+           ?>
+           <?php $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : ""; ?>
+           <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
+           <input type="hidden" name="Title" value=<?php echo '"'.$Title.'"' ?>/>
+          <input type="hidden" name="Artist" value=<?php echo '"'.$Artist.'"' ?>/>
+        <?php
+            echo '<input type="submit" value="Send" id="comment-btn" '.$en.'/>';
+          ?>
           </form>
           </div>
           <?php
@@ -130,15 +156,16 @@
                   {
                     echo '<div class="comment">';
                     if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin')
-                    	echo '<div class="delComment"> <a href="RemoveComment.php?ID='.$row['ID'].' x </a></div>';
+                      echo '<div class="delComment"> <a href="viewArtwork.php?Remove='.$row['ID'].'&Title='.$Title.'&Artist='.$Artist.'"> x </a></div>';
                     echo '<a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a>';
-                    echo $row['Commento']."</div>";
+                    echo ' '.$row['Commento']."</div>"; 
                   }
                 }
               }
             ?>
         </div>
-		</div>
+    </div>
+  </div>
       <?php require_once "footer.html"?>
     </body>
 </html>
