@@ -283,8 +283,16 @@
       //  echo  $_SERVER['HTTP_REFERER'];
         //unset($_SESSION["backPage"]);
         //$_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
-       //echo '<br/>before '.$_SESSION["backPage"];
-      $_SESSION["backPage"] =  $_SERVER['REQUEST_URI'];
+        //echo '<br/>before '.$_SESSION["backPage"];
+        $_SESSION["backPage"] =  $_SERVER['REQUEST_URI'];
+        if(
+            strstr($_SERVER['REQUEST_URI'], "likedBy.php")==true ||
+            strstr($_SERVER['REQUEST_URI'], "viewArtwork.php")==true ||
+            strstr($_SERVER['REQUEST_URI'], "likedItems.php")==true ||
+            strstr($_SERVER['REQUEST_URI'], "userItems.php")==true
+        ){
+            $_SESSION['backPage'] = removeqsvar($_SESSION["backPage"], 'lNumI');
+        }
         //echo '<br/>'.$_SESSION["backPage"];
 /*
         echo '<br/>'.$_SERVER['HTTP_REFERER'];
@@ -313,6 +321,7 @@
         if($numI != 0){
             $_SESSION['giveLike'] = $numI;
         }
+        $_SERVER['REQUEST_URI'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
               //echo '<br/>'.$_SESSION["backPage"];
         if(!isset($_SESSION["Username"])){
             header("location: login.php");

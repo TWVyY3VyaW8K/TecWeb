@@ -85,12 +85,12 @@
 		<div class="gallery galNotThree">
 			<ul class="clearfix galleryBoard">
 				<?php
-					$result = $myDb->doQuery(getQueryForTopRatedImages());
+					$qrStr = getQueryForTopRatedImages();
+ 					$result = $myDb->doQuery($qrStr);
 					if(isset($_SESSION['giveLike']) && $result){
 						$row = getImageAtPosition($result, $_SESSION['giveLike']);
 						$tmp = giveLike($row['Artista'],$row['Nome']);
 						unset($_SESSION['giveLike']);
-						$qrStr = getQueryForTopRatedImages();
 						$result = $myDb->doQuery($qrStr);
 					}
 

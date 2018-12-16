@@ -19,6 +19,7 @@
         require_once "DbConnector.php";
         require_once "functions.php";
 
+        saveBackPage();
         $pagNumber = galleryPagNumberFromUrl();
         if(isset($_GET['lNumI'])){
             galleryImageNumberFromUrl();
@@ -44,7 +45,6 @@
                             $row = getImageAtPosition($result, $_SESSION['giveLike']);
                             $tmp = giveLike($row['Artista'],$row['Nome']);
                             unset($_SESSION['giveLike']);
-                            $qrStr = getQueryForLikedImages();
                             $result = $myDb->doQuery($qrStr);
                         }
                     }

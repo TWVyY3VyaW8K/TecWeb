@@ -21,6 +21,7 @@
        // require_once "likedByModal.php";
         //require_once "searchModal.php";
 
+        saveBackPage();
         $pagNumber = galleryPagNumberFromUrl();
         if(isset($_GET['lNumI'])){
             galleryImageNumberFromUrl();
@@ -49,7 +50,12 @@
                             $qrStr = "SELECT Nome,Artista FROM opere WHERE Artista='".strtolower($_SESSION['Username'])."'";
                         }
                         $result = $myDb->doQuery($qrStr);
-
+                        if(isset($_SESSION['deleteImage']) && $result){
+                            $row = getImageAtPosition($result, $_SESSION['deleteImage']);
+                            $tmp = deleteItem($row['Artista'],$row['Nome']);
+                            unset($_SESSION['deleteImage']);
+                            $result = $myDb->doQuery($qrStr);
+                        }
                         $myDb->disconnect();
 
                         if($result && ($result->num_rows > 0)){
