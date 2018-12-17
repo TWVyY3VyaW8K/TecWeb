@@ -28,7 +28,7 @@
       <div  id="uploadMessage" class="upload_message">
           <!--container for unfilled inputs-->
         <?php
-        //error_reporting(0);
+        error_reporting(0);
         $title = "";
         $description = "";
         if(isset($_POST["submit"])){
@@ -54,10 +54,12 @@
                 echo '<p>Description field is missing</p>';
               else if(strlen($description)>1000)
                 echo '<p>Description is too long (Max 1000 characters)</p>';
-              else if($filesize>5242880*4) //controllo dimensione immagine
-                echo '<p>File size is too big (max 20Mb)</p>';
-              else if($filesize==0) //controllo se c'è l'immagine
-                echo '<p>Please select an image to upload</p>';
+              else if($filesize>2000000 || $filesize==0) //controllo dimensione immagine
+                echo '<p>File size is too big or file not selected</p>';
+            //  else if(isset(FILES["artwork"]) && $filesize==0) //significa che è stata scelta un immagine troppo grande
+            //    echo '<p>File size is too big (max 2Mb)</p>';
+            //  else if($filesize==0) //controllo se c'è l'immagine
+            //    echo '<p>Please select an image to upload</p>';
               else if($myDb->connected){
                 //controlla se esiste già un immagine con lo stesso tipo
                 $result = $myDb->doQuery("select Nome from opere where Nome='".$title."' and Artista='".$username."'");
@@ -128,7 +130,7 @@
             </label>
             <textarea id="description" name="description" rows="2" cols="1" ><?php echo($description)?></textarea>
 
-            <label for="artwork">Artwork (Max 20Mb):</label>
+            <label for="artwork">Artwork (Max 2Mb):</label>
             <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
 
             <button type="submit" name="submit">Upload</button>
