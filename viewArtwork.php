@@ -64,6 +64,8 @@
                  {
                   $qrstr = "DELETE FROM commenti WHERE ID=".$ID;
                   $myDb->doQuery($qrstr);
+
+                  $_SESSION["backPage"] =  removeqsvar($_SERVER['REQUEST_URI'], 'Remove');
                  }
             }
             else if(isset($_GET['input-comment']))
@@ -77,6 +79,8 @@
                   $qrStr = "INSERT INTO `commenti`(`Opera`, `Utente`, `Creatore`, `Commento`) VALUES ('".$Title."','".$_SESSION['Username']."','".$Artist."','".$Comment."')";
                 if(!$myDb->doQuery($qrStr))
                   $Error = 'Query failed!';
+
+                $_SESSION["backPage"] =  removeqsvar($_SERVER['REQUEST_URI'], 'input-comment');
               }
             }
           }
