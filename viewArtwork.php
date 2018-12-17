@@ -56,7 +56,7 @@
             {
               $ID = $_GET['Remove'];
               $qrstr = "SELECT ID FROM commenti WHERE ID=".$ID;
-              if ($_SESSION['Username'] !== 'Admin')
+              if (isset($_SESSION['Username']) && $_SESSION['Username'] !== 'Admin')
                 $qrstr .= " AND Utente='".$_SESSION['Username']."'";
               if($myDb->doQuery($qrstr)->num_rows !== 1)
                 $Error = 'Artwork not found or wrong artwork owner';
@@ -73,7 +73,8 @@
                 $Error = 'Empty field!';
               else
               {
-                $qrStr = "INSERT INTO `commenti`(`Opera`, `Utente`, `Creatore`, `Commento`) VALUES ('".$Title."','".$_SESSION['Username']."','".$Artist."','".$Comment."')";
+                if(isset($_SESSION['Username']))
+                  $qrStr = "INSERT INTO `commenti`(`Opera`, `Utente`, `Creatore`, `Commento`) VALUES ('".$Title."','".$_SESSION['Username']."','".$Artist."','".$Comment."')";
                 if(!$myDb->doQuery($qrStr))
                   $Error = 'Query failed!';
               }
@@ -173,10 +174,12 @@
                   while($row = $result->fetch_assoc())
                   {
                     echo '<div class="comment">';
-                    if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin')
-                      echo '<div class="delComment"> <a href="viewArtwork.php?Remove='.$row['ID'].'&Title='.$Title.'&Artist='.$Artist.'"> x </a></div>';
+                    if(isset($_SESSION['Username'])){
+                      if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin')
+                        echo '<div class="delComment"> <a href="viewArtwork.php?Remove='.$row['ID'].'&Title='.$Title.'&Artist='.$Artist.'"> x </a></div>';
+                    }
                     echo '<a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a>';
-                    echo ' '.$row['Commento']."</div>"; 
+                    echo ' '.$row['Commento']."</div>";
                   }
                 }
               }
