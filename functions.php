@@ -49,9 +49,9 @@
 
             //$url = addParameterTo($_SERVER['REQUEST_URI'],'lNumI',$numFig);
             if($isLiked == true){
-                echo '              <a href="'.$url.'"><div class="like-btn like-btn-added"></div></a>';
+                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><div class="like-btn like-btn-added"></div></a>';
             }else{
-                echo '              <a href="'.$url.'"><div class="like-btn"></div></a>';
+                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><div class="like-btn"></div></a>';
             }
             echo '              </div>';
             echo '              <div class="width-85">';
@@ -59,7 +59,7 @@
             echo '                  <p><a class="customLink" href="likedBy.php?artist='.$artist.'&imgName='.$imgName.'">Likes: '.getLikesByItem($artist,$imgName)['Result'].'</a></p>';
             echo '              </div>';
             echo '          </div>';
-            echo '                  <a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'"><button class="btnDiscover" type="submit" id="DelBtn_'.$numFig.'">Details</button></a>';
+            echo '                  <a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'" title="Details: '.$imgName.' by '.$artist.'"><button class="btnDiscover" type="submit">Details</button></a>';
             $url = $_SERVER['REQUEST_URI'];
             //echo $url;
             $query = parse_url($url, PHP_URL_QUERY);
@@ -69,7 +69,7 @@
                 $url .= '?dNumI='.$numFig;
             }
             if($boolDeleteButton == TRUE){
-                echo '<a href="'.$url.'"><button class="btnDelete" type="submit">Delete</button></a>';
+                echo '<a href="'.$url.'" title="'.$imgName.' by '.$artist.'"><button class="btnDelete" type="submit">Delete</button></a>';
             }
             echo '      </div>';
             echo '   </div>';

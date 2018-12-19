@@ -5,7 +5,7 @@ class DbConnector {
 	const PWD = 'vu0Noongi3Ees6ah';
 	const DBNAME = 'dliu';
 	const HOST = 'localhost';
-*/
+*/	
 	const USER = 'root';
 	const PWD = '';
 	const DBNAME = 'TecWeb';

@@ -1,7 +1,18 @@
 <div id="skipmenu">
   <a href="#content" onfocus="skipFocused()" onfocusout="skipUnfocused()">Go to content</a>
 </div>
-<div class="menu" id="Topnav">
+<?php
+  if(isset($_POST['menuDropDown'])){
+    if($_POST['menuDropDown'] == 'true')
+      echo '<div class="menu" id="Topnav">';
+    else if($_POST['menuDropDown'] == 'false')
+      echo '<div class="menu responsive" id="Topnav">';
+  }else{
+    echo '<div class="menu" id="Topnav">';
+  }
+?>
+
+<!-- <div class="menu" id="Topnav"> -->
 <div class="container1024">
   <a class="imageLink" href="index.php"><img src="Images/logo.png" alt="Logo"/></a>
   <ul>
@@ -125,7 +136,21 @@
     <button type="submit">Menù</button>
   </div>-->
   <li class="hamburgerMenu">
-        <div class="hamburgerMenuContainer" onclick="openDrobDownMenu(this)">
+    <?php
+      echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'">';
+      if(isset($_POST['menuDropDown'])){
+        if($_POST['menuDropDown'] == 'true')
+          echo '<input name="menuDropDown" type="hidden" value="false"/>';
+        else if($_POST['menuDropDown'] == 'false')
+          echo '<input name="menuDropDown" type="hidden" value="true"/>';
+      }else{
+        echo '<input name="menuDropDown" type="hidden" value="false"/>';
+      }
+      echo '<input type="submit" style="position: absolute;" value=""></input>';
+      echo '</form>';
+    ?>
+        <!-- <div class="hamburgerMenuContainer" onclick="openDrobDownMenu(this)"> -->
+        <div class="hamburgerMenuContainer">
           <div class="line1"></div>
           <div class="line2"></div>
           <div class="line3"></div>

@@ -10,7 +10,6 @@
       <link rel="stylesheet" href="Style/style.css"/>
       <link rel="stylesheet" href="viewStyle.css"/>
       <script type="text/javascript" src="script.js" ></script>
-      <script type="text/javascript" src="imagezoom.js" ></script>
       <title>Artbit</title>
     </head>
     <body onload="magnify(); setResizeListner();" >
