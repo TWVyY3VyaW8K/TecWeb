@@ -19,8 +19,6 @@
   require_once "DbConnector.php";
   require_once "functions.php";
 
-  //unset($_SESSION['backPageRedirect']);
-  //$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
   ?>
     <div class="Uploadsection container1024" id="content"><!--upload form-->
       <div class="title"><h1>Register your artwork</h1></div>
@@ -56,10 +54,6 @@
                 echo '<p>Description is too long (Max 1000 characters)</p>';
               else if($filesize>2000000 || $filesize==0) //controllo dimensione immagine
                 echo '<p>File size is too big or file not selected</p>';
-            //  else if(isset(FILES["artwork"]) && $filesize==0) //significa che è stata scelta un immagine troppo grande
-            //    echo '<p>File size is too big (max 2Mb)</p>';
-            //  else if($filesize==0) //controllo se c'è l'immagine
-            //    echo '<p>Please select an image to upload</p>';
               else if($myDb->connected){
                 //controlla se esiste già un immagine con lo stesso tipo
                 $result = $myDb->doQuery("select Nome from opere where Nome='".$title."' and Artista='".$username."'");
@@ -107,7 +101,7 @@
           }
         ?>
       </div>
-      <form action="" method="POST" enctype="multipart/form-data" id="upload">
+      <form action="" method="post" enctype="multipart/form-data" id="upload">
           <div class="container">
             <label for="title">Title (Max 20 characters):
               <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>

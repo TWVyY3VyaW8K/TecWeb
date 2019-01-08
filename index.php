@@ -52,34 +52,6 @@
 		</p>
 	  </div>
 
-		<!--top rated-->
-		<?php
-		/*
-	  <div class="section">
-			<div class="title"><h1>Top rated</h1></div>
-			<?php
-			$result = $myDb->doQuery("SELECT Nome, Artista, COUNT(Nome) as Likes FROM opere JOIN likes on Nome=Opera and Artista=Creatore
-									GROUP BY Nome, Artista ORDER BY COUNT(Nome) DESC LIMIT 4");
-			$nome=array($result->num_rows);
-			$artista=array($result->num_rows);
-			$likes=array($result->num_rows);
-			for ($i = 0; $i < $result->num_rows; $i++) {
-				$row = $result->fetch_assoc();
-				$nome[$i] = $row["Nome"];
-				$artista[$i] = $row["Artista"];
-				$likes[$i] = $row["Likes"];
-				echo "<div class='home_picture'>";
-				echo "<img src='Images/Art/$artista[$i]/$nome[$i].jpeg' alt='Top rated images'/>";
-				echo "<h2>$nome[$i]</h2>";
-				echo "<p>$artista[$i]</p>";
-				echo "<p>Likes: $likes[$i]</p>";
-				echo "</div>";
-			}
-			?>
-		</div>
-		*/
-		?>
-
 		<!-- Top rated -->
 		<div class="title"><h1>Top rated</h1></div>
 		<div class="gallery galNotThree">

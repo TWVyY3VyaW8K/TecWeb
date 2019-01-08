@@ -97,14 +97,11 @@
           echo '<div class="account-dropdown-content">';
           echo '<a href="editProfile.php">Edit Profile</a>';
           echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'">';
-          echo '<input name="logOut" type="submit" value="LogOut"></input>';
+          echo '<div><input name="logOut" type="submit" value="LogOut"></input></div>';
           echo '</form>';
           echo '</div>';
           echo '</li>';
         }
-
-
-
       ?>
 
 
@@ -121,8 +118,6 @@
       }
     }
     ?>
-  </li>
-
 
     <?php
       if(!isset($_SESSION['Username']))
@@ -137,7 +132,7 @@
   </div>-->
   <li class="hamburgerMenu">
     <?php
-      echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'">';
+      echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'"><div>';
       if(isset($_POST['menuDropDown'])){
         if($_POST['menuDropDown'] == 'true')
           echo '<input name="menuDropDown" type="hidden" value="false"/>';
@@ -147,9 +142,8 @@
         echo '<input name="menuDropDown" type="hidden" value="false"/>';
       }
       echo '<input type="submit" style="position: absolute;" value=""></input>';
-      echo '</form>';
+      echo '</div></form>';
     ?>
-        <!-- <div class="hamburgerMenuContainer" onclick="openDrobDownMenu(this)"> -->
         <div class="hamburgerMenuContainer">
           <div class="line1"></div>
           <div class="line2"></div>
