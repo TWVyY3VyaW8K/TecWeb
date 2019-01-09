@@ -33,7 +33,7 @@
 			\large Davide Liu - 1140717 \\ Harwinder Singh - xxxxxxx \\ Pardeep Singh - xxxxxxx \\ Daniele Bianchin - xxxxxxx \\
 			\vfill
 			Sito web hostato all'indirizzo: \url{http://artbit.altervista.org/}\\
-			{\small Credenziali per l'amministrazione:\\username: Admin, password: AdminIsHere\\}
+			{\small Credenziali per l'amministrazione:\\username: admin, password: admin\\}
 			\vfill
 			Indirizzo email del referente: davide.liu.@studenti.unipd.it\\
 			\vfill
@@ -127,23 +127,22 @@
 		Cliccando sull'icona a forma di cuore viene messo un Like sulla relativa immagine e l'icona diventerà di colore rosso, un utente può mettere un solo Like per ogni immagine, cliccando di nuovo sulla stessa icona il Like verrà rimosso.
 		
 		\subsubsection{Upload}
-		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png, jpg o jpeg di dimensione massima di 1Mb, valori più reali si aggirano però intorno da 5Mb fino a 20Mb per le fotocamere dei cellulari di ultima generazione ma la scelta è stata è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini nel momento in cui il sito è stato caricato sui server dell'università. Dopo l'upload l'immagine viene convertita in formato jpeg tramite una funzione in PHP in modo da facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
+		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png, jpg o jpeg di dimensione massima di 1Mb, valori più reali si aggirano però intorno da 5Mb fino a 20Mb per le fotocamere dei cellulari di ultima generazione ma la scelta è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini nel momento in cui il sito è stato caricato sui server dell'università. Dopo l'upload l'immagine viene convertita in formato jpeg tramite una funzione in PHP in modo da facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
 		
 		\subsubsection{Visualizzazione delle immagini a cui è stato messo un Like}
-		Fate voi...
+		Questa sezione mostra le immagini preferite dall'utente ovvero quelle immagini le quali l'utente ha messo un Like.
 		
 		\subsubsection{Visualizzazione e cancellazione delle proprie immagini}
-		Fate voi...
+		Questa sezione mostra le immagini caricate dall'utente, da qui è anche possibile eliminarle tramite l'apposito pulsante "Delete". Un utente accede a questa sezione principalmente per controllare i Likes ricevuti dalle proprie immagini e visualizzarne i commenti.
 		
 		\subsubsection{Gestione account}
-		Fate voi...
+		Questa pagina permette all'utente di modificare alcuni dei suoi dati personali come nome, cognome password ed email, l'username non può essere modificato, è univoco e serve per identificare un utente.
 
 	\section{Strutturazione del sito}
 		\subsection{Impaginazione}
-		Il sito utlizza un layout a tre pannelli nella versione per dispositivi desktop.\\
-		La sidebar, contenente informazioni aggiuntive, è posizionata sul lato destro in quanto offre informazioni secondarie. Perciò nella lettura europea (da sinistra a destra) sarà notata dopo il contenuto, mentre nella versione tablet o mobile sarà posizionata sotto il contenuto.\\
-		Il menu del sito presenta una navigazione a schede, che nella versione per dispositivi mobili viene sostituita da un menu ad hamburger.\\
-		Nel footer del sito sono presenti i crediti, la licenza dei contenuti, un'e-mail per contattare gli amministratori del sito e l'accesso all'area di amministrazione.
+		Il layout del sito è lo stesso sia nella versione mobile che nella versione desktop, ovviamente i contenuti si adatteranno in base alle dimensioni dello schermo, per esempio le immagini della Gallery verranno visualizzate una sotto l'altra nella versione mobile mentre la versione desktop ne mostra quattro nella stessa riga.\\
+		Il menu del sito presenta una navigazione a schede, che nella versione per dispositivi mobili viene sostituita da un menu ad hamburger. Alcune delle voci del menù sono visualizzabili solo le l'utente è autenticato. Nel caso in cui l'utente sia autenticato il nome utente apparirà nel menù in alto a destra e posizionandocisi sopra con il cursore aprirà un menù a tendina le cui voci servono per gestire l'account o eseguire il logout. Nel caso di menù ad hamburger tutte le voci del menù verranno visualizzate una sotto l'altra.\\
+		Nel footer del sito è semplicemente riportato il nome del sito.
 
 	\chapter{Realizzazione}
 		\section{Descrizione della sessione}
@@ -151,48 +150,31 @@
 
 	\section{Scelte tecniche}
 		\subsection{XHTML1.1}
-		Come linguaggio di marcatura si è scelto di utilizzare XHTML 1.1, tecnologia il cui uso è stato concesso dal professore Lamberto Ballan.\\
-		Si è preferito l'utilizzo di XHTML 1.1 per l'aggiunta del tag ruby, il quale consente l'utilizzo del furigana (per ulteriori approfondimenti fare riferimento all'ultima sezione di questo documento relativa all'utilizzo della lingua straniera).\\
-		In mancanza di supporto da parte di un browser di questa funzionalità il furigana viene semplicemente mostrato dopo la parola all'interno delle parentesi, in modo da non compromettere la fruizione dei contenuti.
-
+		Come linguaggio di marcatura si è scelto di utilizzare XHTML 1.1, tecnologia che è stata utilizzata anche nelle esercitazioni in laboratorio ed è risultata adatta anche nello sviluppo del nostro sito.\\
+		
 		\subsection{JavaScript}
 		Si è scelto di utilizzare JavaScript come componente marginale del sito garantendo, anche se disabilitato, che tutte le funzionalità rimangano accessibili e perfettamente funzionanti.\\
-		Non sono state utilizzate librerie esterne (come ad esempio jQuery) per non appesantire il sito web, dato che il suo uso sarebbe comunque stato marginale e non avrebbe migliorato di molto la qualità della navigazione.
+		Non sono state utilizzate librerie esterne (come ad esempio jQuery) per non appesantire il sito web, dato che il suo uso sarebbe comunque stato marginale e non avrebbe migliorato di molto la qualità della navigazione.\\
+		Una tecnologia che sarebbe stata utile è Ajax ma l'idea è stata scartata in quanto avrebbe reso il sito troppo dipendente da Javascript e ne avrebbe influenzato negativamente le funzionalità nel caso in cui esso sia stato disabilitato.
 		
-		\subsection{RSS}
-		Il sito presenta anche uno feed RSS, utilizzabile per consultare le news presenti sul sito.
+		\subsection{PHP}
+		Essendo il sito molto dinamico è stato fatto largo uso del linguaggio PHP per fare richieste al server, in particolare al database, e ritornare pagine Html al client.
 
 	\section{Suddivisione di struttura, presentazione e comportamento}
 		\subsection{Parte utente}
 			\subsubsection{Struttura}
-			I file delle pagine della parte utente del sito sono collocate nella cartella di root del server, i file necessari alla formattazione dello stile del sito per i vari dispositivi sono collocati nella cartella style mentre le immagini necessarie al sito sono collocate nella cartella images, la quale presenta la suddivisione per le immagini delle news, i personaggi e per i capitoli. I file contenenti gli script necessari al sito sono collocati nella cartella script.
+			I file delle pagine della parte utente del sito sono collocate nella cartella di root del server, i file necessari alla formattazione dello stile del sito per i vari dispositivi sono collocati nella cartella "Style" mentre le immagini necessarie al sito sono collocate nella cartella "Images", in particolare all'interno di essa è presente una cartella chiamata "Art" che contiene le immagini caricate dagli utenti registrati dentro la corrispondente sottocartella.
 			\subsubsection{Presentazione}
-			La presentazione della pagina è realizzata tramite file css, il principale è "style", che viene utilizzata per ogni pagina.\\
-			In caso di dispositivo mobile o tablet vengono utilizzati due stili extra, "tablet" e "mobile", che hanno il compito di far cambiare la presentazione della pagina per meglio adattarla a schermi di dimensioni inferiori.\\
-			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print", che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. Si è scelto di rimuovere il menu, ma di lasciare il titolo e la breadcrumb, in modo tale da aiutare l'utente a ritrovare il sito web e la pagina nel caso non si ricordasse la fonte. Le immagini sono state rimosse, ad eccezione delle immagini dei personaggi, che sono stati valutate come molto utili per una veloce consultazione.
+			La presentazione della pagina è realizzata tramite file css, il principale è "style.css", che viene utilizzato per ogni pagina.\\
+			In caso di dispositivo mobile o tablet vengono utilizzate delle media-query che hanno il compito di far cambiare la presentazione della pagina per meglio adattarla a schermi di dimensioni inferiori.\\
+			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print-style.css", che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. 
+		DOBBIAMO ANCORA FARLO Si è scelto di rimuovere il menu, ma di lasciare il titolo e la breadcrumb, in modo tale da aiutare l'utente a ritrovare il sito web e la pagina nel caso non si ricordasse la fonte. Le immagini sono state rimosse, ad eccezione delle immagini dei personaggi, che sono stati valutate come molto utili per una veloce consultazione.
 
 			\subsubsection{Comportamento}
-			Il comportamento della pagina è stato gestito tramite JavaScript per il controllo delle form, per fissare il menu in alto e per fornire la possibilità di ingrandire le immagini all'interno della pagina. Sono presenti anche controlli tramite codice PHP per garantire che il sito continui a funzionare corretamente anche in caso di assenza dell'interprete JavaScript.
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.8\linewidth]{images/zomm}
-				\caption{Funzione di zoom implementata in JavaScript}
-			\end{figure}
-
-			JavaScript, se possibile, gestisce il menu nella versione mobile del sito, sostituendo la stessa funzionalità implementata in CSS, questo per evitare che sui dispositivi touch, alla selezione o al click sul testo, il contenuto possa scivolare leggermente in alto a causa della perdita dell'hover sul menu precedentemente aperto.\\
-			Tutto il codice PHP relativo all'esecuzioni di azioni, come l'aggiunta dei commenti, è stato completamente diviso da quello utilizzato per la visualizzazione dei contenuti.\\
+			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini e per migliorare l'accessibilità in caso di utilizzo di screen reader per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto. Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in PHP vengono anche gestite tutte le funzionalità della Gallery, del Login, Sign up, Upload, per i commenti, i Likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript non sono essenziali per la navigazione ed interazione nel sito web.
 
 	\subsection{Parte amministratore}
-		\subsubsection{Struttura}
-		Il pannello di amministrazione si suddivide secondo tutti gli aspetti gestibili, in modo da risultare chiaro e facilmente consultabile, mentre la pagina di index riassumerà brevemente i contenuti delle sezioni per fornire all'amministratore un aiuto nel caso non riesca ad orientarsi bene.
-		\subsubsection{Presentazione}
-		Lo stile delle pagine per l'amministrazione differisce rispetto alla parte utente, in quanto dal lato amministratore sono stati rimossi alcuni elementi inutili, come il footer e la sidebar, in modo da renderla più veloce e fare spazio alle utilità necessarie all'amministrazione del sito.
-		\subsubsection{Comportamento}
-		La parte admin si caratterizza per un minor utilizzo dei controlli da parte di JavaScript e PHP sui form, in quanto l'amministratore ha la possibilità di inserire tag html o se lo desidera di lasciare alcuni campi vuoti, questo per sopperire alla mancanza di un editor HTML.\\
-		Sono inoltre presenti tutti i controlli relativi all'SQLInjection per evitare che l'amministratore inconsapevolmente generi errori all'interno del database.\\
-		Tutto il codice PHP relativo all'esecuzione di azioni è stato completamente diviso da quello utilizzato per la visualizzazione dei contenuti, ad eccezione dell'index della pagina di amministrazione, in quanto la pagina che richiede il login della parte di amministrazione e la visualizzazione della pagina introduttiva è la medesima.\\
-		Si è scelta questa soluzione per consentire il salvataggio di un segnalibro da parte degli amministratori, i quali verranno portati alla pagina di login qualora non siano stati autenticati, mentre in caso contrario verranno direttamente trasferiti alla pagina principale di amministrazione, senza ulteriori redirect.
+		Fate voi...
 
 	\chapter{Validazione e test}
 		\section{Descrizione della sessione}
