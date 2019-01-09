@@ -58,17 +58,18 @@
 	%il sito deve utilizzare link relativi in modo da poter essere facilmente installato anche su server o cartelle diverse (se l'installazione necessita di operazioni particolari queste devono essere indicate chiaramente in relazione).
 
 	\chapter{Abstract}
-	Il progetto sviluppato propone la realizzazione di un social network, chiamato Artbit, per condividere le proprie immagini con la comunità e poter interagire con le immagini degli altri utenti inserendo dei commenti o semplicemente mettendo dei Likes alle opere che più si apprezzano.\\
-	L'obiettivo è quello di far interagire il più possibile gli utenti con le immagini registrate in modo che siano a loro volta incentivati a caricare immagini graficamente piacevoli e condividerle con il maggior numero di persone in modo da ottenere un alto numero di Likes e commenti positivi.\\
-	 Il sito è rivolto principalmente verso un pubblico giovane ed internazionale, per questo è stato scritto in inglese e con un interfaccia molto pulita per rendere il sito molto usabile e garantire una piacevole esperienza di navigazione.\\
-	Nel sito è possibile caricare qualsiasi tipo di immagine sia che essa sia una semplice foto oppure un' opera d'arte digitale, l'importante è che essa sia inserita nella giusta categoria e con un' opportuna descrizione che spieghi al meglio il contenuto dell'immagine.
+	Artbit è un progetto di un social network per la condivisione delle proprie immagini e la creazione di una comunità online interessata all'arte (digitale e non).\\
+	L'obiettivo è quello di far interagire il più possibile gli utenti e incentivare la creazione di immagini graficamente piacevoli.\\
+	 Il sito è rivolto principalmente ad un pubblico giovane ed internazionale, per questo è stato sviluppato in inglese e con un interfaccia il più possibile pulita per renderlo facilemente fruibile e garantire una piacevole esperienza di navigazione.\\
+	Nel sito è possibile caricare qualsiasi tipo di immagine, essa può essere sia una semplice foto oppure un'opera d'arte digitale. L'importante è che l'immagine inserita rientri nella giusta categoria e con un'opportuna descrizione che ne spieghi al meglio il contenuto.
 	Esiste un account amministratore che può cancellare qualsiasi commento o immagine nel caso in cui i contenuti non dovessero essere appropriati.\\
-	Infine per incentivare gli utenti ad essere il più attivi possibile sono state aggiunte anche delle classifiche con l'intento di creare una sorta di competizione tra gli utenti iscritti, le classifiche mostrano i primi cinque utenti che hanno ricevuto più Likes in totale e quelli che hanno caricato il maggior numero di opere.
+	Infine per incentivare gli utenti ad essere il più attivi possibile sono state aggiunte anche delle classifiche con l'intento di creare una sorta di competizione tra gli utenti iscritti, le classifiche mostrano i primi cinque utenti che hanno ricevuto più likes in totale e quelli che hanno caricato il maggior numero di opere.
 	Il sito è stato anche caricato su Altervista per farlo provare ad un gruppo ristretto di utenti i quali sono stati molto soddisfatti dal prodotto realizzato.
 
 	\chapter{Installazione}
-	Il sito richiede un database MySql, per la creazione delle tabelle utilizzate si può usare il file .sql allegato, "database.sql" che genera il database con alcune opere e utenti dati inseriti nel sito web ed ovviamente anche un utente admin le cui credenziali sono "admin" sia come nome che come password.\\
-	Successivamente si dovrà modificare il file dbConnector.php, presente nella root del sito, indicando i dati per l'accesso al database (HOST\_DB, USER, PASSWD, DATABASE).\\
+	Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si può usare il file .sql allegato "database.sql" che genera il database con alcune opere e utenti di default.\\
+	Fra gli utenti inseriti si trova l'ultente admin con password "admin".
+	Successivamente è necessario modificare il file dbConnector.php, presente nella root del sito, indicando i dati per l'accesso al database (HOST\_DB, USER, PASSWD, DATABASE).\\
 	
 	\chapter{Progettazione}
 
@@ -78,70 +79,76 @@
 		Questa sezione si pone come obiettivo l'analisi di tutte le tipologie di utenti che potrebbero essere interessate alla navigazione sul sito web, ponendo particolare attenzione alle informazioni che questi sono interessati a trovare. Data la tipologia del sito e la giovane età media degli utenti è più probabile che esso venga visitato tramite smartphone piuttosto che pc o tablet.\\
 		\subsection{Analisi dell'utenza}
 		\subsubsection{Utente causale che vuole visualizzare le immagini presenti}
-		La prima tipologia di utenti del sito sono coloro che vogliono semplicemente sfogliare la gallery, generalmente non si iscrivono al sito ma vogliono semplicemente visualizzare le immagini presenti, hanno a disposizione una serie di filtri per visualizzare solo immagini appartenenti ad una certa categoria e hanno la possibilità di scegliere diversi tra diversi algoritmi di ordinamento per mostrare per prime le immagini che hanno ottenuto più Likes oppure quelle inserite più di recentemente.\\
+		La prima tipologia di utenti del sito sono coloro che vogliono semplicemente sfogliare la gallery. Generalmente non si iscrivono, ma vogliono semplicemente visualizzare le immagini presenti.
+		Per questa tipologia di utenti è stata messa a disposizione una serie di filtri per visualizzare solo immagini appartenenti ad una certa categoria, inoltre c'è la possibilità di scegliere diverse tipologie di ordinamento per mostrare per prime le immagini che hanno ottenuto più likess oppure quelle inserite più recentemente.\\
 		\subsubsection{Utente che cerca immagini riguardanti uno specifico contenuto}
-		Questa categoria di utenti di solito ha già familiarità col sito web ed è interessata a visualizzare un insieme molto specifico di immagini, usa molto i filtri di categoria ma potrebbe anche utilizzare la barra di ricerca per ricercare tutte le opere appartenenti ad uno specifico utente, con un nome particolare oppure effettuare una ricerca tramite alcune parole chiave che compaiono nella descrizione delle immagini. Questi utenti è probabile che posseggano a loro volta un account di Artbit ed abbiano caricato a loro volta delle immagini. Inoltre sono utenti che hanno un' interazione col sito web maggiore rispetto a quelli casuali e che quindi inseriscano molti commenti e mettano dei Likes alle immagini piaciute.\\
+		Questa categoria di utenti di solito ha già familiarità col sito ed è interessata a visualizzare un insieme molto specifico di immagini, usa molto i filtri di categoria ma potrebbe anche utilizzare la barra di ricerca per cercare tutte le opere appartenenti ad uno specifico utente con un nome particolare, oppure effettuare una ricerca tramite parole chiave.\\
+		Questi utenti è probabile che posseggano a loro volta un account Artbit ed abbiano caricato delle immagini su di esso. Sono utenti che hanno un'interazione col sito maggiore rispetto a quelli casuali e che quindi inseriscono molti commenti e mettono likes alle immagini che più sono di loro interesse.\\
 		\subsubsection{Utente che aggiunge nuove immagini}
-		Questa tipologia di utenti è quella più importante perchè sono loro a creare il contenuto del sito web popolandolo con le loro immagini, essi mantengono un sito aggiornato ed interessante caricando ogni giorno nuove immagini migliorando così l'esperienza anche degli altri utenti. La presenza delle classifiche li spinge a caricare immagini di qualità sempre più alta in modo da ottenere più Likes possibili ed ottenere popolarità. Sono utenti che spesso visitano il sito, in particolare controllano spesso le immagini che hanno caricato per vedere quanti Likes hanno ricevuto e rispondere ai vari commenti.\\
+		Questa tipologia di utenti è quella più importante perchè sono loro a creare il contenuto del sito web popolandolo con le immagini. Essi mantengono un sito aggiornato ed interessante caricando nuove immagini migliorando così l'esperienza anche degli altri utenti. La presenza delle classifiche li spinge a caricare immagini di qualità sempre più alta in modo da ottenere più popolarità. Sono utenti che spesso visitano il sito, controllano le immagini che hanno caricato per vedere quanti likes hanno ricevuto e per rispondere ai vari commenti.\\
 
 	\section{Progettazione della base informativa}
-		Il sito web si pone l'obiettivo di veicolare diversi contenuti, alcuni statici ma la maggior parte sono dinamici e generati dagli utenti.\\
+		Il sito web si pone l'obiettivo di veicolare diversi contenuti, alcuni statici ma la maggior parte sono dinamici generati dagli utenti.\\
 	\subsection{Contenuti statici}
 		\subsubsection{Home}
-		Mostra in primo piano una frase molto elaborata riguardante l'arte in generale mentre in secondo piano è disegnata un' immagine digitale realizzata tramite un software di elaborazione grafica. Subito sotto è immediatamente visibile una breve spiegazione circa lo scopo del sito. A seguire, dall'alto verso il basso sono riportati i Top Rated, le Statistiche, le Classifiche ed infine una presentazione dei membri del gruppo.
+		Mostra in primo piano una frase riguardante l'arte, mentre in secondo piano è presente un'immagine digitale realizzata tramite software di elaborazione grafica. Subito sotto è immediatamente visibile una breve spiegazione circa lo scopo del sito. A seguire, dall'alto verso il basso, sono riportati i Top Rated, le Statistiche, le Classifiche ed infine una presentazione dei membri del team di sviluppo.
 		
 	\subsection{Contenuti dinamici}
 		\subsubsection{Top Rated}
-		Si tratta delle quattro immagini che hanno ottenuto più Likes in assoluto in ordine decrescente, sono visualizzate nella Home proprio per essere messe più in risalto rispetto alle normali immagini che è possibile vedere solo nella Gallery, il loro scopo è anche di dare un'idea agli utenti casuali circa la qualità delle immagini presenti e di aumentare la popolarità agli utenti proprietari di queste immagini.
+		Si tratta delle quattro immagini che hanno ottenuto più likes in assoluto in ordine decrescente. Sono visualizzate nella Home proprio per essere messe più in risalto rispetto alle normali immagini presenti solo nella Gallery.\\
+		Lo scopo dei Top Rated è anche di dare un'idea agli utenti casuali circa la qualità delle immagini nel sito e di aumentarne la popolarità.
 
 		\subsubsection{Statistiche}
-		Mostrano il numero di immagini che sono state registrate nel database, il numero di utenti registrate ed il numero totale di Likes assegnati a tutte le immagini. Servono per dare un' idea all'utente su i numeri raggiunti dal sito e quindi dare una stima della quantità di contenuti disponibili.
+		Mostrano il numero di immagini che sono state registrate nel database, il numero di utenti registrati ed il numero totale di likes assegnati a tutte le immagini. Servono per dare un'idea all'utente sui numeri raggiunti dal sito e quindi dare una stima della quantità di contenuti disponibili.
 
 		\subsubsection{Classifiche}
-		Ci sono due tipi di classifiche, una mostra gli utenti ordinati in senso decrescente secondo il numero di immagini caricate, serve per incentivare gli utenti ad inserire più immagini tenendo così vivo il sito tramite l'aggiunta di immagini nuove. La seconda classifica serve a premiare la qualità e mostra gli utenti ordinati in senso decrescente secondo il numero dei Likes totali ottenuti dalle loro immagini, in pratica mostra gli utenti più popolari. Entrambe le classifiche arrivano a mostrare i primi 5 utenti ordinati come sopra riportato.
+		Ci sono due tipi di classifiche: la prima espone gli utenti ordinati in senso decrescente secondo il numero di immagini caricate e serve per incentivare gli utenti ad inserire più immagini in modo da tenetere vivo il sito con l'aggiunta di immagini nuove. La seconda classifica serve a premiare la qualità e mostra gli utenti ordinati in senso decrescente secondo il numero dei likes totali ottenuti dalle loro immagini, ossia mostra gli utenti più popolari. Entrambe le classifiche visualizzano i primi 5 utenti ordinati come sopra riportato.
 		
 		\subsubsection{Gallery}
-		E' una delle sezioni più importante di tutto il sito perchè è qui che vengono mostrati tutti i contenuti. Ogni pagina della Gallery mostra otto immagini e le pagine possono essere sfogliate tramite una paginazione posta infondo alla pagina. E' possibile filtrare le immagini per categoria utilizzando gli appositi pulsanti oppure, utilizzando la barra di ricerca si possono filtrare i contenuti in base al nome dell'autore o secondo alcune parole chiave presenti nella descrizione. E' inoltre possibile scegliere diversi tra diversi algoritmi di ordinamento per mostrare per prime le immagini che hanno ottenuto più Likes oppure quelle inserite più di recentemente. Cliccando sul pulsante "Details" posto sotto la didascalia di ogni immagine si accede ad una nuova pagina che mostra i dettagli dell'immagine selezionata (lo stesso si può fare anche cliccando direttamente sull'immagine).
+		E' una delle sezioni più importanti di tutto il sito perchè è qui che vengono mostrati tutti i contenuti.\\
+		Ogni pagina della Gallery mostra otto immagini le quali possono essere sfogliate tramite una paginazione posta infondo. E' possibile filtrare le immagini per categoria utilizzando gli appositi pulsanti, oppure, utilizzando la barra di ricerca, si possono filtrare i contenuti in base al nome dell'autore o secondo alcune parole chiave presenti nella descrizione. E' inoltre possibile scegliere diverse tipologie di ordinamento in modo da per mostrare per prime le immagini che hanno ottenuto più likes oppure quelle inserite più recentemente. Cliccando sul pulsante "Details", posto sotto la didascalia di ogni immagine, si accede ad una nuova pagina che ne mostra i dettagli. Lo stesso si può fare anche cliccando direttamente sulla miniatura.
 		
 		\subsubsection{Visualizzazione singola immagine}
 		Mostra tutti i dettagli di un immagine ovvero:
 		\begin{itemize}
 					\item Il titolo
-					\item L'autore
+					\item Lo username dell'autore
 					\item Il nome reale dell'autore (Nome e Cognome)
 					\item La data di upload
 					\item La categoria
 					\item Il numero di commenti
-					\item Il numero di Likes
+					\item Il numero di likes
 					\item La descrizione
 		\end{itemize}
 		Da qui è anche possibile leggere e scrivere i commenti.
 				
 	\subsection{Contenuti dinamici accessibili soltanto agli utenti autenticati}
-	Un utente per essere considerato autenticato non deve solo aver creato un account deve anche averne eseguito l'accesso.
+	Un utente, per essere considerato autenticato, non deve solo aver creato un account ma deve anche averne eseguito l'accesso.
 	
 		\subsubsection{Commenti}
-		Un utente autenticato ha la possibilità di commentare qualsiasi immagine, leggere i commenti degli altri utenti e cancellare i propri. L'utente admin può cancellare qualsiasi commento ed è necessario per poter cancellare commenti il cui contenuto non è appropriato o offensivo.
+		Un utente autenticato ha la possibilità di commentare qualsiasi immagine, leggere i commenti degli altri utenti e cancellare i propri. L'utente admin può cancellare qualsiasi commento o immagine che ritiene offesisiva o di cattivo gusto.
 		
-		\subsubsection{Likes}
-		Cliccando sull'icona a forma di cuore viene messo un Like sulla relativa immagine e l'icona diventerà di colore rosso, un utente può mettere un solo Like per ogni immagine, cliccando di nuovo sulla stessa icona il Like verrà rimosso.
-		
+		\subsubsection{likes}
+		Cliccando sull'icona a forma di cuore l'utente mette un like sulla relativa immagine. Un utente può mettere un solo like per ogni immagine e cliccando di nuovo sulla stessa icona il like verrà rimosso.
+		L'icona è presente sia nella sezione Gallery sia nei dettagli dell'immagine.
+
 		\subsubsection{Upload}
-		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png, jpg o jpeg di dimensione massima di 1Mb, valori più reali si aggirano però intorno da 5Mb fino a 20Mb per le fotocamere dei cellulari di ultima generazione ma la scelta è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini nel momento in cui il sito è stato caricato sui server dell'università. Dopo l'upload l'immagine viene convertita in formato jpeg tramite una funzione in PHP in modo da facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
+		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png o jpg di dimensione massima di 1Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini nel momento in cui il sito è stato caricato sui server dell'università.\\
+		Dopo l'upload l'immagine viene convertita in formato jpeg tramite la funzione PHP "imagejpeg" in modo da facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
 		
-		\subsubsection{Visualizzazione delle immagini a cui è stato messo un Like}
-		Questa sezione mostra le immagini preferite dall'utente ovvero quelle immagini le quali l'utente ha messo un Like.
+		\subsubsection{Visualizzazione delle immagini a cui è stato messo un likes}
+		Questa sezione mostra le immagini preferite dall'utente, ovvero le immagini le quali l'utente ha messo un like.
 		
 		\subsubsection{Visualizzazione e cancellazione delle proprie immagini}
-		Questa sezione mostra le immagini caricate dall'utente, da qui è anche possibile eliminarle tramite l'apposito pulsante "Delete". Un utente accede a questa sezione principalmente per controllare i Likes ricevuti dalle proprie immagini e visualizzarne i commenti.
+		Questa sezione mostra le immagini caricate dall'utente, da qui è anche possibile eliminarle tramite l'apposito pulsante "Delete". Un utente accede a questa sezione principalmente per controllare i likes ricevuti dalle proprie immagini e visualizzarne i commenti.
 		
 		\subsubsection{Gestione account}
-		Questa pagina permette all'utente di modificare alcuni dei suoi dati personali come nome, cognome password ed email, l'username non può essere modificato, è univoco e serve per identificare un utente.
+		Questa pagina permette all'utente di modificare alcuni dei suoi dati personali come nome, cognome, password ed email. L'username non può essere modificato, è univoco e serve per identificare un utente.
 
 	\section{Strutturazione del sito}
 		\subsection{Impaginazione}
-		Il layout del sito è lo stesso sia nella versione mobile che nella versione desktop, ovviamente i contenuti si adatteranno in base alle dimensioni dello schermo, per esempio le immagini della Gallery verranno visualizzate una sotto l'altra nella versione mobile mentre la versione desktop ne mostra quattro nella stessa riga.\\
-		Il menu del sito presenta una navigazione a schede, che nella versione per dispositivi mobili viene sostituita da un menu ad hamburger. Alcune delle voci del menù sono visualizzabili solo le l'utente è autenticato. Nel caso in cui l'utente sia autenticato il nome utente apparirà nel menù in alto a destra e posizionandocisi sopra con il cursore aprirà un menù a tendina le cui voci servono per gestire l'account o eseguire il logout. Nel caso di menù ad hamburger tutte le voci del menù verranno visualizzate una sotto l'altra.\\
+		Il layout del sito è lo stesso sia nella versione mobile che nella versione desktop. I contenuti si adattano in base alle dimensioni dello schermo. Le immagini della Gallery vengono visualizzate una sotto l'altra nella versione mobile, mentre la versione desktop ne mostra quattro nella stessa riga.\\
+		Il menu del sito presenta una navigazione a schede, che nella versione per dispositivi mobili, viene sostituita da un menu ad hamburger. Alcune delle voci del menù sono visualizzabili solo se l'utente è autenticato. Nel caso in cui l'utente sia autenticato il nome utente apparirà nel menù in alto a destra e posizionandocisi sopra con il cursore aprirà un menù a tendina le cui voci servono per gestire l'account o eseguire il logout. Nel caso di menù ad hamburger tutte le voci del menù verranno visualizzate una sotto l'altra.\\
 		Nel footer del sito è semplicemente riportato il nome del sito.
 
 	\chapter{Realizzazione}
@@ -155,7 +162,7 @@
 		\subsection{JavaScript}
 		Si è scelto di utilizzare JavaScript come componente marginale del sito garantendo, anche se disabilitato, che tutte le funzionalità rimangano accessibili e perfettamente funzionanti.\\
 		Non sono state utilizzate librerie esterne (come ad esempio jQuery) per non appesantire il sito web, dato che il suo uso sarebbe comunque stato marginale e non avrebbe migliorato di molto la qualità della navigazione.\\
-		Una tecnologia che sarebbe stata utile è Ajax ma l'idea è stata scartata in quanto avrebbe reso il sito troppo dipendente da Javascript e ne avrebbe influenzato negativamente le funzionalità nel caso in cui esso sia stato disabilitato.
+		Una tecnologia che sarebbe stata utile è Ajax ma l'idea è stata scartata in quanto avrebbe reso il sito troppo dipendente da Javascript e ne avrebbe influenzato negativamente le funzionalità nel caso in cui quest'ultimo sia stato disabilitato.
 		
 		\subsection{PHP}
 		Essendo il sito molto dinamico è stato fatto largo uso del linguaggio PHP per fare richieste al server, in particolare al database, e ritornare pagine Html al client.
@@ -163,15 +170,16 @@
 	\section{Suddivisione di struttura, presentazione e comportamento}
 		\subsection{Parte utente}
 			\subsubsection{Struttura}
-			I file delle pagine della parte utente del sito sono collocate nella cartella di root del server, i file necessari alla formattazione dello stile del sito per i vari dispositivi sono collocati nella cartella "Style" mentre le immagini necessarie al sito sono collocate nella cartella "Images", in particolare all'interno di essa è presente una cartella chiamata "Art" che contiene le immagini caricate dagli utenti registrati dentro la corrispondente sottocartella.
+			I file delle pagine della parte utente del sito sono collocate nella cartella di root del server. I file necessari alla formattazione dello stile del sito per i vari dispositivi sono collocati nella cartella "Style", mentre le immagini necessarie al sito sono collocate nella cartella "Images". In particolare all'interno di quest'ultima è presente una cartella chiamata "Art" che contiene le immagini caricate dagli utenti registrati dentro la corrispondente sottocartella.
 			\subsubsection{Presentazione}
-			La presentazione della pagina è realizzata tramite file css, il principale è "style.css", che viene utilizzato per ogni pagina.\\
+			La presentazione della pagina è realizzata tramite file css, il cui file principale è "style.css" il quale viene utilizzato per ogni pagina.\\
 			In caso di dispositivo mobile o tablet vengono utilizzate delle media-query che hanno il compito di far cambiare la presentazione della pagina per meglio adattarla a schermi di dimensioni inferiori.\\
-			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print-style.css", che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. 
+			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print-style.css" che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. 
 		DOBBIAMO ANCORA FARLO Si è scelto di rimuovere il menu, ma di lasciare il titolo e la breadcrumb, in modo tale da aiutare l'utente a ritrovare il sito web e la pagina nel caso non si ricordasse la fonte. Le immagini sono state rimosse, ad eccezione delle immagini dei personaggi, che sono stati valutate come molto utili per una veloce consultazione.
 
 			\subsubsection{Comportamento}
-			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini e per migliorare l'accessibilità in caso di utilizzo di screen reader per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto. Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in PHP vengono anche gestite tutte le funzionalità della Gallery, del Login, Sign up, Upload, per i commenti, i Likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript non sono essenziali per la navigazione ed interazione nel sito web.
+			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini e per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto.\\
+			Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in oltre vengono anche gestite tutte le funzionalità della Gallery, del Login, del Sign up, dell'Upload, per i commenti, i likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript non sono essenziali per la navigazione e ò'interazione nel sito.
 
 	\subsection{Parte amministratore}
 		Fate voi...
