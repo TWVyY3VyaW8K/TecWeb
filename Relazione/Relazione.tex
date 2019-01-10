@@ -133,7 +133,7 @@
 		L'icona è presente sia nella sezione Gallery sia nei dettagli dell'immagine.
 
 		\subsubsection{Upload}
-		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png o jpg di dimensione massima di 1Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini nel momento in cui il sito è stato caricato sui server dell'università.\\
+		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png o jpg di dimensione massima di 2Mb.\\
 		Dopo l'upload l'immagine viene convertita in formato jpeg tramite la funzione PHP "imagejpeg" in modo da facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
 		
 		\subsubsection{Visualizzazione delle immagini a cui è stato messo un likes}
@@ -182,7 +182,7 @@
 			Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in oltre vengono anche gestite tutte le funzionalità della Gallery, del Login, del Sign up, dell'Upload, per i commenti, i likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript non sono essenziali per la navigazione e ò'interazione nel sito.
 
 	\subsection{Parte amministratore}
-		Esiste un utente "admin" il quale, oltre alle normali attività di tutti gli altri utenti, può eliminare le immagini o i commenti nel caso in cui questi non vengano ritenuti appropriati.
+		Esiste un utente "admin" il quale, oltre alle normali attività di tutti gli altri utenti, può eliminare le immagini o i commenti nel caso in cui questi non vengano ritenuti appropriati. Nella sezione "Your images" può visualizzare le immagini di tutti gli utenti come se fossero le proprie.
 		Questo utente è inserito di default nel database dato.\\
 		Non è possibile per una persona esterna registrare un utente con gli stessi privilegi.
 
@@ -324,78 +324,83 @@
 		\section{Descrizione della sessione}
 			In questa sezione del documento sono elencate tutte le decisioni prese su aspetti ambigui presenti nel sito\\
 		\section{Utilizzo della lingua straniera}
-			\subsection{Furigana}
-				A supporto dei termini scritti in kanji, sono stati inseriti i furigana, cioè la pronuncia del termine in caratteri hiragana (pratica comune in siti che presentano termini giapponesi mirati ad adolescenti o a stranieri che potrebbero avere una discreta conoscenza del giapponese).\\
-				Questo avviene anche in Giappone in quanto i kanji essendo molteplici (si calcola circa 18'000) è frequente che i lettori ne trovino di sconosciuti e si cerca di aiutarli inserendo a lato la pronuncia nel sillabario utilizzato per i termini giapponesi, cioè l'hiragana.\\
-				A volte, se il termine è di origine straniera, il furigana potrebbe presentarsi con caratteri del sillabario katanaka. Questo avviene di rado e non è presente nel nostro sito, in quanto preferiamo presentare le parole inglesi direttamente in alfabeto latino.
-			\subsection{Traslitterazioni}
-				Le traslitterazioni dalla lingua giapponese sono spesso imprecise e ci sono controversie sulla pronuncia persino nella stessa lingua giapponese; quindi si è scelto, in caso di screen reader, di lasciare leggere le parole traslitterate usando l'alfabeto italiano, che si rivela in molti casi anche più preciso rispetto all'inglese nella lettura dei termini.\\
-				Alcune parole giapponesi, che si rivelano essere lette più fedelmente dalla pronuncia inglese, sono state marcate come tali.\\
-				Successivamente c'è anche da considerare che alcuni termini sono pronunciati erroneamente per avvicinarli di più a pronunce occidentali, la stessa parola Touhou dovrebbe essere letta come Tōhō, o Tohō, ma la pronuncia americana e successivamente europea è stata resa Touhou.\\
-				Se le parole traslitterate fossero state marcate come lingua giapponese i termini sarebbero stati considerati in alfabeto "romaji" (romano, cioè l'alfabeto latino), e quindi traslitterati nuovamente in katakana per poi essere letti usando la lingua giapponese, che avrebbe portato a pronunce ancora più errate, in quanto non c'è una corrispondenza precisa tra l'alfabeto e il sillabario.
-				
-			\subsection{Termini errati}
-				Nel sito appaiono termini con delle lettere maiuscole poste senza rispettare la grammatica inglese. In quei casi si è trascritto il termine esattamente come appare nella documentazione ufficiale, all'interno del videogioco o nei file dello stesso. Alcuni esempi sono "Nights of Night" o "U.N. Owen Was Her". In questo ultimo caso non ci è dato sapere cosa significhi U.N., si pensa possa essere un riferimento a Una Nancy Owen, ma non essendoci alcuna conferma ufficiale è stato preferito ometterlo.\\
-
+				Il sito è stato scritto in inglese per garantire l'accessibilità al sito anche ad utenti che non conoscono la lingua italiana, in un mondo altamente globalizzato come il nostro è fondamentale che il sito sia interamente in lingua inglese essendo la lingua più conosciuta e la più comune sul web. Ovviamente ciascun utente potrà poi utilizzare liberamente qualsiasi lingua, incluse le lingue che utilizzano caratteri non latini, per interagire con il sito come inserire commenti e le descrizioni delle immagini.\\
+				Essendo che il successo del sito è basato sul numero di utenti è stato ritenuto fondamentale non escludere gli utenti stranieri.
+		\section{Dimensione massima per l'upload delle immagini limitata a 2Mb}
+				Nella schermata di Upload è possibile caricare immagini di dimensione massima di 1Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini sul server dell'università.\\
+			
 	\chapter{Funzionalit\`{a} desiderabili}
 		\section{Descrizione della sezione}
-		Nella seguente sezione verranno illustrate le funzionalità che nel caso di un progetto reale verrebbero inseriti ma che in questo caso non sono stati inclusi vista l'eccessiva complessita di alcuni rapportata allo scopo e al tempo previsto per questo progetto.
+		Nella seguente sezione verranno illustrate le funzionalità che nel caso di un progetto reale verrebbero inseriti ma che in questo caso non sono stati inclusi vista l'eccessiva complessità di alcuni rapportata allo scopo e al tempo previsto per questo progetto.
 
 		\section{Pagine social network di supporto al sito}
-		Nella maggior parte dei siti moderni è presente un qualche collegamento a pagina nei social network, nel nostro caso non è stata ritenito un impiego di tempo produttivo per gli scopi del progetto andare a creare queste pagine social visto che poi si sarebbe trattato di inserire i link a queste nel sito, nel nostro caso sarebbero stati inseriti nella sidebar assieme ai feed rss.
+		Nella maggior parte dei siti moderni è presente un qualche collegamento ad alcune pagine nei social network, nel nostro caso non è stata ritenuto un impiego di tempo produttivo per gli scopi del progetto andare a creare queste pagine social  ma sarebbero state utili per aumentare la popolarità del sito.
 
-		\section{Editor HTML per gli amministratori}
-		La possibilità della realizzazione di un editor HTML come quelli presenti all'interno dei CMS è stata esclusa visto il tempo che sarebbe stato necessario per realizzarlo che sarebbe stato eccessivo. Comunque nonstante non sia stato sviluppato si ritiene che l'implementazione di un editor di questo per la parte di amministrazione renderebbe molto più efficace la gestione delle funzionalità che richiedono di manipolare testo che poi verra inserito nel database come blocchi di codice html.   
+		\section{Traduzione in più lingue}
+		Essendo il sito rivolto verso un pubblico internazionale e disomogeneo sarebbe stato opportuno creare più versioni del sito in lingue diverse ed inserire nel menù un' opzione per poter cambiare la lingua. Questa funzione esula gli scopi di questo progetto ed inoltre sarebbe stato impossibile per i membri del team senza l'aiuto di una persona esterna in grado di effettuare le traduzioni.
 		
-		\section{Image picker}
-		Una ultima funzione avanzata che migliorerebbe l'utilizzo del sito da parte dell'amministratore, che si collega all'editor HTML, sarebbe quella di poter selezionare una immagine da inserire in un articolo direttamente dalla galleria delle immagini, o caricarla al momento all'interno della galleria, senza la necessità di spostarsi sulla sezione immagini, caricarla, copiare il link, tornare alla notizia che stava inserendo e compilando il tag html per l'inserimento dell'immagine.
-
+		\section{Preview dell'immagine e modifica con filtri durante la fase di upload}
+		I social network più moderni offrono la possibilità sia di visualizzare una schermata di preview dell'immagine in modo da capire come verrà visualizzata nella Gallery una volta caricata che di applicare dei filtri all'immagine in modo da renderla più accattivante. Questo non è stato fatto in quanto avrebbe richiesto troppo tempo studiare le tecnologie necessarie per implementare questa funzionalità.
 
 
 	\chapter{Suddivisione del lavoro}
 	\section{Suddivisione per membro del gruppo}
-	\subsection{Bisello Samuele - Matricola 1122438}
+	\subsection{Davide Liu - Matricola 1140717}
 	\begin{itemize}
-		\item Scrittura contenuti per la pagina capitoli
-		\item Definizione stile del login e di svariati elementi, soprattutto nella parte di amministrazione
-		\item Script JS per la validazione delle form lato admin
-		\item Raffinamento e verifica delle form
-		\item Inserimento dello sticky header
-		\item Test su MacOS High Sierra e iOS
-		\item Sviluppo di una parte di codice PHP per la connessione con il database
+		\item Stesura della relazione
+		\item Pagina di Upload
+		\item Pagina Home
+		\item Menù per desktop
+		\item Definizione dello stile
+		\item Classifiche e statistiche
+		\item Test su sistema Windows
+		\item Test su dispositivi hardware di diverse
+		 dimensioni
+		\item Test con diverse impostazioni utente
+		\item Controlli in PHP nel form per l'upload
+		\item Validazione
 	\end{itemize}
-	\subsection{Cailotto Mirco - Matricola 1123521}
+	\subsection{Harwinder Singh - Matricola xxxxxxxx}
 	\begin{itemize}
-		\item Creazione struttura base del sito
-		\item Raccolta e stesura nella relazione di tutti gli aspetti relativi alla lingua giapponese
-		\item Raccolta di riferimenti per il contenuto del sito
-		\item Scrittura contenuti per pagina di home page, gameplay, realizzazione, popolarità
-		\item Creazione php per le news e svariate pagine di amministrazione
-		\item Creazione bozza dello stile per le pagine utente e amministrazione
-		\item Scrittura della funzione php per l'upload delle immagini
-		\item Scrittura del sistema di errori in PHP forniti all'utente
+		\item Revisione della relazione
+		\item Pagina di Login
+		\item Pagina di Sign Up
+		\item Menù ad hamburger per mobile
+		\item Breadcumb
+		\item Implementazione del pulsante nascosto "skip to content" accessibile tramite il pulsante "Tab" 
+		\item Miglioramento dello stile
+		\item Funzioni in PHP per interagire col database
 		\item Creazione della struttura del database
-		\item Controllo dei valori inseriti all'interno del database
-		\item Parsing degli input per evitare SQLInjection
-		\item Svolgimento di test automatici
-		\item Stesura dello scheletro della relazione
-		\item Stesura parte abstract, di analisi dell'utenza e di ambiguità linguistica della relazione
-		\item Creazione dello script per lo zoom delle immagini
-		\item Raffinamento dello sticky header
-		\item Test su sistema Windows e Android
-		\item Creazione RSS
+		\item Reset password tramite email
+		\item Modifica dati utente
+		\item Pulsante di back (SPIEGALO MEGLIO TU)
+		\item Validazione DA FINIRE
+		\item Controllo contrasto colori
+		\item Gestione della sessione
+		\item Controllo accessibilità
 	\end{itemize}
-	\subsection{Todescato Matteo - Matricola 1121857}
+	\subsection{Pardeep Singh - Matricola xxxxxxx}
 	\begin{itemize}
-		\item Scrittura contenuti per la pagina dei personaggi
-		\item Gestione degli amministratori nella parte PHP e relativa parte del database
-		\item Stesura del login
-		\item Definizione dello stile grafico adottato
-		\item Creazione dello sfondo
-		\item Script JS per la validazione delle form lato utente
-		\item Inserimento notizie
+		\item Pagina della Gallery con relativa paginazione, filtri e ordinamento delle immagini
+		\item Pulsante "Top"
+		\item Input di ricerca nel menù e nella Gallery
+		\item Pagina "Liked images" e eestione dei likes
+		\item Pulsate "Details" per ogni immagine per indirizzare l'utente nella pagina di visualizzazione dell'immagine 
+		\item Validazione DA FINIRE
+		\item Css per la stampa MA ANCORA DA FARE
+		\item Test su sistema IOs
+		\item Pagina "Your images" e gestione cancellazione immagini
+	\end{itemize}
+	\subsection{Daniele Bianchin - Matricola xxxxxxx}
+	\begin{itemize}
+		\item Correzione della relazione
+		\item SCRIVI COSA HAI FATTO PER QUANTO RIGUARDA LA SICUREZZA
+		\item Pagina di visualizzazione dell'immagine
+		\item Gestione dei commenti
+		\item Script JS per funzionalità di lente di ingrandimento sulle immagini
+		\item Creazione database
 		\item Test su sistema Linux
-		\item Stesura della parte di realizzazione della relazione
+		\item Test su differenti browser elencati nel capitolo 5
 	\end{itemize}
 
 \end{document}
