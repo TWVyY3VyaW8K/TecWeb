@@ -30,7 +30,7 @@
 				\centering
 				\includegraphics[width=0.6\linewidth]{logo.png}
 			\end{figure}
-			\large Davide Liu - 1140717 \\ Harwinder Singh - xxxxxxx \\ Pardeep Singh - xxxxxxx \\ Daniele Bianchin - xxxxxxx \\
+			\large Davide Liu - 1140717 \\ Harwinder Singh - xxxxxxx \\ Pardeep Singh - xxxxxxx \\ Daniele Bianchin - 1122996 \\
 			\vfill
 			Sito web hostato all'indirizzo: \url{http://artbit.altervista.org/}\\
 			{\small Credenziali per l'amministrazione:\\username: admin, password: admin\\}
@@ -50,7 +50,7 @@
 
 	% La relazione deve contenere in prima pagina:
 	%indirizzo web del sito;
-	%eventuali password degli utenti da utilizzare in fase di correzione (una coppia login-password per ogni classe di utenza), in particolare:
+	%eventuali password degli utenti da utilizzare in fase di correzzione (una coppia login-password per ogni classe di utenza), in particolare:
 	%l'utente amministratore, se presente, deve avere login e password uguali ad admin;
 	%l'utente semplice, se presente, deve avere login e password uguali ad user;
 	%indirizzo email del referente del gruppo per eventuali comunicazioni;
@@ -224,7 +224,6 @@
 				\includegraphics[width=0.8\linewidth]{images/daltonismo}
 				\caption{Risultati ottenuti su Vischeck}
 			\end{figure}
-			Ulteriormente anche su mobile sono state testata le stesse varianti di colorazione agendo sulle impostazioni di sviluppo di Android 7.1 presenti sulla rom MIUI versione China Dev, purtroppo gli screenshots effettuati in questa modalità di colore apparivano senza filtro, e per questo motivo non è stato possibile riportare i test effettuati in questo documento.
 			
 			\subsection{VEGA}
 			\`{E} stato utilizzato lo strumento VEGA scaricabile gratuitamente da \url{subgraph.com/vega} per controllare eventuali errori di sicurezza all'interno del sito.\\
@@ -239,17 +238,12 @@
 		\section{Test su diversi dispositivi}
 			Il sito è stato testato su varie macchine e sistemi operativi. Nelle sezioni seguenti verranno elencati assieme ai browser e alle risoluzioni testate.
 				\subsection{Windows 10}
-				Sono state testate le risoluzioni di 1080p e 2160p con i browsers:
+				Sono state testate le risoluzioni di 720p e 1800p con i browsers:
 				\begin{itemize}
-					\item Chromium 64
-					\item Google Chrome
+					\item Google Chrome 71
 					\item Edge
 					\item Internet Explorer 11
 					\item Firefox Quantum
-					\item Waterfox 57
-					\item Firefox Nightly 60a1
-					\item Mozilla Firefox 3
-					\item Netscape 7
 				\end{itemize}
 				Si è notato che Mozilla Firefox 3 utilizza una dimensione errata dell'immagine nella testata. Questo aspetto rovina leggermente il rendimento grafico ma non ne compromette le funzionalità, in quanto tutti i contenuti risultano perfettamente fruibili dall'utente.\\
 				Un Secondo appunto riguardante Firefox 3 è l'incompatibilità con parte del codice JavaScript: solamente il controllo della compilazione dei campi di testo funziona correttamente.\\
@@ -260,71 +254,29 @@
 				Il sito è stato provato anche su Netscape 7, soprattutto per soddisfare una curiosità personale e per comprendere meglio l'evoluzione dello sviluppo dei siti web negli anni. Il risultato è ovviamente insoddisfacente, i tag div e p sono visualizzati erroneamente, moltissime proprietà css non sono correttamente riconosciute dal browser e soprattutto le mediaquery non sono supportate, facendo caricare al sito la versione mobile.\\
 				Ovviamente non sono stati presi provvedimenti per migliorare la situazione con Netscape, in quanto il software è datato al 2002 e non è più in uso in nessun ambito.
 				
-				\subsection{GNU/Linux Fedora 27}
-				Sono state testate le risoluzioni di 1800p e 2160p con i browsers:
+				\subsection{GNU/Linux Ubunutu 18.04 LTS}
+				Sono state testate le risoluzioni di 720p e 1800p con i browsers:
 				\begin{itemize}
-					\item Firefox Quantum
-					\item Google Chrome
-					\item Firefox 56
-					\item Lynx
+					\item Firefox Quantum 64
+					\item Google Chrome 71
 				\end{itemize}
-				Durante la fase di test su questa piattaforma non sono emerse problematiche a livello di compatibilità o visibilità nonstante le alte risoluzioni. Inoltre su questa piattaforma è stata testata la leggibilità del sito con l'utilizzo del browser cli Lynx.
-
-				\subsection{MacOS High Sierra}
-				Sono state testate le risoluzioni di 1800p, 2160p e 2880x1800p con i browsers:
-				\begin{itemize}
-					\item Safari 11.0.2
-					\item Firefox Quantum
-					\item Google Chrome
-				\end{itemize}
-				Durante la fase di test su piattaforma MacOS non è emersa alcuna problematica per quanto riguarda visibilità e compatibilità. Il sito viene visualizzato correttamente in tutti e tre i browser provati, nonostante le alte risoluzioni dei display utilizzati.
-
-				\subsection{FreeBSD 11}
-				\`{E} stata testata la risoluzione 1080p sui seguenti browsers:
-				\begin{itemize}
-					\item Firefox Quantum
-					\item Lynx
-					\item Lynx da CLI
-				\end{itemize}
-				Il sito è stato testato con il browser Lynx utilizzando la console senza x11 o Wayland, quindi da terminale/CLI, e con x11, quindi da una finestra di emulazione del terminale di dimensione variabile.\\
-				In entrambi i casi il contenuto era fruibile.
+				Durante la fase di test su questa piattaforma non sono emerse problematiche a livello di compatibilità o visibilità nonstante le alte risoluzioni.
 
 				\subsection{Dispositivi mobili}
 				Di seguito sono elencati i vari dispositivi mobili sui quali il sito è stato testato
 				\begin{itemize}
-				\item Xiaomi Redmi 4X (Chinese Dev) con Miui browser, Firefox Rocket e Waterfox con una risoluzione di 720p
-				\item Amazon Kindle Touch 2 (7' generazione) con schermo e-ink in bianco e nero, con una risoluzione di 800x600 e con il browser sperimentale fornito di default.
-        		\item Testato su Ipad Pro 10.5' su browser Safari versione 11.2.5 con una risoluzione di 2224x1668 
+				\item Huwawei P9 con il browser stock e google chrome mobile, la risoluzioe del dispositivo è 1080p 
+				\item AGGIUNGERE ALTRI DISPOSITIVI 
 				\end{itemize}
 			
 				In tutti i dispositivi testati il sito si adatta perfettamente alla risoluzione dello schermo e non sono presenti problemi di compatibilità, neppure con JavaScript.\\
-				L'unico appunto da fare è la mancanza di supporto degli RSS, che vengono letti come file di testo normali, ad eccezione di Waterfox che invece ne propone il download.\\
-				Anche su schermo e-ink in bianco e nero i link rimangono sufficientemente marcati rispetto al resto del testo e tutte le sezioni rimangono distinguibili.
-			
-				\begin{figure}[H]
-					\centering
-					\includegraphics[width=0.7\linewidth]{images/Kindle}
-					\caption{Il sito web sul dispositivo Amazon Kindle Touch 2}
-				\end{figure}
-			
-		\section{Test con diverse impostazioni utente}
-			Il sito è stato testato con multiple impostazioni utente, come citato nella sezione riguardante le piattaforme di testing sono state testate risoluzioni che vanno dall 600p al 2160p senza presentare problemi di visualizzazione. Oltre al test per le varie risoluzioni e dispositivi si è testata la visualizzazione del sito con dimensioni del testo di che vanno 16pt a 44pt e con uno zoom elevato mantenendo comunque una buona fruibilità del sito.\\
-			\`{E} stata presa in considerazione anche la possibilità che un utente abbia bloccato, oppure non abbia la possibilita se pur remota di non poter eseguire Javascript, e nonostante questo il sito rimane comunque egualmente navigabile in tutte le sue parti, senza far trasparire in modo palese la mancanza di Javascript.\\
-
-		\section{Lynx e come potrebbe essere se letto}
-			Il sito è stato testato con il browser Lynx, nonostante la visualizzazione solo testuale il sito rimane comunque navigabile seppur non in modo agevole se non si è abituati al utilizzo dei browser testuali.
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=1.2\linewidth]{images/Lynx2}
-				\caption{Esempio di pagina del sito web su Lynx}
-			\end{figure}
-		
 
 	\chapter{Ambiguità incontrate e scelte intraprese}
 		\section{Descrizione della sessione}
 			In questa sezione del documento sono elencate tutte le decisioni prese su aspetti ambigui presenti nel sito\\
 		\section{Utilizzo della lingua straniera}
-				Il sito è stato scritto in inglese per garantire l'accessibilità al sito anche ad utenti che non conoscono la lingua italiana, in un mondo altamente globalizzato come il nostro è fondamentale che il sito sia interamente in lingua inglese essendo la lingua più conosciuta e la più comune sul web. Ovviamente ciascun utente potrà poi utilizzare liberamente qualsiasi lingua, incluse le lingue che utilizzano caratteri non latini, per interagire con il sito come inserire commenti e le descrizioni delle immagini.\\
+				Il sito è stato scritto in inglese per garantire l'accessibilità al sito anche ad utenti che non conoscono la lingua italiana.\\
+				In un mondo altamente globalizzato come il nostro è fondamentale che il sito sia interamente in lingua inglese essendo la lingua più conosciuta e la più comune sul web. Ovviamente ciascun utente potrà poi utilizzare liberamente qualsiasi lingua, incluse le lingue che utilizzano caratteri non latini per interagire con il sito come l'aggiunta di commenti e le descrizioni delle immagini.\\
 				Essendo che il successo del sito è basato sul numero di utenti è stato ritenuto fondamentale non escludere gli utenti stranieri.
 		\section{Dimensione massima per l'upload delle immagini limitata a 2Mb}
 				Nella schermata di Upload è possibile caricare immagini di dimensione massima di 1Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini sul server dell'università.\\
@@ -334,10 +286,10 @@
 		Nella seguente sezione verranno illustrate le funzionalità che nel caso di un progetto reale verrebbero inseriti ma che in questo caso non sono stati inclusi vista l'eccessiva complessità di alcuni rapportata allo scopo e al tempo previsto per questo progetto.
 
 		\section{Pagine social network di supporto al sito}
-		Nella maggior parte dei siti moderni è presente un qualche collegamento ad alcune pagine nei social network, nel nostro caso non è stata ritenuto un impiego di tempo produttivo per gli scopi del progetto andare a creare queste pagine social  ma sarebbero state utili per aumentare la popolarità del sito.
+		Nella maggior parte dei siti moderni è presente un qualche collegamento ad alcune pagine nei social network, nel nostro caso non è stata ritenuto un impiego di tempo produttivo per gli scopi del progetto andare a creare queste pagine social ma sarebbero state utili per aumentare la popolarità del sito.
 
 		\section{Traduzione in più lingue}
-		Essendo il sito rivolto verso un pubblico internazionale e disomogeneo sarebbe stato opportuno creare più versioni del sito in lingue diverse ed inserire nel menù un' opzione per poter cambiare la lingua. Questa funzione esula gli scopi di questo progetto ed inoltre sarebbe stato impossibile per i membri del team senza l'aiuto di una persona esterna in grado di effettuare le traduzioni.
+		Essendo il sito rivolto verso un pubblico internazionale e disomogeneo sarebbe stato opportuno creare più versioni del sito in lingue diverse ed inserire nel menù un'opzione per poter cambiare la lingua. Questa funzione esula gli scopi di questo progetto ed inoltre sarebbe stato impossibile per i membri del team senza l'aiuto di una persona esterna in grado di effettuare le traduzioni.
 		
 		\section{Preview dell'immagine e modifica con filtri durante la fase di upload}
 		I social network più moderni offrono la possibilità sia di visualizzare una schermata di preview dell'immagine in modo da capire come verrà visualizzata nella Gallery una volta caricata che di applicare dei filtri all'immagine in modo da renderla più accattivante. Questo non è stato fatto in quanto avrebbe richiesto troppo tempo studiare le tecnologie necessarie per implementare questa funzionalità.
@@ -393,8 +345,8 @@
 	\end{itemize}
 	\subsection{Daniele Bianchin - Matricola xxxxxxx}
 	\begin{itemize}
-		\item Correzione della relazione
-		\item SCRIVI COSA HAI FATTO PER QUANTO RIGUARDA LA SICUREZZA
+		\item Correzzione della relazione
+		\item Correzzione bug di sicurezza
 		\item Pagina di visualizzazione dell'immagine
 		\item Gestione dei commenti
 		\item Script JS per funzionalità di lente di ingrandimento sulle immagini
