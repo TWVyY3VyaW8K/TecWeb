@@ -51,6 +51,15 @@ border-bottom: 1px solid #6a5acd;
   cursor: pointer;
   }
 
+#description-btn {
+  background-color: #6a5acd;
+  color: white;
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  }
+
 #imageAndDescription {
 display: table;
 padding: 0em;
@@ -98,6 +107,13 @@ cursor: pointer;
 
 textarea[name=input-comment]
 {
+  resize: vertical;
+  margin: 0;
+  width: 100%;
+}
+
+textarea[name=input-description]
+{ 
   resize: vertical;
   margin: 0;
   width: 100%;

@@ -51,15 +51,37 @@
             $ArtistName = $row['Nome'] . " " . $row['Cognome'];
             $isLiked = false;
 
+            if(isset($_POST['input-description']) && isset($_SESSION['Username']))
+            {
+              if (strtolower($_SESSION['Username']) !== 'admin')
+              {
+                $qrstr = "SELECT * FROM opere WHERE Artista='".$_SESSION['Username']."' AND Nome='".$Title."'";
+                if($myDb->doQuery($qrstr)->num_rows !== 1)
+                {
+                  $Error = 'Artwork not found or wrong artwork owner';
+                  $check = false;
+                }
+                else
+                  $check = true;
+              }
+              else
+                $check = true;
+              if($check)
+              {
+                $Description = htmlspecialchars($_POST['input-description'], ENT_QUOTES, "UTF-8");
+                $qrstr = "UPDATE opere SET Descrizione='".$Description."' WHERE Nome='".$Title."' AND Artista='".$Artist."'";
+                $myDb->doQuery($qrstr);
+              }
+            }
             if(isset($_GET['Remove']))
             {
               $ID = $_GET['Remove'];
               $qrstr = "SELECT ID FROM commenti WHERE ID=".$ID;
-              if (isset($_SESSION['Username']) && $_SESSION['Username'] !== 'Admin')
+              if (isset($_SESSION['Username']) && strtolower($_SESSION['Username']) !== 'admin')
                 $qrstr .= " AND Utente='".$_SESSION['Username']."'";
               if($myDb->doQuery($qrstr)->num_rows !== 1)
                 $Error = 'Artwork not found or wrong artwork owner';
-              else
+              else if(isset($_SESSION['Username']))
                  {
                   $qrstr = "DELETE FROM commenti WHERE ID=".$ID;
                   $myDb->doQuery($qrstr);
@@ -67,9 +89,9 @@
                   $_SESSION["backPage"] =  removeqsvar($_SERVER['REQUEST_URI'], 'Remove');
                  }
             }
-            else if(isset($_GET['input-comment']))
+            else if(isset($_POST['input-comment']))
             {
-              $Comment = htmlspecialchars($_GET['input-comment'], ENT_QUOTES, "UTF-8");
+              $Comment = htmlspecialchars($_POST['input-comment'], ENT_QUOTES, "UTF-8");
               if(empty(trim($Comment)))
                 $Error = 'Empty field!';
               else
@@ -144,12 +166,29 @@
                 echo '  </div></div>';
               ?>            </div>
 
-            <div id="main-description"><?php echo $Description; ?></div>
+            <div id="main-description">
+              <?php
+              if(isset($_SESSION['Username']) && ($_SESSION['Username'] === $Artist || strtolower($_SESSION['Username']) === 'admin'))
+              {
+                echo "Edit description:<br/>";
+                echo "<form action="."\"viewArtwork.php?Title=".$Title."&Artist=".$Artist."\""." method=\"post\">";
+                echo "<inputfield>";
+                echo "<textarea rows=\"5\" cols=\"30\" name=\"input-description\">";
+                echo $Description;
+                echo "</textarea>";
+                echo "<input type= \"submit\" value=\"Edit\" id=\"description-btn\"/>";
+                echo "</inputfield>";
+                echo "</form>"; 
+              }
+              else
+                echo $Description; 
+              ?>  
+            </div>
           </div>
           </div>
           <div id="commentSection" class="container1024">
           <div class="comment" id="topComment">
-          <form action="viewArtwork.php" method="get">
+          <form action=<?php echo "\"viewArtwork.php?Title=".$Title."&Artist=".$Artist."\"" ?> method="post">
           <?php
             if($myDb->connected && isset($_SESSION['Username']))
                 echo $_SESSION['Username'];
@@ -160,8 +199,6 @@
            ?>
            <?php $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : ""; ?>
            <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
-           <input type="hidden" name="Title" value=<?php echo '"'.$Title.'"' ?>/>
-          <input type="hidden" name="Artist" value=<?php echo '"'.$Artist.'"' ?>/>
         <?php
             echo '<input type="submit" value="Send" id="comment-btn" '.$en.'/>';
           ?>
