@@ -31,7 +31,10 @@
         }else{
             echo '<div class="liFigures" id="f'.$numFig.'">';
             echo     '<div class="galleryFigureWrapper">';
-            echo '      <div class="background-color-90929294"><a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'"><img alt="'.$imgName.'" src="Images/Art/'.rawurlencode($artist).'/'.rawurlencode($imgName).'.jpeg"/></a></div>';
+            $vAL = htmlspecialchars("viewArtwork.php?Title=$imgName&Artist=$artist");
+            $gL = htmlspecialchars("gallery.php?gallerySearch=$artist");
+            $lBL = htmlspecialchars("likedBy.php?artist=$artist&imgName=$imgName");
+            echo '      <div class="background-color-90929294"><a href="'.$vAL.'"><img alt="'.$imgName.'" src="Images/Art/'.rawurlencode($artist).'/'.rawurlencode($imgName).'.jpeg"/></a></div>';
             echo '      <div class="galleryCaption">';
             echo '              <h2>'.$imgName.'</h2>';
             echo '          <div class="wrapper">';
@@ -49,17 +52,17 @@
 
             //$url = addParameterTo($_SERVER['REQUEST_URI'],'lNumI',$numFig);
             if($isLiked == true){
-                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><div class="like-btn like-btn-added"></div></a>';
+                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn like-btn-added"></span></a>';
             }else{
-                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><div class="like-btn"></div></a>';
+                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn"></span></a>';
             }
             echo '              </div>';
             echo '              <div class="width-85">';
-            echo '                  <a class="customLink" href="gallery.php?gallerySearch='.$artist.'">Artist: '.$artist.'</a>';
-            echo '                  <p><a class="customLink" href="likedBy.php?artist='.$artist.'&imgName='.$imgName.'">Likes: '.getLikesByItem($artist,$imgName)['Result'].'</a></p>';
+            echo '                  <a class="customLink" href="'.$gL.'">Artist: '.$artist.'</a>';
+            echo '                  <p><a class="customLink" href="'.$lBL.'">Likes: '.getLikesByItem($artist,$imgName)['Result'].'</a></p>';
             echo '              </div>';
             echo '          </div>';
-            echo '                  <a href="viewArtwork.php?Title='.$imgName.'&amp;Artist='.$artist.'" title="Details: '.$imgName.' by '.$artist.'"><button class="btnDiscover" type="submit">Details</button></a>';
+            echo '                  <a href="'.$vAL.'" title="Details: '.$imgName.' by '.$artist.'"><button class="btnDiscover" type="submit">Details</button></a>';
             $url = $_SERVER['REQUEST_URI'];
             //echo $url;
             $query = parse_url($url, PHP_URL_QUERY);
@@ -144,7 +147,7 @@
         }
         for($j=1; $j <= $i; $j++){
             if($j==$currentPagNum)
-                echo '  <div href="'.$currentPageName.'?pagNum='.(string)($j).'" class="div-bar-item gal-pag-button btnPaginationActive notClickable" id="btnPagination'.$j.'" onclick="btnPaginationOnClick(this.id)">'.$j.'</div>';
+                echo '  <a href="'.$currentPageName.'?pagNum='.(string)($j).'" class="div-bar-item gal-pag-button btnPaginationActive notClickable" id="btnPagination'.$j.'">'.$j.'</a>';
             else
                 echo '  <a href="'.$currentPageName.'?pagNum='.(string)($j).'" class="div-bar-item gal-pag-button" id="btnPagination'.$j.'" onclick="btnPaginationOnClick(this.id)">'.$j.'</a>';
         }

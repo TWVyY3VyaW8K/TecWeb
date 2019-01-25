@@ -14,7 +14,7 @@
   <title>Artbit</title>
 </head>
 
-<body onload="eventListnerforLoginModal(); scrollFunction(); scrollToImage();" >
+<body onload="scrollFunction(); scrollToImage();" >
   <?php
 	require_once "header.php";
 	//require_once "searchModal.php";
@@ -55,7 +55,7 @@
 		<!-- Top rated -->
 		<div class="title"><h1>Top rated</h1></div>
 		<div class="gallery galNotThree">
-			<ul class="clearfix galleryBoard">
+			<div class="clearfix galleryBoard">
 				<?php
 					$qrStr = getQueryForTopRatedImages();
  					$result = $myDb->doQuery($qrStr);
@@ -72,7 +72,7 @@
 						echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
 					}
 				?>
-			</ul>
+			</div>
 		</div>
 
 	  <div class="section"><!--statistics-->

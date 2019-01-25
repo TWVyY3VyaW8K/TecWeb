@@ -128,7 +128,7 @@
 		\subsubsection{Commenti}
 		Un utente autenticato ha la possibilità di commentare qualsiasi immagine, leggere i commenti degli altri utenti e cancellare i propri. L'utente admin può cancellare qualsiasi commento o immagine che ritiene offensiva o di cattivo gusto.
 		
-		\subsubsection{likes}
+		\subsubsection{Likes}
 		Cliccando sull'icona a forma di cuore l'utente mette un like sulla relativa immagine. Un utente può mettere un solo like per ogni immagine e cliccando di nuovo sulla stessa icona il like verrà rimosso.
 		L'icona è presente sia nella sezione Gallery sia nei dettagli dell'immagine.
 
@@ -175,16 +175,40 @@
 			La presentazione della pagina è realizzata tramite file css, il cui file principale è "style.css" il quale viene utilizzato per ogni pagina.\\
 			In caso di dispositivo mobile o tablet vengono utilizzate delle media-query che hanno il compito di far cambiare la presentazione della pagina per meglio adattarla a schermi di dimensioni inferiori.\\
 			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print-style.css" che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. 
-		DOBBIAMO ANCORA FARLO Si è scelto di rimuovere il menu, ma di lasciare il titolo e la breadcrumb, in modo tale da aiutare l'utente a ritrovare il sito web e la pagina nel caso non si ricordasse la fonte. Le immagini sono state rimosse, ad eccezione delle immagini dei personaggi, che sono stati valutate come molto utili per una veloce consultazione.
-
+		
 			\subsubsection{Comportamento}
 			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini e per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto.\\
-			Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in oltre vengono anche gestite tutte le funzionalità della Gallery, del Login, del Sign up, dell'Upload, per i commenti, i likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript non sono essenziali per la navigazione e ò'interazione nel sito.
+			Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in oltre vengono anche gestite tutte le funzionalità della Gallery, del Login, del Sign up, dell'Upload, per i commenti, i likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript, come per esempio la lente di ingrandimento per le immagini, non sono essenziali per la navigazione e l'interazione nel sito.
 
 	\subsection{Parte amministratore}
 		Esiste un utente "admin" il quale, oltre alle normali attività di tutti gli altri utenti, può eliminare le immagini o i commenti nel caso in cui questi non vengano ritenuti appropriati. Nella sezione "Your images" può visualizzare le immagini di tutti gli utenti come se fossero le proprie.
 		Questo utente è inserito di default nel database dato.\\
 		Non è possibile per una persona esterna registrare un utente con gli stessi privilegi.
+
+	\chapter{Accessibilità}
+		\section{Descrizione della sessione}
+		Questa sezione spiega quali accorgimenti sono stati adottati ai fini di migliorare l'accessibilità del sito
+		\section{Distribuzione dell'informazione}
+		Ogni categoria di utenti ha diverse necessità circa l'informazione che vuole trovare, il nostro sito cerca di soddisfarli secondo la metafora della pesca: 
+		\begin{itemize}
+					\item Il tiro perfetto: se gli utenti sanno già ciò che stanno cercando sarà facile per loro utilizzare la barra principale di ricerca per visualizzare l'immagine desiderata
+					\item Trappole per aragoste: un nuovo utente sarà attratto dai contenuti in primo piano, ovvero i Top Rated posti sotto l'immagine della Home 
+					\item Pesca con la rete: Nella Gallery è possibile scorrere le varie pagine alla ricerca di contenuti interessanti
+					\item Boa di segnalazione: Nella sezione Liked Images è possibile riguardare tutte le immagini a cui è stato messo un like
+		\end{itemize}
+		\section{Ancora}
+		Scrollare una qualsiasi pagina del sito verso il basso porterà alla comparsa di un pulsante "Top" la cui pressione riporta in cima alla pagina. Questa implementazione serve per non obbligare l'utente a risalire manualmente all'inizio della pagina, specialmente nel caso in cui questa risulti essere troppo lunga.
+		\section{Linguaggio}
+		I testi statici presenti nel sito sono completamente in inglese perciò uno screen reader non andrà incontro a problemi di pronuncia quando in esecuzione. Dall'altra parte, non c'è nessun vincolo sulla lingua utilizzata dall'utente per compilare i dati delle proprie immagini come il titolo e la descrizione, quindi inevitabilmente l'esperienza utente di chi utilizza uno screen reader potrebbe essere compromessa.
+		\section{Skip Menù Button}
+		Anche questo problema riguarda gli utenti non vedenti, risulta difatti molto stressante per un utente doversi ascoltare un intero listino, quindi con la prima pressione del tasto tab compare un link per saltare il menu e quindi passare direttamente al contenuto.
+		\section{Breadcumbs}
+		Per ogni pagina, immediatamente sotto al menu di navigazione principale, è stato inserito un breadcrumbs per accompagnare l'utente nella navigazione. Questo elemento si presenta statico per ogni pagina ad eccezione della pagina di visualizzazione delle immagini, dove viene anche specificato qual'è il titolo dell'immagine che si sta guardando.
+		\section{Form}
+	Per quanto riguarda i form, un problema che molto spesso afﬂigge queste tipologie di componenti è la cancellazione dei loro campi in caso di errori nell' elaborazione della richiesta a causa di campi mancanti o errati, per mantenere un livello di soddisfazione alto, i form sono stati realizzati in modo da non cancellare il loro contenuto al ricaricarsi della pagina.
+		\section{Tabelle}
+		Sono state utilizzate delle tabelle per mostrare le statistiche del sito e le classifiche in quanto questi dati viene naturale esprimerli in maniera tabellare. Per tenere comunque alto il livello di accessibilità le tabelle sono dotate tutte del campo "Summary" che ne da una breve descrizione e degli attributi "scope" per le colonne.
+
 
 	\chapter{Validazione e test}
 		\section{Descrizione della sessione}

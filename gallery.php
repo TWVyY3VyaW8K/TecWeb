@@ -33,10 +33,12 @@
                     <?php
                         if(isset($_GET['gallerySearch'])){
                             $gallerySearch = htmlspecialchars($_GET["gallerySearch"], ENT_QUOTES, "UTF-8");//cleaning the input
-                            echo '<input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch" value="'.$gallerySearch.'"/>';
+                            echo '<label for="searchField">Cerca per categoria, artista o descrizione ..</label>';
+                            echo '<input id="searchField" type="text" name="gallerySearch" value="'.$gallerySearch.'"/>';
                             resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
                         }else{
-                            echo '<input type="text" placeholder="Cerca per categoria, artista o descrizione .." name="gallerySearch"/>';
+                        	echo '<label for="searchField">Cerca per categoria, artista o descrizione ..</label>';
+                            echo '<input id="searchField" type="text" name="gallerySearch"/>';
                         }
 
                     ?>

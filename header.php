@@ -1,5 +1,5 @@
 <div id="skipmenu">
-  <a href="#content" onfocus="skipFocused()" onfocusout="skipUnfocused()">Go to content</a>
+  <a href="#content" id="skipcontent" onfocus="skipFocused()">Go to content</a>
 </div>
 <?php
   if(isset($_POST['menuDropDown'])){
