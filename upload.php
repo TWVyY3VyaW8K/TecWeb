@@ -7,7 +7,9 @@
   <meta name="keywords" content="artwork,picture,image,database"/>
   <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link rel="stylesheet" href="Style/style.css"/>
+  <link rel="stylesheet" href="Style/style.css"/>
+  <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
+
   <script type="text/javascript" src="script.js" ></script>
   <title>Artbit</title>
 </head>
@@ -20,8 +22,8 @@
   require_once "functions.php";
 
   ?>
-    <div class="Uploadsection container1024" id="content"><!--upload form-->
-      <div class="title"><h1>Register your artwork</h1></div>
+    <div class="Uploadsection container1024 fullScreenHeight" id="content"><!--upload form-->
+      <h1 class="title">Register your artwork</h1>
 
       <div  id="uploadMessage" class="upload_message">
           <!--container for unfilled inputs-->

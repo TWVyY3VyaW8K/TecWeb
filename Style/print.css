@@ -14,6 +14,15 @@ body{
 hr{
 	border-color:black;
 }
+button{
+	    background-color: #80808080;
+    color: white;
+    padding: 0.5em;
+    border: none;
+}
+.fullScreenHeight{
+    min-height: 0px;
+}
 /*Menu*/
 #Topnav,#Topnav,.footer button{
 	display:none;
@@ -25,6 +34,7 @@ hr{
   /*Tables*/
  table{
 	  border-radius:0px;
+	  border-collapse: unset; 
   }
 td, th {
   border: 1px solid black;
@@ -81,8 +91,11 @@ td, th {
 	padding-top:10px;
 }
  
- 
- 
+ /*Upload*/
+ .Uploadsection input[type="text"], .Uploadsection input[type="file"], .Uploadsection textarea, .Uploadsection select, .gallery select{
+	border:solid 1px gray;
+	margin-top: 0px; 
+ }
  
  
  

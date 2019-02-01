@@ -7,7 +7,7 @@
     font-size: 1.0em;
 }
 .fullScreenHeight{
-    min-height: calc(100vh - 101px);
+    min-height: calc(100vh - 143px);
 }
 .loginTopPadding{
     padding: 5%;
@@ -870,15 +870,15 @@ tr:nth-child(odd) {
 }
 
 #description-comments {
-float: left;
-display: table-cell;
-background-color: #f7f7f7;
-width: 30%;
-height: 37em;
-overflow: auto;
-word-break: break-word;
-border-right: 1px solid #6a5acd;
-border-bottom: 1px solid #6a5acd;
+	float: left;
+	display: table-cell;
+	background-color: #f7f7f7;
+	width: 30%;
+	height: 37em;
+	overflow: auto;
+	word-break: break-word;
+	border-right: 1px solid #6a5acd;
+	border-bottom: 1px solid #6a5acd;
 }
 #comment-btn {
   background-color: #6a5acd;
