@@ -12,7 +12,7 @@
       <script type="text/javascript" src="script.js" ></script>
       <title>Artbit</title>
     </head>
-    <body onload="magnify(); setResizeListner();" >
+    <body onload="magnify(); " >
       <?php
         require_once "header.php";
         require_once "DbConnector.php";

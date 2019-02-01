@@ -18,14 +18,7 @@
 	require_once "header.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-  /*
-	if(isset($_SERVER['HTTP_REFERER'])
-        && strstr(strtolower($_SERVER['HTTP_REFERER']), "login.php")==false
-        && strstr($_SERVER['HTTP_REFERER'], "signUp.php")==false
-        && strstr($_SERVER['HTTP_REFERER'], "resetPassword.php")==false){
-            saveBackPage();
-    }
-  */
+
   ?>
   <div class="fullScreenHeight loginTopPadding">
   <div class="loginCard container1024" id="LikedByDiv">
@@ -43,10 +36,9 @@
 
             $tmpArr = array();
             if($myDb->connected){
-                //echo 'INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$nomeImmagine.'", "'.$_SESSION["Username"].'", "'.$artista.'");';
-                //$result = $myDb->doQuery('INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$nomeImmagine.'", "'.$_SESSION['Username'].'", "'.$artista.'");');//excecute query
+
                 $result = $myDb->doQuery('SELECT Utente FROM likes WHERE Opera="'.$imgName.'" AND Creatore="'.$artist.'";');
-                //echo $myDb->getLastErrorString();
+
                 if($result){
                     if($result->num_rows > 0){
                         for($i=0; $i < $result->num_rows; $i++){
