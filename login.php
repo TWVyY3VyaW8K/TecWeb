@@ -63,7 +63,7 @@
   ?>
   <div class="fullScreenHeight loginTopPadding">
   <div id="LoginCard" class="loginCard container1024">
-  	<form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+  	<form class="loginCard-content " onsubmit="return validateLoginForm()" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
   		<div class="loginCard-Head">
   			<h1>LOGIN FORM</h1>
   		</div>

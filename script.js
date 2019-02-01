@@ -212,3 +212,45 @@ function validateSignUpForm(){//signUp form validation
 	
 }
 
+function validateLoginForm()/*login validation*/
+{	var valid = true;
+	if(document.getElementById('usr').value==""){
+		alert("Username is Required")
+		valid=false;
+	}else{
+		if(document.getElementById('pwd').value==""){
+			alert("Password is Required")
+			valid=false;
+		}else{
+			valid=true;
+		}
+	}
+	return valid;
+
+}
+
+function validateResetForm()/*ResetValidation*/
+{	var valid = true;
+	if(document.getElementById('usr').value==""){
+		alert("Username is Required")
+		valid=false;
+	}else{
+		if(document.getElementById('email').value==""){
+			alert("EMAIL is Required")
+			valid=false;
+		}else{
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+			if( !re.test(document.getElementById('email').value.toLowerCase())){
+				alert("EMAIL is INVALID")
+				valid=false;
+			}else{
+				valid=true;
+			}
+		}
+	}
+	return valid;
+
+}
+
+

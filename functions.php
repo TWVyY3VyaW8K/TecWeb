@@ -39,18 +39,15 @@
             echo '              <h2>'.$imgName.'</h2>';
             echo '          <div class="wrapper">';
             echo '              <div class="width-15">';
-            //saveBackPage();
             $url = $_SERVER['REQUEST_URI'];
-            //echo $url;
+
             $query = parse_url($url, PHP_URL_QUERY);
             if ($query) {
                 $url .= '&lNumI='.$numFig;
             } else {
                 $url .= '?lNumI='.$numFig;
             }
-            //$url .= ('#f'.$numFig);
 
-            //$url = addParameterTo($_SERVER['REQUEST_URI'],'lNumI',$numFig);
             if($isLiked == true){
                 echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn like-btn-added"></span></a>';
             }else{
@@ -64,7 +61,7 @@
             echo '          </div>';
             echo '                  <a href="'.$vAL.'" title="Details: '.$imgName.' by '.$artist.'"><button class="btnDiscover" type="submit">Details</button></a>';
             $url = $_SERVER['REQUEST_URI'];
-            //echo $url;
+
             $query = parse_url($url, PHP_URL_QUERY);
             if ($query) {
                 $url .= '&dNumI='.$numFig;
@@ -113,8 +110,7 @@
             $myDb->openDBConnection();
 
             if($myDb->connected){
-                //echo 'INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$imgName.'", "'.$_SESSION["Username"].'", "'.$artist.'");';
-                //$result = $myDb->doQuery('INSERT INTO Likes (Opera, Utente, Creatore) VALUES ("'.$imgName.'", "'.$_SESSION['Username'].'", "'.$artist.'");');//excecute query
+
                 $result = $myDb->doQuery('SELECT Utente FROM likes WHERE Opera="'.$imgName.'" AND Utente="'.$_SESSION['Username'].'" AND Creatore="'.$artist.'";');
                 //echo $myDb->getLastErrorString();
                 if($result){
