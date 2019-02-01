@@ -7,13 +7,18 @@
   <meta name="keywords" content="artwork,picture,image,database"/>
   <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link rel="stylesheet" href="Style/style.css"/>
-	<script type="text/javascript" src="script.js" ></script>
-  <title>Artbit</title>
+  <link rel="stylesheet" href="Style/style.css"/>
+ <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
+  <title>404 Page Not Found ArtBit</title>
 </head>
-<div>404 file not found</div>
-<div class="footer">
-    <p>Artbit</p>
-</div>
+<body>
+	<?php require_once "header.php";?>
+	<div class = "container1024 fullScreenHeight">
+	<img class="img404" src="images/error1.gif" alt="Error 404! Page not Found.">
+	
+	<div><a class="btnLink btn404" href="index.php">Go Back to Home</a></div>
+
+	</div>
+	<?php require_once "footer.html";?>
 </body>
 </html>

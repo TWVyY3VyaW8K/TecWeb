@@ -178,6 +178,8 @@
           echo "EDIT PROFILE";
       if($page=="viewArtwork.php")
           echo '<a href="'.$_SERVER['HTTP_REFERER'].'">GALLERY</a> >> '.$_GET['Title'];
+	  if($page=="404.php")
+          echo "PAGE NOT FOUND";
     ?>
   </div>
 
