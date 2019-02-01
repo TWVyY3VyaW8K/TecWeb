@@ -96,8 +96,11 @@ td, th {
 	border:solid 1px gray;
 	margin-top: 0px; 
  }
- 
- 
+ /*Form*/
+.loginCard {
+	width:100%;
+	border:none;
+} 
  
  /*footer*/
  .footer

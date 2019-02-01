@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="Style/style.css"/>
   <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
-
   <script type="text/javascript" src="script.js" ></script>
   <title>Artbit</title>
 </head>
