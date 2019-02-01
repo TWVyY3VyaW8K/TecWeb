@@ -280,6 +280,14 @@ button, .btnLink {
 	border: none;
 	cursor: pointer;
 }
+.linkAsButton{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+.linkAsButton:visited{
+    background-color: #5e597b;
+}
 button:hover, .btnLink:hover {
     background-color: rgba(106, 90, 205, 0.7);
 }
@@ -814,6 +822,7 @@ tr:nth-child(odd) {
 }
 
 .success_message {
+  text-align: center;
   color: green;
 }
 

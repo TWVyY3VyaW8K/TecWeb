@@ -59,10 +59,10 @@
             echo '              </div>';
             echo '              <div class="width-85">';
             echo '                  <a class="customLink" href="'.$gL.'">Artist: '.$artist.'</a>';
-            echo '                  <p><a class="customLink" href="'.$lBL.'">Likes: '.getLikesByItem($artist,$imgName)['Result'].'</a></p>';
+            echo '                  <p><a class="customLink" href="'.$lBL.'" title="Likes of '.$imgName.' by '.$artist.'">Likes: '.getLikesByItem($artist,$imgName)['Result'].'</a></p>';
             echo '              </div>';
             echo '          </div>';
-            echo '                  <a href="'.$vAL.'" title="Details: '.$imgName.' by '.$artist.'"><button class="btnDiscover" type="submit">Details</button></a>';
+            echo '                  <a href="'.$vAL.'" class="btnLink linkAsButton" title="Details of '.$imgName.' by '.$artist.'">Details</a>';
             $url = $_SERVER['REQUEST_URI'];
             //echo $url;
             $query = parse_url($url, PHP_URL_QUERY);
