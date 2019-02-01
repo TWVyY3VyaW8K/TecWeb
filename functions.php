@@ -34,7 +34,7 @@
             $vAL = htmlspecialchars("viewArtwork.php?Title=$imgName&Artist=$artist");
             $gL = htmlspecialchars("gallery.php?gallerySearch=$artist");
             $lBL = htmlspecialchars("likedBy.php?artist=$artist&imgName=$imgName");
-            echo '      <div class="background-color-90929294"><a href="'.$vAL.'"><img alt="'.$imgName.'" src="Images/Art/'.rawurlencode($artist).'/'.rawurlencode($imgName).'.jpeg"/></a></div>';
+            echo '      <div class="background-color-90929294"><a href="'.$vAL.'"><img alt="'.$imgName.' by '.$artist.'" src="Images/Art/'.rawurlencode($artist).'/'.rawurlencode($imgName).'.jpeg"/></a></div>';
             echo '      <div class="galleryCaption">';
             echo '              <h2>'.$imgName.'</h2>';
             echo '          <div class="wrapper">';
