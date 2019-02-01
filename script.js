@@ -106,3 +106,14 @@ function magnify() {
 	  }
   }
 }
+
+function charCountTitle(elemento){//count char in upload title
+	document.getElementById('titleCount').innerHTML =elemento.value.length;
+	if(elemento.value.length>20)
+	{
+		alert("Ciao EasterEg");
+	}
+}
+function charCountDescription(elemento){//count char in upload description
+	document.getElementById('descriptionCount').innerHTML =elemento.value.length;
+}

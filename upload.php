@@ -104,10 +104,10 @@
       </div>
       <form action="" method="post" enctype="multipart/form-data" id="upload">
           <div class="container">
-            <label for="title">Title (Max 20 characters):
+            <label for="title">Title (Max <span id="titleCount">0</span>/20 characters):
               <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>
             </label>
-            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
+            <input id="title" type="text" name="title" maxlength="20" onKeyUp="charCountTitle(this)" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
 
             <label for="category">Category:</label>
             <select id="category" name="category">
@@ -120,10 +120,10 @@
               <option value="others" <?php if((isset($_POST['category'])) && $_POST['category']=="others") echo "selected=''"?>>Others</option>
             </select>
 
-            <label for="description">Description (Max 1000 characters):
+            <label for="description">Description (Max <span id="descriptionCount">0</span>/1000 characters):
               <?php if(isset($description) && strlen($description)===0)echo '(MUST BE FILLED)';?>
             </label>
-            <textarea id="description" name="description" rows="2" cols="1" ><?php echo($description)?></textarea>
+            <textarea id="description" name="description" rows="2" cols="1" onKeyUp="charCountDescription(this)" ><?php echo($description)?></textarea>
 
             <label for="artwork">Artwork (Max 2Mb):</label>
             <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
