@@ -8,7 +8,7 @@
       <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="stylesheet" href="Style/style.css"/>
-	  <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
+	    <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
       <script type="text/javascript" src="script.js" ></script>
       <title>Artbit</title>
     </head>
@@ -52,6 +52,9 @@
             $isLiked = false;
             $descriptionUpdated = false;
 
+            if(isset($_POST['UserNotLogged']) && !isset($_SESSION['Username'])){
+              header("location: login.php");
+            }
             if(isset($_POST['input-description']) && isset($_SESSION['Username']))
             {
               if (strtolower($_SESSION['Username']) !== 'admin')
@@ -195,6 +198,7 @@
           <div id="commentSection" class="container1024">
           <div class="comment" id="topComment">
           <form action=<?php echo "\"viewArtwork.php?Title=".$Title."&Artist=".$Artist."\"" ?> method="post">
+            <input type="hidden" name="UserNotLogged" value="true"/>
           <?php
             if($myDb->connected && isset($_SESSION['Username']))
                 echo $_SESSION['Username'];
@@ -206,7 +210,7 @@
            <?php $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : ""; ?>
            <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
         <?php
-            echo '<input type="submit" value="Send" id="comment-btn" '.$en.'/>';
+            echo '<input type="submit" value="Send" id="comment-btn"/>';
           ?>
           </form>
           </div>
