@@ -54,6 +54,38 @@ td, th {
  .memberName{
 	 text-align:center;
  }
+ /*View ArtWork*/
+ .img-magnifier-glass{
+	width:0px;
+	height:0px;
+ }
+ .descriptionTitle{
+	 color:black;
+ }
+ #description-comments{
+	 border:none;
+ }
+ .comment{
+    border-radius: 0.5em;
+	border:solid 1px gray;
+    padding: 0.5em;
+ }
+ 
+ #comment-btn,#description-btn {
+    background-color: #80808080;
+    color: white;
+    padding: 0.5em;
+    border: none;
+}
+#main-description{
+	padding-top:10px;
+}
+ 
+ 
+ 
+ 
+ 
+ 
  /*footer*/
  .footer
  {

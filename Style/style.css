@@ -503,11 +503,7 @@ div.divCategoryButtons button{
     position: relative;
     overflow: hidden;
 }
-/*
-.galleryCaption .btnDelete{
-    width: 100%;
-}
-*/
+
 
 .galleryBoard .galleryCaption{
     padding: 0.5em;
@@ -578,10 +574,6 @@ div.divCategoryButtons button{
 .like-btn{
     cursor: pointer;
     width: 2.2em;
-    /*position: absolute;
-    bottom: 4.5em;
-    right: 0.2em;
-    */
     float: left;
     height: 2.0em;
     z-index: 1;
@@ -636,47 +628,6 @@ div.divCategoryButtons button{
     padding-right: 0.5em;
     box-sizing: border-box;
 }
-/*
-@media screen and (min-width:400px){
-    .galleryBoard .liFigures{
-        width: 50%;
-    }
-
-    .galleryBoard .liFigures:nth-of-type(2n+1){
-        clear: left;
-    }
-}
-*/
-/*
-@media screen and (min-width: 768px){
-    .galleryBoard .liFigures{
-        width: 33.3333%;
-    }
-
-    .galleryBoard .liFigures:nth-of-type(2n+1) {
-        clear: none;
-    }
-
-    .galleryBoard .liFigures:nth-of-type(3n+1) {
-        clear: left;
-    }
-}
-*/
-/*
-@media screen and (min-width: 1024px){
-    .galleryBoard .liFigures{
-        width: 25%;
-    }
-
-    .galleryBoard .liFigures:nth-of-type(3n+1) {
-        clear: none;
-    }
-
-    .galleryBoard .liFigures:nth-of-type(4n+1) {
-        clear: left;
-    }
-}
-*/
 
 /* Pagination ..........---------------*/
 .div-bar:before, .div-bar:after{
@@ -709,10 +660,8 @@ div.divCategoryButtons button{
 }
 .div-bar .div-bar-item {
     padding: 0.5em 1em;
-    /*float: left;*/
     width: auto;
     border: none;
-    /*display: block;*/
     display: inline-block;
     outline: 0;
 }
@@ -761,7 +710,6 @@ div.divCategoryButtons button{
     color: white;
     cursor: not-allowed;
 }
-/* *************************************************** GALLERY PAGE ******************************************************************************/
 /* Dropdown content (hidden by default) */
 .account-dropdown {
 	width: 7.0em;
@@ -872,8 +820,7 @@ tr:nth-child(odd) {
 /*************************SKIP MENU*************************************************/
 #skipmenu{
     height: 0;
-    /*text-indent: 100%;
-    white-space: nowrap;*/
+
     overflow: hidden;
 }
 .breadcrumb{
@@ -886,6 +833,144 @@ tr:nth-child(odd) {
   height: 100%;
 }
 */
+
+/* *************************************************** VIEW ARTWORK ******************************************************************************/
+.img-magnifier-container {
+ position: relative;
+ margin: 0;
+ padding: 0;
+}
+
+.img-magnifier-glass {
+  visibility: hidden;
+  position: absolute;
+  z-index: 3;
+  border: 0px solid #fff;
+  cursor: none;
+  width: 10em;
+  height: 10em;
+  padding: 0;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 1);
+}
+
+#artworkTitle {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+#imageContainer {
+  float: left;
+  height: 37em;
+  width: 70%;
+  display: flex;
+  background-color: black;
+}
+
+#description-comments {
+float: left;
+display: table-cell;
+background-color: #f7f7f7;
+width: 30%;
+height: 37em;
+overflow: auto;
+word-break: break-word;
+border-right: 1px solid #6a5acd;
+border-bottom: 1px solid #6a5acd;
+}
+#comment-btn {
+  background-color: #6a5acd;
+  color: white;
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+  }
+
+#description-btn {
+  background-color: #6a5acd;
+  color: white;
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  }
+
+#imageAndDescription {
+display: table;
+padding: 0em;
+max-height: 37em;
+width: 100%;
+}
+
+#myimage {
+  max-height: 37em;
+  max-width: 100%;
+}
+#commentSection {
+margin-top: 0.2em;
+overflow-y: auto;
+padding-top: 0.2em;
+background-color: #f7f7f7;
+border-radius: 0.5em;
+display: block;
+max-height: 35em;
+}
+
+#main-description
+{
+font-style: italic;
+margin-bottom: 0.5em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+}
+
+.delComment
+{
+cursor: default;
+float: right;
+font-weight: bold;
+cursor: pointer;
+}
+
+
+.comment
+{
+	background-color: #eaeaea;
+ 	border-radius: 0.5em;
+ 	padding: 0.5em;
+}
+
+textarea[name=input-comment]
+{
+  resize: vertical;
+  margin: 0;
+  width: 100%;
+}
+
+textarea[name=input-description]
+{ 
+  resize: vertical;
+  margin: 0;
+  width: 100%;
+}
+
+
+.descriptionTitle {
+    text-align: center;
+    color: white;
+    background: black;
+    font-size: 1.4em;
+    padding: 0.5em;
+    background-image: linear-gradient(-90deg, #008f88,#4fa46d);
+}
+.imageInfo{
+  line-height: 25px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
 
 
 
@@ -967,9 +1052,7 @@ tr:nth-child(odd) {
 @media screen and (max-width: 1024px) {
   /*menu*/
 	.menu li {
-        /*display: block;*/
         display: none;
-        /*width: 100%;*/
     }
 
 	.menu li.hamburgerMenu {
@@ -998,17 +1081,17 @@ tr:nth-child(odd) {
       padding-top:4em;
     }
     .modal-content{
-  margin:auto;
-  width:100%;
-  max-height:100%;
-  height:100%;
-}
-.modalFotter{
-  background-color: none;
-}
-.Modal button{
-  width:100%;
-}
+		margin:auto;
+		width:100%;
+		max-height:100%;
+		height:100%;
+	}
+	.modalFotter{
+	  background-color: none;
+	}
+	.Modal button{
+	  width:100%;
+	}
     /*fine nuove*/
 	.menu.responsive .hamburgerMenu {
 		position: absolute;
@@ -1019,11 +1102,11 @@ tr:nth-child(odd) {
 		margin:0.5em;
 	}
   li.user.account-dropdown {
-    width: 100%;
-}
+		width: 100%;
+	}
   .account-dropdown{
-    width: 100%;
-}
+		width: 100%;
+	}
   .account-dropdown-content{
       position: relative;
       display: block;
@@ -1047,6 +1130,41 @@ tr:nth-child(odd) {
         width:100%;
         border: 0px;
 	}
+	
+	/*ViewArtwork page*/
+	#imageAndCommentSection {
+		max-height: 100%;
+        max-width: 100%;
+    	width: 100%;
+        height: 100%;
+		margin: 0;
+	}
+
+    #description-comments
+    {
+    	max-height: 100%;
+        max-width: 100%;
+    	width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+    #myimage {
+      display: block;
+      max-height: 30em;
+    }
+    #imageContainer
+    {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      overflow: hidden;
+    }
+    #commentSection {
+    margin: 0;
+    }
 }
 
 
