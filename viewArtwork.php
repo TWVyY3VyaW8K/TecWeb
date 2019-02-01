@@ -50,6 +50,7 @@
             $row = $result->fetch_assoc();
             $ArtistName = $row['Nome'] . " " . $row['Cognome'];
             $isLiked = false;
+            $descriptionUpdated = false;
 
             if(isset($_POST['input-description']) && isset($_SESSION['Username']))
             {
@@ -71,6 +72,7 @@
                 $Description = htmlspecialchars($_POST['input-description'], ENT_QUOTES, "UTF-8");
                 $qrstr = "UPDATE opere SET Descrizione='".$Description."' WHERE Nome='".$Title."' AND Artista='".$Artist."'";
                 $myDb->doQuery($qrstr);
+                $descriptionUpdated = true;
               }
             }
             if(isset($_GET['Remove']))
@@ -176,6 +178,10 @@
                 echo "<textarea rows=\"5\" cols=\"30\" name=\"input-description\">";
                 echo $Description;
                 echo "</textarea>";
+                if($descriptionUpdated){
+                  echo '<p class="success_message">Description changed successfully</p>';
+                  $descriptionUpdated = false;
+                }
                 echo "<input type= \"submit\" value=\"Edit\" id=\"description-btn\"/>";
                 echo "</inputfield>";
                 echo "</form>"; 
