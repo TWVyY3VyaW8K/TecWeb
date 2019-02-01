@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="Images/logo.png"/>
 	<link rel="stylesheet" href="Style/style.css"/>
-	<link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
 	<script type="text/javascript" src="script.js" ></script>
   <title>Artbit</title>
 </head>
@@ -150,25 +150,25 @@
 		<h3 class="title">Our Amazing Team</h3>
 		<div class="teamMember">
 		  <img src="Images/Team/davide_liu.jpg" alt='Team member face'/>
-		  <h2>Davide Liu</h2>
+		  <div class="memberName">Davide</br>Liu</div>
 		  <hr/>
 		  <p>Web Grandmaster</p>
 		</div>
 		<div class="teamMember">
 		  <img src="Images/Team/harwinder_singh.jpg" alt='Team member face'/>
-		  <h2>Harwinder Singh</h2>
+		  <div class="memberName">Harwinder</br>Singh</div>
 		  <hr/>
 		  <p>Software Engineer</p>
 		</div>
 		<div class="teamMember">
 		  <img src="Images/Team/pardeep_singh.jpg" alt='Team member face'/>
-		  <h2>Pardeep Singh</h2>
+		  <div class="memberName">Pardeep</br>Singh</div>
 		  <hr/>
 		  <p>Full Stack Developer</p>
 		</div>
 		<div class="teamMember">
 		  <img src="Images/Team/daniele_bianchin.jpg" alt='Team member face'/>
-		  <h2>Daniele Bianchin</h2>
+		  <div class="memberName">Daniele</br>Bianchin</div>
 		  <hr/>
 		  <p>Cybersecurity Expert</p>
 		</div>

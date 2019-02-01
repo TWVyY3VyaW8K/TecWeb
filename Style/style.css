@@ -38,7 +38,7 @@ h1 {
   font-size: 1.5em;
   font-weight: normal;
 }
-h2 {
+h2,.memberName {
   font-size: 1.3em;
   font-weight: normal;
 }
