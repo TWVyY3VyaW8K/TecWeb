@@ -117,3 +117,76 @@ function charCountTitle(elemento){//count char in upload title
 function charCountDescription(elemento){//count char in upload description
 	document.getElementById('descriptionCount').innerHTML =elemento.value.length;
 }
+function validateEditForm(){//edit profile form validation
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	 var valid=true;
+	 
+	 if( !re.test(document.getElementById('emailEdit').value.toLowerCase())){
+		 alert("Email not valid");
+		 valid=false;
+	 }else{
+		 if(document.getElementById('pwdEdit').value.length<5){
+			 alert("Password Must be at least 5 characters long")
+			 valid=false;
+		 }else{
+			 if(document.getElementById('pwdEdit').value!=document.getElementById('pwdConfirmEdit').value){
+				 alert("Passwords don't match")
+				valid=false;
+			 }else{
+				if(document.getElementById('nameEdit').value==""){
+					alert("Name is Required")
+					valid=false;
+				}else{
+					if(document.getElementById('surnameEdit').value==""){
+						alert("Surname is Required")
+						valid=false;
+					}else{
+						valid=true;
+					}
+				}
+			 }
+		 }
+	 }
+	 
+	return valid;
+	
+}
+
+function validateSignUpForm(){//signUp form validation
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	 var valid=true;
+	if(document.getElementById('usrSignUp').value==""){
+		 alert("Username is Required");
+	     valid=false;
+	}else{
+		 if( !re.test(document.getElementById('emailSignUp').value.toLowerCase())){
+			 alert("Email not valid");
+			 valid=false;
+		 }else{
+			 if(document.getElementById('pwdSignUp').value.length<5){
+				 alert("Password Must be at least 5 characters long")
+				 valid=false;
+			 }else{
+				 if(document.getElementById('pwdSignUp').value!=document.getElementById('pwdConfirmSignUp').value){
+					 alert("Passwords don't match")
+					valid=false;
+				 }else{
+					if(document.getElementById('name').value==""){
+						alert("Name is Required")
+						valid=false;
+					}else{
+						if(document.getElementById('surname').value==""){
+							alert("Surname is Required")
+							valid=false;
+						}else{
+							valid=true;
+						}
+					}
+				 }
+			 }
+		 }
+	}
+	return valid;
+	
+}
+

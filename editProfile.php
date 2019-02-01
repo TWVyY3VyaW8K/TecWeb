@@ -88,7 +88,7 @@
 <div class="fullScreenHeight loginTopPadding">
 
    <div id="LoginCard" class="loginCard container1024">
-        <form class="loginCard-content " method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+        <form class="loginCard-content " onsubmit="return validateEditForm()"   method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
             <div class="loginCard-Head">
                 <h1>Edit Profile</h1>
             </div>
