@@ -17,17 +17,14 @@
 <body onload="scrollFunction(); scrollToImage();" >
   <?php
 	require_once "header.php";
-	//require_once "searchModal.php";
-	//require_once "likedByModal.php";
 	require_once "DbConnector.php";
 	require_once "functions.php";
-//	saveBackPage();
-  $myDb= new DbConnector();
+
+	$myDb= new DbConnector();
 	$myDb->openDBConnection();
 
 	$pagNumber = galleryPagNumberFromUrl();
-  saveBackPage();
-//	$_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
+	saveBackPage();
 	if(isset($_GET['lNumI'])){
 		galleryImageNumberFromUrl();
 	}
@@ -43,7 +40,7 @@
   </div>
   <div class="container1024" id="content">
     <div class="section" id="intro"><!--website Introduction-->
-		<div class="title"><h1>Introduction</h1></div>
+		<h1 class="title">Introduction</h1>
 		<p>
 		  Innovation is the key to the future, let the art invade the digital world.
 		  This website is meant to be collection of digital artworks, everyone can
@@ -53,7 +50,7 @@
 	  </div>
 
 		<!-- Top rated -->
-		<div class="title"><h1>Top rated</h1></div>
+		<h2 class="title">Top rated</h2>
 		<div class="gallery galNotThree">
 			<div class="clearfix galleryBoard">
 				<?php
@@ -74,6 +71,9 @@
 				?>
 			</div>
 		</div>
+		<p class ="galleryRedirect">
+		  Explore all the art works in <a href="gallery.php">Gallery</a> !! 
+		</p>
 
 	  <div class="section"><!--statistics-->
 		<div class="statistics">
@@ -147,7 +147,7 @@
 		</div>
 	  </div>
 	  <div class="section" id="team"><!--team-->
-		<div class="title"><h1>Our Amazing Team</h1></div>
+		<h3 class="title">Our Amazing Team</h3>
 		<div class="teamMember">
 		  <img src="Images/Team/davide_liu.jpg" alt='Team member face'/>
 		  <h2>Davide Liu</h2>

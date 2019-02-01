@@ -22,8 +22,8 @@
 }
 /*---------Titoli dei paragrafi------------------------------------------------*/
 .title {
-  margin-bottom: 2.0em;
-  margin-top: 2.0em;
+  margin-bottom: 1.0em;
+  margin-top: 1.0em;
   text-align: center;
   display: block;
 }
@@ -147,6 +147,11 @@ h2 {
 hr{
     border: solid 0.5px #6b5bcd;
     margin: 0.5em;
+}
+.galleryRedirect{
+	text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 1em;
 }
 /*---------Descrizione---------------------------------------------------------*/
 .description {
