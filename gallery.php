@@ -21,7 +21,6 @@
         require_once "functions.php";
         $pagNumber = galleryPagNumberFromUrl();
         saveBackPage();
-        //  $_SESSION['backPageRedirect'] = $_SERVER['REQUEST_URI'];
         if(isset($_GET['lNumI'])){
             galleryImageNumberFromUrl();
         }
@@ -72,7 +71,7 @@
                         </div>
                     </div>
                     <label for="orderBy">Order By:</label>
-                    <select id="orderBy" name="orderBy" onchange="orderByGalleryChanged()">
+                    <select id="orderBy" name="orderBy" onchange='this.form.submit()'>
                       <option value="none"> --- </option>
                       <option value="likes" <?php if(isset($_GET['orderBy']) && $_GET['orderBy']=='likes'){echo "selected='selected'";} ?>>Likes</option>
                       <option value="latestAdded" <?php if((isset($_GET['orderBy']) && $_GET['orderBy']=='latestAdded') || (!isset($_GET['orderBy']))){echo "selected='selected'"; $_GET['orderBy'] = 'latestAdded';} ?>>Latest Added</option>
