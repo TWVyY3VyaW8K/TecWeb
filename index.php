@@ -72,7 +72,7 @@
 			</div>
 		</div>
 		<p class ="galleryRedirect">
-		  Explore all the art works in <a href="gallery.php">Gallery</a> !! 
+		  <a href="gallery.php" class="btnLink linkAsButton">Explore all the art works in Gallery !! </a> 
 		</p>
 
 	  <div class="section"><!--statistics-->

@@ -90,13 +90,14 @@ h2,.memberName {
   color: #FFFFFF;
   display: block;
   padding: 1.0em 1.0em;
-  text-decoration: none;
+  text-decoration: underline;
   text-align: center;
 }
 .menu input{
     background-color: transparent;
     border: 0px;
     width: 100%;
+	margin-top:0.5em;
 }
 .width-100{
     width: 100%;
@@ -130,8 +131,18 @@ h2,.memberName {
     margin: 0.3em 0;
     transition: 0.4s;
 }
+.hamburgerMenu:hover .line1,.hamburgerMenu:hover .line2,.hamburgerMenu:hover .line3 {
+    background-color: black;
+}
+
 .posAbsolute{
 	position: absolute;
+}
+input.posAbsolute:hover{
+    background-color: transparent;
+}
+li.hamburgerMenu:hover {
+    background-color: white;
 }
 /*rotate effect for the buttons*/
 .rotate .line1 {
@@ -304,14 +315,6 @@ button:hover, .btnLink:hover {
 	font-size:1.2em;
 }
 
-.logOutButton{
-    color: white;
-    padding: 1em;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    background: #0f4167;
-}
 /* Extra styles for the cancel button */
 .backButton {
     width: 49%;
