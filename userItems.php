@@ -30,9 +30,6 @@
             galleryDeleteImageNumberFromUrl();
         }
     ?>
-    <div id="imgLoader" class="image-loader display-none">
-        <img src="/Images/eclipse.svg">
-    </div>
     <div class="gallery fullScreenHeight container1024" id="content">
         <?php $mostraPagination=FALSE; $j=0;?>
         <ul class="clearfix galleryBoard">
