@@ -2,7 +2,7 @@
   <a href="#content" id="skipcontent" onfocus="skipFocused()">Go to content</a>
 </div>
 <?php
-  if(isset($_POST['menuDropDown'])){
+  if(isset($_POST['menuDropDown'])){//open close menu
     if($_POST['menuDropDown'] == 'true')
       echo '<div class="menu" id="Topnav">';
     else if($_POST['menuDropDown'] == 'false')
@@ -31,7 +31,7 @@
 
       $page = basename($_SERVER['PHP_SELF']);
     ?>
-    <li class="firstMenuItem <?php if(($page)=="index.php")echo "activeMenuItem";?>">
+    <li class="firstMenuItem <?php if(($page)=="index.php")echo "activeMenuItem";?>"> <!--check if menu item is selected and give the relative css-->
       <?php if(($page)!="index.php")echo '<a href="index.php">Home</a>'; else echo '<div class="notClickable">Home</div>';?>
     </li>
 
@@ -141,10 +141,10 @@
       }else{
         echo '<input name="menuDropDown" type="hidden" value="false"/>';
       }
-      echo '<input type="submit" style="position: absolute;" value=""></input>';
+      echo '<input type="submit" class="posAbsolute" value=""></input>';
       echo '</div></form>';
     ?>
-        <div class="hamburgerMenuContainer">
+        <div class="hamburgerMenuContainer<?php if(isset($_POST['menuDropDown']) && $_POST['menuDropDown'] == 'false' )echo " rotate"; ?>">
           <div class="line1"></div>
           <div class="line2"></div>
           <div class="line3"></div>

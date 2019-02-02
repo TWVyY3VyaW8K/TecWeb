@@ -130,6 +130,9 @@ h2,.memberName {
     margin: 0.3em 0;
     transition: 0.4s;
 }
+.posAbsolute{
+	position: absolute;
+}
 /*rotate effect for the buttons*/
 .rotate .line1 {
     -webkit-transform: rotate(-45deg) translate(-9px, 6px);
