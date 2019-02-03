@@ -18,6 +18,7 @@
   <ul>
     <?php
       session_start();
+      require_once "functions.php";
       if(isset($_POST['logOut'])){//log out request
         unset($_SESSION['Username']);
         if(strstr($_SERVER['HTTP_REFERER'], "upload.php") || strstr($_SERVER['HTTP_REFERER'], "editProfile.php") || strstr($_SERVER['HTTP_REFERER'], "likedItems.php") ||strstr($_SERVER['HTTP_REFERER'], "userItems.php")  )
@@ -177,7 +178,7 @@
       if($page=="editProfile.php")
           echo "EDIT PROFILE";
       if($page=="viewArtwork.php")
-          echo '<a href="'.$_SERVER['HTTP_REFERER'].'">GALLERY</a> >> '.$_GET['Title'];
+          echo '<a href="'.saveGalleryParameters().'">GALLERY</a> >> '.$_GET['Title'];
 	  if($page=="404.php")
           echo "PAGE NOT FOUND";
     ?>
