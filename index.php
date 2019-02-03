@@ -150,25 +150,25 @@
 		<h3 class="title">Our Amazing Team</h3>
 		<div class="teamMember">
 		  <img src="Images/Team/davide_liu.jpg" alt='Team member face'/>
-		  <div class="memberName">Davide</br>Liu</div>
+		  <div class="memberName">Davide<br/>Liu</div>
 		  <hr/>
 		  <p>Web Grandmaster</p>
 		</div>
 		<div class="teamMember">
 		  <img src="Images/Team/harwinder_singh.jpg" alt='Team member face'/>
-		  <div class="memberName">Harwinder</br>Singh</div>
+		  <div class="memberName">Harwinder<br/>Singh</div>
 		  <hr/>
 		  <p>Software Engineer</p>
 		</div>
 		<div class="teamMember">
 		  <img src="Images/Team/pardeep_singh.jpg" alt='Team member face'/>
-		  <div class="memberName">Pardeep</br>Singh</div>
+		  <div class="memberName">Pardeep<br/>Singh</div>
 		  <hr/>
 		  <p>Full Stack Developer</p>
 		</div>
 		<div class="teamMember">
 		  <img src="Images/Team/daniele_bianchin.jpg" alt='Team member face'/>
-		  <div class="memberName">Daniele</br>Bianchin</div>
+		  <div class="memberName">Daniele<br/>Bianchin</div>
 		  <hr/>
 		  <p>Cybersecurity Expert</p>
 		</div>
