@@ -25,9 +25,6 @@
             galleryImageNumberFromUrl();
         }
     ?>
-    <div id="imgLoader" class="image-loader display-none">
-        <img src="/Images/eclipse.svg">
-    </div>
     <div class="gallery container1024 fullScreenHeight" id="content">
         <?php $mostraPagination=FALSE; $j=0;?>
         <ul class="clearfix galleryBoard">
