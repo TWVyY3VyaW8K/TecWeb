@@ -27,7 +27,7 @@
     ?>
     <div class="gallery container1024 fullScreenHeight" id="content">
         <?php $mostraPagination=FALSE; $j=0;?>
-        <ul class="clearfix galleryBoard">
+        <div class="clearfix galleryBoard">
             <?php
                 if(isset($_SESSION['Username'])){
                     //connecting to db
@@ -58,7 +58,7 @@
                 }
             ?>
             
-        </ul> 
+            </div> 
         <?php
             printPagination($mostraPagination,$j,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))],basename($_SERVER['PHP_SELF']));
         ?>

@@ -72,7 +72,7 @@
       //Se l'utente è loggato allora può vedere le sue immagini
       if(isset($_SESSION['Username'])){
         ?>
-        <li class=" <?php if(($page)=="likedItems.php")echo "activeMenuItem";?>">
+        <li class=" <?php if(($page)=="userItems.php")echo "activeMenuItem";?>">
         <?php
         if(($page)!="userItems.php")
           echo '<a href="userItems.php">Your Images</a>';
