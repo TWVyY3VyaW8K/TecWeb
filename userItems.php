@@ -8,7 +8,7 @@
     <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" media="handheld, screen" href="Style/style.css"/>
-    <link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
     <script type="text/javascript" src="script.js" ></script>
     <title>Artbit</title>
 </head>

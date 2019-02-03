@@ -66,7 +66,7 @@
 					if($result && ($result->num_rows > 0)){
 						$j = printGalleryItems($result,FALSE,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))]);
 					}elseif(!$result || ($result->num_rows == 0)){
-						echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
+						echo "<div class='div-center'><p>Nothing to show here ... </p></div>";
 					}
 				?>
 			</div>
