@@ -88,7 +88,7 @@
     <li>
       <form method="get" action="gallery.php">
         <div class="inputSearch">
-            <input type="text" name="gallerySearch" />
+            <input type="text" name="gallerySearch" title="Search Button" />
             <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
         </div>
       </form>
