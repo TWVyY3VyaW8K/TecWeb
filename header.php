@@ -42,7 +42,9 @@
 
     <?php
       if(isset($_SESSION['Username'])){
-        echo '<li class="<?php if(($page)=="upload.php")echo "activeMenuItem";">';
+        ?>
+        <li class=" <?php if(($page)=="upload.php")echo "activeMenuItem";?>">
+        <?php
         if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>';
         else echo '<div class="notClickable">Upload</div>';
         echo '</li>';
@@ -53,7 +55,9 @@
     <?php
       //Se l'utente è loggato allora può vedere i suoi preferiti
       if(isset($_SESSION['Username'])){
-        echo ' <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";">';
+        ?>
+        <li class=" <?php if(($page)=="likedItems.php")echo "activeMenuItem";?>">
+        <?php
         if(($page)!="likedItems.php")
           echo '<a href="likedItems.php">Liked Images</a>';
         else
@@ -67,7 +71,9 @@
     <?php
       //Se l'utente è loggato allora può vedere le sue immagini
       if(isset($_SESSION['Username'])){
-        echo ' <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";">';
+        ?>
+        <li class=" <?php if(($page)=="likedItems.php")echo "activeMenuItem";?>">
+        <?php
         if(($page)!="userItems.php")
           echo '<a href="userItems.php">Your Images</a>';
         else
