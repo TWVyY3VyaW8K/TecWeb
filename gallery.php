@@ -9,7 +9,7 @@
     <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="Style/style.css" media="handheld, screen"/>
-    <link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
     <script type="text/javascript" src="script.js" ></script>
     <title>Artbit</title>
 </head>
@@ -32,11 +32,11 @@
                     <?php
                         if(isset($_GET['gallerySearch'])){
                             $gallerySearch = htmlspecialchars($_GET["gallerySearch"], ENT_QUOTES, "UTF-8");//cleaning the input
-                            echo '<label for="searchField">Cerca per categoria, artista o descrizione ..</label>';
+                            echo '<label for="searchField">Search for category, artist, description ..</label>';
                             echo '<input id="searchField" type="text" name="gallerySearch" value="'.$gallerySearch.'"/>';
                             resetSessionPaginationNum('pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME)));
                         }else{
-                        	echo '<label for="searchField">Cerca per categoria, artista o descrizione ..</label>';
+                        	echo '<label for="searchField">Search for category, artist, description ..</label>';
                             echo '<input id="searchField" type="text" name="gallerySearch"/>';
                         }
 
@@ -117,7 +117,7 @@
                         $result = $myDb->doQuery($qrStr);
                     }
                     else
-                        echo "<div class='liPaginationBlock'>Errore connessione</div>";
+                        echo "<div class='div-center'><p>Errore connessione</p></div>";
                     $myDb->disconnect();
                 }elseif(isset($galleryCategory)){
                     //connecting to db
@@ -147,14 +147,14 @@
                         $result = $myDb->doQuery($qrStr);
                     }
                     else
-                        echo "<div class='liPaginationBlock'>Errore connessione</div>";
+                        echo "<div class='div-center'><p>Errore connessione</p></div>";
                     $myDb->disconnect();
                 }
                 if($result && ($result->num_rows > 0)){
                     $mostraPagination = ($result->num_rows > $GLOBALS['imagesPerPage']) ? true : false;
                     $j = printGalleryItems($result,FALSE,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))]);
                 }elseif(!$result || ($result->num_rows == 0)){
-                    echo "<div class='liPaginationBlock'><div class='div-center'><p>Nothing to show here ... </p></div></div>";
+                    echo "<div class='div-center'><p>Nothing to show here ... </p></div>";
                 }
             ?>
         </div>

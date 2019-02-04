@@ -278,11 +278,6 @@
     }
     //save the back page
     function saveBackPage(){
-
-      //  echo  $_SERVER['HTTP_REFERER'];
-        //unset($_SESSION["backPage"]);
-        //$_SERVER['HTTP_REFERER'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
-        //echo '<br/>before '.$_SESSION["backPage"];
         $_SESSION["backPage"] =  $_SERVER['REQUEST_URI'];
         if(
             strstr($_SERVER['REQUEST_URI'], "likedBy.php")==true ||
@@ -292,27 +287,21 @@
         ){
             $_SESSION['backPage'] = removeqsvar($_SESSION["backPage"], 'lNumI');
         }
-        //echo '<br/>'.$_SESSION["backPage"];
-/*
-        echo '<br/>'.$_SERVER['HTTP_REFERER'];
-
-        if(isset($_SESSION['backPageRedirect'])){
-            $_SESSION["backPage"] = $_SESSION['backPageRedirect'];
-            unset($_SESSION['backPageRedirect']);
-        }else{
-            $_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
-            if(strstr($_SERVER['REQUEST_URI'], "likedBy.php")==true){
-                $_SESSION['backPage'] = removeqsvar($_SERVER['HTTP_REFERER'], 'lNumI');
-            }
-        }
-
-        //$_SESSION["backPage"] = $_SERVER['HTTP_REFERER'];
-        echo "<br>".$_SESSION["backPage"];*/
-       // $_SESSION["backPage"] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-       // setcookie("backPage", "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", time() + (86400 * 30), "/"); // 30 day
     }
     function getBackPageURL(){
         return $_SESSION["backPage"];
+    }
+
+    function saveGalleryParameters(){
+        $_SESSION["backPage"] =  $_SERVER['REQUEST_URI'];
+        if(
+            strstr($_SERVER['REQUEST_URI'], "gallery.php")==true
+        ){
+            $_SESSION['backPage'] = removeqsvar($_SERVER['REQUEST_URI'], 'lNumI');
+        }else{
+            $_SESSION['backPage'] = 'gallery.php';
+        }
+        return $_SESSION['backPage'];
     }
 
     function galleryImageNumberFromUrl(){

@@ -40,7 +40,7 @@
 		}
 	\end{titlepage}
 	\pagenumbering{roman}
-	\tableofcontents
+
 	\newpage
 	\pagenumbering{arabic}
 
@@ -205,7 +205,7 @@
 		\section{Breadcumbs}
 		Per ogni pagina, immediatamente sotto al menu di navigazione principale, è stato inserito un breadcrumbs per accompagnare l'utente nella navigazione. Questo elemento si presenta statico per ogni pagina ad eccezione della pagina di visualizzazione delle immagini, dove viene anche specificato qual'è il titolo dell'immagine che si sta guardando.
 		\section{Form}
-	Per quanto riguarda i form, un problema che molto spesso afﬂigge queste tipologie di componenti è la cancellazione dei loro campi in caso di errori nell' elaborazione della richiesta a causa di campi mancanti o errati, per mantenere un livello di soddisfazione alto, i form sono stati realizzati in modo da non cancellare il loro contenuto al ricaricarsi della pagina.
+	Per quanto riguarda i form, un problema che molto spesso affligge queste tipologie di componenti è la cancellazione dei loro campi in caso di errori nell' elaborazione della richiesta a causa di campi mancanti o errati, per mantenere un livello di soddisfazione alto, i form sono stati realizzati in modo da non cancellare il loro contenuto al ricaricarsi della pagina.
 		\section{Tabelle}
 		Sono state utilizzate delle tabelle per mostrare le statistiche del sito e le classifiche in quanto questi dati viene naturale esprimerli in maniera tabellare. Per tenere comunque alto il livello di accessibilità le tabelle sono dotate tutte del campo "Summary" che ne da una breve descrizione e degli attributi "scope" per le colonne.
 
@@ -215,81 +215,40 @@
 			Questa sezione si occupa di metodo e strumenti con i quali si sono svolti i processi di verica e validazione delle componenti del sito.
 		\section{Validazione con test automatici}
 			\subsection{Markup Validation Service w3.org}
-				Tutte le pagine sono state testate con il validatore fornito da w3.org, la verifica non ha segnalato nessun problema in nessuna pagina, con l'eccezione di un warning "Using Direct Input mode: UTF-8 character encoding assumed" a causa dell'utilizzo della modalità di input diretto del codice HTML.\\
-				Sono state testate anche la pagina di login, la pagina di database non raggiungibile e la pagina di errore di input, tutte con esito positivo.
+				Tutte le pagine sono state testate con il validatore fornito da w3.org, la verifica non ha segnalato nessun problema in nessuna pagina.\\
+				Sono state testate anche la pagina di login, la pagina di database non raggiungibile e la pagina di errore di input, tutte con esito positivo.\\
+				Il validatore è accessibile all'indirizzo \url{https://validator.w3.org/}.\\
+				NON FATTO
 			\subsection{W3C CSS Validator w3.org}
-				Tutti gli stili css sono stati testati con il validatore fornito da w3.org, compreso quelli di stampa, e non sono stati rilevati errori.\\
-				Validando il file \textit{style.css} viene generato un warning in linea 55, relativamente alla proprità \textit{-webkit-appearance:none;}. È stata inserita in quanto su dispositivi mobile Apple e browser safari, gli input di tipo submit non accettano lo stile assegnato tramite CSS ma utilizzano lo stile nativo. Tale proprità è ignorata da tutti i browser eccetto safari ed è per questo motivo che viene segnalato il warning dal validatore.
+				Sia lo stile css del sito web su browser che quello di stampa sono stati testati con il validatore fornito da w3.org e non sono stati rilevati errori.\\
+Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-validator/validator}.\\
 			\subsection{Vamola validator}
 				Uno strumento utilizzato per la verifica automatica dell'accessibilità è stato Vamola, presente all'indirizzo \url{www.validatore.it/vamola_validator/checker/index.php}.\\
-				Come impostazione è stato utilizzato "WCAG 2.0 (Level AAA)", tutti i potenziali problemi che vengono segnalati raccolgono tutti elementi che il validatore non sa come controllare e quindi viene richiesta una supervisione umana, come ad esempio ogni alt.\\
-				Nessun errore è stato rilevato.
-			\subsection{WAVE Accessibility Extension}
-				Un altro strumento utilizzato per la verifica dell'accessibilità è stato WAVE, disponibile per il browser Firefox all'indirizzo \url{https://addons.mozilla.org/it/firefox/addon/wave-accessibility-tool}, del quale esiste anche una versione per Google Chrome sul relativo store.\\
-				Il plugin ha segnalato alcuni warning riguardanti gli alt, che richiedevano un controllo manuale, e alcuni warning relativi ai furigana rappresentati con una font non molto grande, ma che secondo una nostra analisi manuale è ritenuto sufficientemente grande in quanto supplementare alla lettura.\\
-				Un errore segnalato riguarda una label mancante per un input nella pagina di modifica delle news, ma in quel caso l'input è nascosto dall'utente essendo l'indicazione di quale articolo si sta modificando, quindi anche nel caso di uno screen reader non verrebbe visualizzato, per queste motivazioni una label risulterebbe inappropriata.
-			\subsection{Web Accessibility Toolbar (WAT)}
-				Il sito è stato testato su Internet Explorer 11 utilizzato WAT.\\
-				Purtroppo il plugin non è aggiornato e presenta molti strumenti inutilizzabili, la versione corrente è stata scaricata da:\\ \url{https://github.com/ThePacielloGroup/WebAccessibilityToolbar}.\\
-				Uno strumento funzionante molto utile è Juicy Studio Luminosity Analyzer, che ha analizzato il contrasto dei colori, fornendo come indice minimo 7.07, sufficiente per avere la certificazione WCAG 2.0 AAA.\\
-
-			\subsection{Total Validator}
-				Per permettere la verifica delle pagine di amministrazione a Total Validator Basic è stata temporaneamente rimossa la verifica del login.\\
-				Un warning sollevato in ogni pagina è riguardante il link interno per saltare al contenuto, precisamente "W874 Add a skip navigation link as the first link on the page", che viene sollevato in quanto il testo non è "Skip to main content", bensì "Vai al contenuto", in quanto il sito è mirato ad utenti italiani.\\
-				Da precisare che oltre alla presenza del link per andare al contenuto è disponibile anche un link per tornare ad inizio pagina, inserito per facilitare la navigazione da dispositivi tascabili.\\
-				Altri warning presenti sono in riferimento ad immagini che presentano alt vuoti, in tutti i casi segnalati si tratta di immagini puramente decorative oppure che non veicolano una informazione che può essere descritta. Un esempio sono alcune copertine dei capitoli del videogioco, che presentano motivi e colori imprecisati oppure illustrazioni senza un  significato, utilizzate come riempitivo per la copertina.\\
-				Per finire è stato sollevato lo stesso errore riguardante la label sottolineato da WAVE, ma essendo il campo nascosto e quindi non prevedendo una iterazione da parte dell'utente non c'è motivo per indicarlo.\\
-
-			\subsection{Vischeck}
-			\`{E} stato utilizzato il sito web \url{vischeck.com} per controllare i colori in caso di daltonismo, che non ha evidenziato particolari problemi alla individuazione della suddivisione del sito o dei contenuti.
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.8\linewidth]{images/daltonismo}
-				\caption{Risultati ottenuti su Vischeck}
-			\end{figure}
-			
-			\subsection{VEGA}
-			\`{E} stato utilizzato lo strumento VEGA scaricabile gratuitamente da \url{subgraph.com/vega} per controllare eventuali errori di sicurezza all'interno del sito.\\
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.8\linewidth]{images/VEGA}
-				\caption{Risultati ottenuti su VEGA}
-			\end{figure}
-			Dopo alcune correzioni apportate sono rimaste presenti delle problematiche, ma sono dettate dalla configurazione attuale di XAMPP configurato per essere utilizzato in un ambiente di sviluppo e non di produzione.
-
-		\section{Test su diversi dispositivi}
-			Il sito è stato testato su varie macchine e sistemi operativi. Nelle sezioni seguenti verranno elencati assieme ai browser e alle risoluzioni testate.
-				\subsection{Windows 10}
-				Sono state testate le risoluzioni di 720p e 1800p con i browsers:
+				Come impostazione è stato utilizzato "WCAG 2.0 (Level AAA)", tutti i potenziali problemi che vengono segnalati riguardano elementi che il validatore non sa come controllare e quindi viene richiesta un controllo da un umano.
+				L'unico errore segnalato riguarda la tabella delle statistiche presente nella Home in quanto il validatore pensa che la tabella sia stata creata a fini di layout e quindi segnala come errore la presenza del tag "summary" e dell'attributo "caption", entrambi elementi molto importanti per l'accessibilità del sito in particolare verso gli utenti non vedenti.\\
+	\section{Prova di disversi dispositivi e browser}
+		\subsection{Test su diversi motori di ricerca}
+			Il sito è stato testato alle risoluzioni di 720p e 1366p sui seguenti browser:
 				\begin{itemize}
 					\item Google Chrome 71
-					\item Edge
-					\item Internet Explorer 11
+					\item Microsoft Edge
+					\item Baidu
 					\item Firefox Quantum 64
 				\end{itemize}
-				Non sono state riscontrate grosse variazioni grafiche fra i vari browsers moderni in Windows 10. Ci sono leggere variazioni cromatiche nel gradiente tra i browsers Firefox 64 e Google Chrome 71. Queste variazioni sono impercettibili e non influenzano minimamente l'uso del sito.\\
-				Anche Microsoft Edge risponde molto bene: Tutti i colori e le grandezze delle immagini, la formattazione del menù, etc... sono come nei precedenti browsers. Nessun appunto da fare qui.
-				In internet explorer 11 si vede solo il type file nell'upload visivamente diverso dagli altri. Non avendoci applicato css particolari è normale. Questo non inficia nell'esperienza utente o nell'accessibilità.
+				Non sono state riscontrate grosse variazioni grafiche fra i vari browsers moderni. I browsers Firefox 64, Google Chrome 71 e Baidu presentano solo variazioni che sono impercettibili e non influenzano minimamente l'uso del sito.\\
+				L'unico difetto riscontrato su Microsoft Edge è che la barra di ricerca non assume lo sfondo bianco presente su Chrome, per il resto non sono state notate grandi differenze.
 				
-				\subsection{GNU/Linux Ubunutu 18.04 LTS}
-				Sono state testate le risoluzioni di 720p e 1800p con i browsers:
-				\begin{itemize}
-					\item Firefox Quantum 64
-					\item Google Chrome 71
-					\item Brave Browser
-				\end{itemize}
-				Durante la fase di test su questa piattaforma non sono emerse problematiche a livello di compatibilità o visibilità nonstante le alte risoluzioni. Anche qui alcune tonalità nel gradiente del menù risultano leggermente diverse tra Firefox e Google Chrome.
-
 				\subsection{Dispositivi mobili}
 				Di seguito sono elencati i vari dispositivi mobili sui quali il sito è stato testato
 				\begin{itemize}
-				\item Huwawei P9 con il browser stock e google chrome mobile, la risoluzioe del dispositivo è 1080p 
-				\item AGGIUNGERE ALTRI DISPOSITIVI 
+				\item Huwawei P9 la cui risoluzione è di 1920x1080p
+				\item Xiaomi Redmi Note 5 la cui risoluzione è di 2160x1080p
+				\item Ipad Pro la cui è risoluzione di 2224x1668p
 				\end{itemize}
 			
 				In tutti i dispositivi testati il sito si adatta perfettamente alla risoluzione dello schermo e non sono presenti problemi di compatibilità, neppure con JavaScript.\\
+				\subsection{Test con diverse impostazioni utente}
+				Il sito è stato testato con multiple impostazioni utente, sono state provate risoluzioni che vanno dai 300p fino a 1920p senza presentare problemi di visualizzazione. Oltre alle dimensioni dello schermo è stato testato anche il sito con diverse dimensioni dei caratteri garantendo sempre una buona navigabilità anche grazie all'uso dell'unità di misura "em" per impostare le dimensioni degli elementi e la loro posizione all'interno della pagina. E' stata presa in considerazione anche la possibilità che un utente abbia bloccato Javascript e nonostante questo il sito rimane comunque facilmente navigabile senza rendendo impercettibile l'assenza di Javascript.
 
 	\chapter{Ambiguità incontrate e scelte intraprese}
 		\section{Descrizione della sessione}

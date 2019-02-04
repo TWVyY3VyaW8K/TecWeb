@@ -18,6 +18,7 @@
   <ul>
     <?php
       session_start();
+      require_once "functions.php";
       if(isset($_POST['logOut'])){//log out request
         unset($_SESSION['Username']);
         if(strstr($_SERVER['HTTP_REFERER'], "upload.php") || strstr($_SERVER['HTTP_REFERER'], "editProfile.php") || strstr($_SERVER['HTTP_REFERER'], "likedItems.php") ||strstr($_SERVER['HTTP_REFERER'], "userItems.php")  )
@@ -41,7 +42,9 @@
 
     <?php
       if(isset($_SESSION['Username'])){
-        echo '<li class="<?php if(($page)=="upload.php")echo "activeMenuItem";">';
+        ?>
+        <li class=" <?php if(($page)=="upload.php")echo "activeMenuItem";?>">
+        <?php
         if(($page)!="upload.php")echo '<a href="upload.php">Upload</a>';
         else echo '<div class="notClickable">Upload</div>';
         echo '</li>';
@@ -52,7 +55,9 @@
     <?php
       //Se l'utente è loggato allora può vedere i suoi preferiti
       if(isset($_SESSION['Username'])){
-        echo ' <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";">';
+        ?>
+        <li class=" <?php if(($page)=="likedItems.php")echo "activeMenuItem";?>">
+        <?php
         if(($page)!="likedItems.php")
           echo '<a href="likedItems.php">Liked Images</a>';
         else
@@ -66,7 +71,9 @@
     <?php
       //Se l'utente è loggato allora può vedere le sue immagini
       if(isset($_SESSION['Username'])){
-        echo ' <li class="<?php if(($page)=="likedItems.php")echo "activeMenuItem";">';
+        ?>
+        <li class=" <?php if(($page)=="userItems.php")echo "activeMenuItem";?>">
+        <?php
         if(($page)!="userItems.php")
           echo '<a href="userItems.php">Your Images</a>';
         else
@@ -81,7 +88,7 @@
     <li>
       <form method="get" action="gallery.php">
         <div class="inputSearch">
-            <input type="text" name="gallerySearch" />
+            <input type="text" name="gallerySearch" title="Search Button" />
             <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
         </div>
       </form>
@@ -177,7 +184,7 @@
       if($page=="editProfile.php")
           echo "EDIT PROFILE";
       if($page=="viewArtwork.php")
-          echo '<a href="'.$_SERVER['HTTP_REFERER'].'">GALLERY</a> >> '.$_GET['Title'];
+          echo '<a href="'.saveGalleryParameters().'">GALLERY</a> >> '.$_GET['Title'];
 	  if($page=="404.php")
           echo "PAGE NOT FOUND";
     ?>

@@ -8,7 +8,7 @@
     <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" media="handheld, screen" href="Style/style.css"/>
-    <link rel="stylesheet" href="Style/print-style.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
     <script type="text/javascript" src="script.js" ></script>
     <title>Artbit</title>
 </head>
@@ -25,12 +25,9 @@
             galleryImageNumberFromUrl();
         }
     ?>
-    <div id="imgLoader" class="image-loader display-none">
-        <img src="/Images/eclipse.svg">
-    </div>
     <div class="gallery container1024 fullScreenHeight" id="content">
         <?php $mostraPagination=FALSE; $j=0;?>
-        <ul class="clearfix galleryBoard">
+        <div class="clearfix galleryBoard">
             <?php
                 if(isset($_SESSION['Username'])){
                     //connecting to db
@@ -61,7 +58,7 @@
                 }
             ?>
             
-        </ul> 
+            </div> 
         <?php
             printPagination($mostraPagination,$j,$_SESSION['pagNum'.ucfirst(pathinfo($_SERVER['PHP_SELF'], PATHINFO_FILENAME))],basename($_SERVER['PHP_SELF']));
         ?>
