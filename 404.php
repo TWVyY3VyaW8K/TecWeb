@@ -2,14 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html, charset=utf-8" />
+  <meta http-equiv="Content-Type" content="application/xhtml; charset=UTF-8"/>
   <meta name="description" content="Online artwork database"/>
   <meta name="keywords" content="artwork,picture,image,database"/>
   <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="Style/style.css"/>
- <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
-  <title>404 Page Not Found ArtBit</title>
+  <meta name="title" content="404 Page Not Found - Artbit"/>
+  <meta name="language" content="english en"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="Style/style.css" media="handheld, screen"/>
+  <link rel="stylesheet" type="text/css" href="Style/print.css" media="print" />
+  <script type="text/javascript" src="script.js" ></script>
+  <link rel="icon" type="image/png" href="Images/logo.png"/>
+  <title>404 Page Not Found - Artbit</title>
 </head>
 <body>
 	<?php require_once "header.php";?>

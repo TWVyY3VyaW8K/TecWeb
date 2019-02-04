@@ -2,16 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <meta http-equiv="Content-Type" content="application/xhtml; charset=UTF-8"/>
     <meta name="description" content="Online artwork database"/>
     <meta name="keywords" content="artwork,picture,image,database"/>
     <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="Style/style.css" media="handheld, screen"/>
-    <link rel="stylesheet" href="Style/print.css" type="text/css" media="print" />
+    <meta name="title" content="Gallery - Artbit"/>
+    <meta name="language" content="english en"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="Style/style.css" media="handheld, screen"/>
+    <link rel="stylesheet" type="text/css" href="Style/print.css" media="print" />
     <script type="text/javascript" src="script.js" ></script>
-    <title>Artbit</title>
+    <link rel="icon" type="image/png" href="Images/logo.png"/>
+    <title>Gallery - Artbit</title>
 </head>
 
 <body onload="scrollFunction(); scrollToImage();" >
