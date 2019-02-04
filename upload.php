@@ -11,7 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
   <link rel="stylesheet" type="text/css" href="Style/style.css" media="handheld, screen"/>
   <link rel="stylesheet" type="text/css" href="Style/print.css" media="print" />
-  <script type="text/javascript" src="script.js" ></script>
   <link rel="icon" type="image/png" href="Images/logo.png"/>
   <title>Upload - Artbit</title>
 </head>
@@ -110,7 +109,7 @@
             <label for="title">Title (Max <span id="titleCount">0</span>/20 characters):
               <?php if(isset($title) && strlen($title)===0)echo '(MUST BE FILLED)';?>
             </label>
-            <input id="title" type="text" name="title" maxlength="20" onKeyUp="charCountTitle(this)" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
+            <input id="title" type="text" name="title" maxlength="20" <?php if(isset($_POST['title']))echo 'value="'.$_POST['title'].'"'?>/>
 
             <label for="category">Category:</label>
             <select id="category" name="category">
@@ -136,5 +135,6 @@
         </form>
       </div>
     <?php require_once "footer.html"?>
+    <script type="text/javascript" src="script.js" ></script>
 </body>
 </html>
