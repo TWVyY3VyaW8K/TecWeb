@@ -133,22 +133,14 @@ document.getElementById('title').onkeyup = function(){
 	//document.getElementById('titleCount').innerHTML =elemento.value.length;
 	var tmp = document.getElementById('title');
 	document.getElementById('titleCount').innerHTML = tmp.value.length;
-	if(tmp.value.length>20)
-	{
-		alert("Ciao EasterEg");
-	}
 };
-/*function charCountTitle(elemento){//count char in upload title
-	document.getElementById('titleCount').innerHTML =elemento.value.length;
-	if(elemento.value.length>20)
-	{
-		alert("Ciao EasterEg");
-	}
-}
-*/
-function charCountDescription(elemento){//count char in upload description
-	document.getElementById('descriptionCount').innerHTML =elemento.value.length;
-}
+
+document.getElementById('description').onkeyup = function(){
+	//document.getElementById('titleCount').innerHTML =elemento.value.length;
+	var tmp = document.getElementById('description');
+	document.getElementById('descriptionCount').innerHTML = tmp.value.length;
+};
+
 function validateEditForm(){//edit profile form validation
 	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	 var valid=true;

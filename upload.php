@@ -125,7 +125,8 @@
             <label for="description">Description (Max <span id="descriptionCount">0</span>/1000 characters):
               <?php if(isset($description) && strlen($description)===0)echo '(MUST BE FILLED)';?>
             </label>
-            <textarea id="description" name="description" rows="2" cols="1" onKeyUp="charCountDescription(this)" ><?php echo($description)?></textarea>
+            <textarea id="description" name="description" rows="2" cols="1"><?php echo($description)?></textarea>
+            <!-- <textarea id="description" name="description" rows="2" cols="1" onKeyUp="charCountDescription(this)" ><?php echo($description)?></textarea> -->
 
             <label for="artwork">Artwork (Max 2Mb):</label>
             <input id="artwork" type="file" name="artwork" accept=".png, .jpg, .jpeg" />
