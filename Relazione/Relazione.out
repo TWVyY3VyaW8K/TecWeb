@@ -1,0 +1,55 @@
+\BOOKMARK [0][-]{chapter.1}{Abstract}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Installazione}{}% 2
+\BOOKMARK [0][-]{chapter.3}{Progettazione}{}% 3
+\BOOKMARK [1][-]{section.3.1}{Analisi della classe di utenza}{chapter.3}% 4
+\BOOKMARK [2][-]{subsection.3.1.1}{Descrizione della sezione}{section.3.1}% 5
+\BOOKMARK [2][-]{subsection.3.1.2}{Analisi dell'utenza}{section.3.1}% 6
+\BOOKMARK [1][-]{section.3.2}{Progettazione della base informativa}{chapter.3}% 7
+\BOOKMARK [2][-]{subsection.3.2.1}{Contenuti statici}{section.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.2.2}{Contenuti dinamici}{section.3.2}% 9
+\BOOKMARK [2][-]{subsection.3.2.3}{Contenuti dinamici accessibili soltanto agli utenti autenticati}{section.3.2}% 10
+\BOOKMARK [1][-]{section.3.3}{Strutturazione del sito}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.3.1}{Impaginazione}{section.3.3}% 12
+\BOOKMARK [0][-]{chapter.4}{Realizzazione}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Descrizione della sessione}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.2}{Scelte tecniche}{chapter.4}% 15
+\BOOKMARK [2][-]{subsection.4.2.1}{XHTML1.1}{section.4.2}% 16
+\BOOKMARK [2][-]{subsection.4.2.2}{JavaScript}{section.4.2}% 17
+\BOOKMARK [2][-]{subsection.4.2.3}{PHP}{section.4.2}% 18
+\BOOKMARK [1][-]{section.4.3}{Suddivisione di struttura, presentazione e comportamento}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.3.1}{Parte utente}{section.4.3}% 20
+\BOOKMARK [2][-]{subsection.4.3.2}{Parte amministratore}{section.4.3}% 21
+\BOOKMARK [0][-]{chapter.5}{Accessibilit\340}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Descrizione della sessione}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Distribuzione dell'informazione}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.3}{Ancora}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.4}{Linguaggio}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.5}{Skip Men\371 Button}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.6}{Breadcumbs}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.7}{Form}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.8}{Tabelle}{chapter.5}% 30
+\BOOKMARK [0][-]{chapter.6}{Validazione e test}{}% 31
+\BOOKMARK [1][-]{section.6.1}{Descrizione della sessione}{chapter.6}% 32
+\BOOKMARK [1][-]{section.6.2}{Validazione con test automatici}{chapter.6}% 33
+\BOOKMARK [2][-]{subsection.6.2.1}{Markup Validation Service w3.org}{section.6.2}% 34
+\BOOKMARK [2][-]{subsection.6.2.2}{W3C CSS Validator w3.org}{section.6.2}% 35
+\BOOKMARK [2][-]{subsection.6.2.3}{Vamola validator}{section.6.2}% 36
+\BOOKMARK [1][-]{section.6.3}{Prova di disversi dispositivi e browser}{chapter.6}% 37
+\BOOKMARK [2][-]{subsection.6.3.1}{Test su diversi motori di ricerca}{section.6.3}% 38
+\BOOKMARK [2][-]{subsection.6.3.2}{Dispositivi mobili}{section.6.3}% 39
+\BOOKMARK [2][-]{subsection.6.3.3}{Test con diverse impostazioni utente}{section.6.3}% 40
+\BOOKMARK [0][-]{chapter.7}{Ambiguit\340 incontrate e scelte intraprese}{}% 41
+\BOOKMARK [1][-]{section.7.1}{Descrizione della sessione}{chapter.7}% 42
+\BOOKMARK [1][-]{section.7.2}{Utilizzo della lingua straniera}{chapter.7}% 43
+\BOOKMARK [1][-]{section.7.3}{Dimensione massima per l'upload delle immagini limitata a 2Mb}{chapter.7}% 44
+\BOOKMARK [0][-]{chapter.8}{Funzionalit\340 desiderabili}{}% 45
+\BOOKMARK [1][-]{section.8.1}{Descrizione della sezione}{chapter.8}% 46
+\BOOKMARK [1][-]{section.8.2}{Pagine social network di supporto al sito}{chapter.8}% 47
+\BOOKMARK [1][-]{section.8.3}{Traduzione in pi\371 lingue}{chapter.8}% 48
+\BOOKMARK [1][-]{section.8.4}{Preview dell'immagine e modifica con filtri durante la fase di upload}{chapter.8}% 49
+\BOOKMARK [0][-]{chapter.9}{Suddivisione del lavoro}{}% 50
+\BOOKMARK [1][-]{section.9.1}{Suddivisione per membro del gruppo}{chapter.9}% 51
+\BOOKMARK [2][-]{subsection.9.1.1}{Davide Liu - Matricola 1140717}{section.9.1}% 52
+\BOOKMARK [2][-]{subsection.9.1.2}{Harwinder Singh - Matricola xxxxxxxx}{section.9.1}% 53
+\BOOKMARK [2][-]{subsection.9.1.3}{Pardeep Singh - Matricola xxxxxxx}{section.9.1}% 54
+\BOOKMARK [2][-]{subsection.9.1.4}{Daniele Bianchin - Matricola 1122996}{section.9.1}% 55
