@@ -41,13 +41,7 @@ CREATE TABLE `artisti` (
 --
 
 INSERT INTO `artisti` (`Username`, `Password`, `Nome`, `Cognome`, `Email`) VALUES
-('admin', '$2y$10$XocNeVGpSkoY7wVjtEw11.TCx6fUpF439lCt.EZyrMzU2U3p1RxyC', 'admin', 'admin', 'davide.liu@studenti.unipd.it'),
-('Cheryl', '$2y$10$TB8ps4by6WrOMTK3E.uFH.mpAtkNAyZEtZFpIdVZZkzl42o4spj5C', 'Ruiting', 'Liu', 'davide97ls@gmail.com'),
-('Cloe', '$2y$10$QWwsFAHZ5OyD32eLZt7GbOpIC2qYhk.RWgi/5ofb16R9fHPuVcqIm', 'Deng', 'Rong', 'davide97ls@gmail.com'),
-('Dolores', '$2y$10$YDAtrTNpU9.4uLjbZEoUjuKqXxzIuN1L53nbgWfFUT//jSv2FKuPG', 'Sun', 'Yue', 'davide97ls@gmail.com'),
-('Lixue', '$2y$10$N48lubnhys24Bv9XHmmd4eFTMzvG.oYOJCMcMeAMkDzlsNe671Wcu', 'Lixue', 'Liu', 'davide97ls@gmail.com'),
-('Shenlong', '$2y$10$LwjQDaWpTBRTXrQ9maOoGeCBCrYEBOfdiAqyV2S0vIZMY2/L3cdlm', 'Davide', 'Liu', 'davide97ls@gmail.com'),
-('Tencent', '$2y$10$RSXLSBbiy/MNEb0cybjYPu.5Y7dOlzyarSLJLtGM2z68dTQz4Ka4u', 'Ma', 'Huateng', 'davide97ls@gmail.com');
+('admin', '$2y$10$XocNeVGpSkoY7wVjtEw11.TCx6fUpF439lCt.EZyrMzU2U3p1RxyC', 'admin', 'admin', 'davide.liu@studenti.unipd.it');
 
 -- --------------------------------------------------------
 
@@ -67,10 +61,6 @@ CREATE TABLE `commenti` (
 -- Dumping data for table `commenti`
 --
 
-INSERT INTO `commenti` (`ID`, `Opera`, `Utente`, `Creatore`, `Commento`) VALUES
-(1, 'Noctis Lucis Caelum', 'Cheryl', 'Shenlong', ' Good job!'),
-(2, 'Noctis Lucis Caelum', 'Shenlong', 'Shenlong', ' Thank you!!!');
-
 -- --------------------------------------------------------
 
 --
@@ -86,22 +76,6 @@ CREATE TABLE `likes` (
 --
 -- Dumping data for table `likes`
 --
-
-INSERT INTO `likes` (`Opera`, `Utente`, `Creatore`) VALUES
-('Flowers', 'Tencent', 'Lixue'),
-('Goku UI', 'Cloe', 'Cloe'),
-('Instagram Life', 'Cloe', 'Tencent'),
-('Kefla', 'Cheryl', 'Shenlong'),
-('Kefla', 'Dolores', 'Shenlong'),
-('Noctis Lucis Caelum', 'Cheryl', 'Shenlong'),
-('Noctis Lucis Caelum', 'Cloe', 'Shenlong'),
-('Noctis Lucis Caelum', 'Dolores', 'Shenlong'),
-('Stickers', 'Cheryl', 'Shenlong'),
-('Universe', 'Cheryl', 'Cheryl'),
-('Universe', 'Dolores', 'Cheryl'),
-('Universe', 'Tencent', 'Cheryl'),
-('Wild-fi', 'Dolores', 'Dolores'),
-('Wild-fi', 'Tencent', 'Dolores');
 
 -- --------------------------------------------------------
 
@@ -120,17 +94,6 @@ CREATE TABLE `opere` (
 --
 -- Dumping data for table `opere`
 --
-
-INSERT INTO `opere` (`Nome`, `Descrizione`, `Data_upload`, `Artista`, `Categoria`) VALUES
-('Flowers', 'Flowers field.', '2019-01-08 07:10:45', 'Lixue', 'Landscape'),
-('Goku UI', 'Ultra Instinct', '2019-01-08 07:16:39', 'Cloe', 'Portrait'),
-('Instagram Life', 'Instagram Life', '2019-01-08 07:14:16', 'Tencent', 'Others'),
-('Kefla', 'Universe 6 warrior', '2019-01-08 07:05:25', 'Shenlong', 'Fantasy'),
-('Noctis Lucis Caelum', 'Heir apparent to the Lucian throne, Noctis&#039;s trials begin when he sets forth from the crown city in order to wed Lunafreya Nox Fleuret. In combat, he wields spectral weapons which he forges from thin air, a power possessed by those of his royal line.', '2019-01-08 07:04:12', 'Shenlong', 'Fantasy'),
-('Skull', 'The skull', '2019-01-08 07:19:27', 'Cheryl', 'Fantasy'),
-('Stickers', 'Lot of stickers.', '2019-01-08 07:04:36', 'Shenlong', 'Cartoon'),
-('Universe', 'When the radiant morn of creation broke, And the world in the smile of God awoke, And the empty realms of darkness and death Were moved through their depths by his mighty breath, And orbs of beauty and spheres of flame From the void abyss by myriads came, In the joy of youth as they darted away, Through the widening wastes of space to play, Their silver voices in chorus rung, And this was the song the bright ones sung.', '2019-01-08 07:08:48', 'Cheryl', 'Abstract'),
-('Wild-fi', 'Wild-fi', '2019-01-08 07:12:30', 'Dolores', 'Nature');
 
 --
 -- Indexes for dumped tables
