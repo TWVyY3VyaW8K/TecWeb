@@ -67,9 +67,9 @@
 	Il sito è stato anche caricato su Altervista per farlo provare ad un gruppo ristretto di utenti i quali sono stati molto soddisfatti dal prodotto realizzato.
 
 	\chapter{Installazione}
-	Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si può usare il file .sql allegato "database.sql" che genera il database con alcune opere e utenti di default.\\
-	Fra gli utenti inseriti si trova l'ultente admin con password "admin".
+Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si può usare il file .sql allegato "database.sql" che genera il database con con l'utente admin inserito di default con password "admin". All'inizio nel database non sarà presente alcuna opera che potrà essere successivamente aggiunta via upload.\\
 	Successivamente è necessario modificare il file dbConnector.php, presente nella root del sito, indicando i dati per l'accesso al database (HOST\_DB, USER, PASSWD, DATABASE).\\
+	
 	
 	\chapter{Progettazione}
 
@@ -91,7 +91,7 @@
 		Il sito web si pone l'obiettivo di veicolare diversi contenuti, alcuni statici ma la maggior parte sono dinamici generati dagli utenti.\\
 	\subsection{Contenuti statici}
 		\subsubsection{Home}
-		Mostra in primo piano una frase riguardante l'arte, mentre in secondo piano è presente un'immagine digitale realizzata tramite software di elaborazione grafica. Subito sotto è immediatamente visibile una breve spiegazione circa lo scopo del sito. A seguire, dall'alto verso il basso, sono riportati i Top Rated, le Statistiche, le Classifiche ed infine una presentazione dei membri del team di sviluppo.
+		Mostra in primo piano una frase riguardante l'arte, mentre in secondo piano è presente un'immagine digitale realizzata tramite software di elaborazione grafica. Subito sotto è immediatamente visibile una breve spiegazione circa lo scopo del sito. A seguire, dall'alto verso il basso, sono riportati i Top Rated, un pulsante per accedere immediatamente alla Gallery, le Statistiche, le Classifiche ed infine una presentazione dei membri del team di sviluppo. 
 		
 	\subsection{Contenuti dinamici}
 		\subsubsection{Top Rated}
@@ -142,6 +142,9 @@
 		\subsubsection{Visualizzazione e cancellazione delle proprie immagini}
 		Questa sezione mostra le immagini caricate dall'utente, da qui è anche possibile eliminarle tramite l'apposito pulsante "Delete". Un utente accede a questa sezione principalmente per controllare i likes ricevuti dalle proprie immagini e visualizzarne i commenti.
 		
+		\subsubsection{Modifica descrizione immagine}
+		Un utente autenticato ha la possibilità di cambiare la descrizione di una propria immagine tramite il pulsante Edit presente quando si visualizza un' immagine.
+			
 		\subsubsection{Gestione account}
 		Questa pagina permette all'utente di modificare alcuni dei suoi dati personali come nome, cognome, password ed email. L'username non può essere modificato, è univoco e serve per identificare un utente.
 
@@ -149,7 +152,7 @@
 		\subsection{Impaginazione}
 		Il layout del sito è lo stesso sia nella versione mobile che nella versione desktop. I contenuti si adattano in base alle dimensioni dello schermo. Le immagini della Gallery vengono visualizzate una sotto l'altra nella versione mobile, mentre la versione desktop ne mostra quattro nella stessa riga.\\
 		Il menu del sito presenta una navigazione a schede, che nella versione per dispositivi mobili, viene sostituita da un menu ad hamburger. Alcune delle voci del menù sono visualizzabili solo se l'utente è autenticato. Nel caso in cui l'utente sia autenticato il nome utente apparirà nel menù in alto a destra e posizionandocisi sopra con il cursore aprirà un menù a tendina le cui voci servono per gestire l'account o eseguire il logout. Nel caso di menù ad hamburger tutte le voci del menù verranno visualizzate una sotto l'altra.\\
-		Nel footer del sito è semplicemente riportato il nome del sito.
+		Nel footer del sito è riportato il nome del sito più una riga di copyright ed i certificati di validazione CSS e HTML.
 
 	\chapter{Realizzazione}
 		\section{Descrizione della sessione}
@@ -174,10 +177,10 @@
 			\subsubsection{Presentazione}
 			La presentazione della pagina è realizzata tramite file css, il cui file principale è "style.css" il quale viene utilizzato per ogni pagina.\\
 			In caso di dispositivo mobile o tablet vengono utilizzate delle media-query che hanno il compito di far cambiare la presentazione della pagina per meglio adattarla a schermi di dimensioni inferiori.\\
-			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print-style.css" che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. 
+			Per quanto riguarda la stampa è stato creato un nuovo foglio di stile, chiamato "print.css" che rimuove tutti i contenuti non necessari e impagina le informazioni per meglio adattarle a un foglio A4. 
 		
 			\subsubsection{Comportamento}
-			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini e per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto.\\
+			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini, per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto, per eseguire i controlli di validazione del form di Login e Sign Up, per calcolare il numero di caratteri inseriti rispetto al limite di caratteri consentiti quando si compila il form dell'Upload e per implementare il pulsante Top quando si scrolla la pagina.\\
 			Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in oltre vengono anche gestite tutte le funzionalità della Gallery, del Login, del Sign up, dell'Upload, per i commenti, i likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript, come per esempio la lente di ingrandimento per le immagini, non sono essenziali per la navigazione e l'interazione nel sito.
 
 	\subsection{Parte amministratore}
@@ -203,7 +206,7 @@
 		\section{Skip Menù Button}
 		Anche questo problema riguarda gli utenti non vedenti, risulta difatti molto stressante per un utente doversi ascoltare un intero listino, quindi con la prima pressione del tasto tab compare un link per saltare il menu e quindi passare direttamente al contenuto.
 		\section{Breadcrumbs}
-		Per ogni pagina, immediatamente sotto al menu di navigazione principale, è stato inserito un breadcrumbs per accompagnare l'utente nella navigazione. Questo elemento si presenta statico per ogni pagina ad eccezione della pagina di visualizzazione delle immagini, dove viene anche specificato qual'è il titolo dell'immagine che si sta guardando.
+		Per ogni pagina, immediatamente sotto al menu di navigazione principale, è stato inserito un breadcrumbs per accompagnare l'utente nella navigazione.
 		\section{Form}
 	Per quanto riguarda i form, un problema che molto spesso affligge queste tipologie di componenti è la cancellazione dei loro campi in caso di errori nell' elaborazione della richiesta a causa di campi mancanti o errati, per mantenere un livello di soddisfazione alto, i form sono stati realizzati in modo da non cancellare il loro contenuto al ricaricarsi della pagina.
 		\section{Tabelle}
@@ -218,7 +221,6 @@
 				Tutte le pagine sono state testate con il validatore fornito da w3.org, la verifica non ha segnalato nessun problema in nessuna pagina.\\
 				Sono state testate anche la pagina di login, la pagina di database non raggiungibile e la pagina di errore di input, tutte con esito positivo.\\
 				Il validatore è accessibile all'indirizzo \url{https://validator.w3.org/}.\\
-				NON FATTO
 			\subsection{W3C CSS Validator w3.org}
 				Sia lo stile css del sito web su browser che quello di stampa sono stati testati con il validatore fornito da w3.org e non sono stati rilevati errori.\\
 Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-validator/validator}.\\
@@ -257,7 +259,7 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 
 				\item XSS (Cross-Site Scripting): le XSS sono vulnerabilità che permettono ad un eventuale attaccante di esegure codice javascript attraverso il browser della vittima. Questo tipo di vulnerabilità sono presenti quando un sito non fa un corretto escaping dei caratteri html nell'input dell'utente. Qui, per ovviare il problema, si è scelto di utilizzare la funzione "htmlspecialchars" esposta da PHP per filtrare l'input utente.
 
-				\item Upload Vulnerability: il sito permette di fare l'upload di immagini, ma anche qui potrebbero nascere vulerabilità causate da un improprio utilizzo di questa funzionalità. Bisogna assicurasi che in upload vengano utilizzate solo immagini e non altre tipologie di file che potrebbero nascondere codice malevolo. Qui abbiamo scelto di utilizzare le funzioni "getimagesize" per controllare la grandezza dell'immagine ed assicurasi che sia veramente un'immagine. Infine il sito forza il file caricato ad avere l'estensione "jpg", in modo che il server web non esegua codice, ma veda il file solo come immagine.
+				\item Upload Vulnerability: il sito permette di fare l'upload di immagini, ma anche qui potrebbero nascere vulerabilità causate da un improprio utilizzo di questa funzionalità. Bisogna assicurasi che in upload vengano utilizzate solo immagini e non altre tipologie di file che potrebbero nascondere codice malevolo. Qui abbiamo scelto di utilizzare le funzioni "getimagesize" per controllare la grandezza dell' immagine ed assicurasi che sia veramente un'immagine. Infine il sito forza il file caricato ad avere l'estensione "jpg", in modo che il server web non esegua codice, ma veda il file solo come immagine.
 
 				\item Type juggling: questo tipo di vulnerabilità è sconosciuta alla maggior parte dei programmatori PHP, ma è una realtà molto presente nei siti scritti con questo linguaggio. PHP non è un liguaggio strong typed e l'operatore di uguaglianza "==" non ha lo stesso significato che ha negli altri linguaggi. L'unione di queste due paricolarità può sfociare in vulerabilità di type juggling/confusion. Nel sito tutte le comparazioni con input dell'utente sono fatte con l'operatore di uguaglianza "===".
 
@@ -276,6 +278,8 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 				Essendo che il successo del sito è basato sul numero di utenti è stato ritenuto fondamentale non escludere gli utenti stranieri.
 		\section{Dimensione massima per l'upload delle immagini limitata a 2Mb}
 				Nella schermata di Upload è possibile caricare immagini di dimensione massima di 1Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini sul server dell'università.\\
+		\section{Scelte estetiche}
+				Essendo il sito un basato su opere d'arte ed immagini è stato fondamentale dare una grafica gradevole agli elementi presenti nelle pagine. In particolare, il menù e le tabelle sono stati colorati con un colore a gradiente che sfuma tra il verde ed il blu il quale garantisce una buona visibilità alle scritte in bianco delle relative voci. Inoltre, le voci del menù non cambiano colore dopo essere state visitate, questa scelta è stata fatta sia per dare più eleganza al sito risultando più bello da vedere sia per il fatto che nel menù non sono presenti molte voci, ma poche ed essenziali rendendo così semplice ed immediata la navigazione.
 			
 	\chapter{Funzionalit\`{a} desiderabili}
 		\section{Descrizione della sezione}
@@ -301,12 +305,14 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 		\item Menù per desktop
 		\item Definizione dello stile
 		\item Classifiche e statistiche
-		\item Test su sistema Windows
+		\item Test su diversi Browser
 		\item Test su dispositivi hardware di diverse
 		 dimensioni
 		\item Test con diverse impostazioni utente
 		\item Controlli in PHP nel form per l'upload
-		\item Validazione
+		\item Validazione CSS
+		\item Test su sistema Windows
+		\item Controllo accessibilità
 	\end{itemize}
 	\subsection{Harwinder Singh - Matricola 1143265}
 	\begin{itemize}
@@ -323,8 +329,8 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 		\item Miglioramento dello stile
 		\item Funzioni in PHP per interagire col database
 		\item Creazione della struttura del database
-		\item Pulsante di "back" utilizzando Php (far ritornare in automatico l'utente al punto sul quale aveva interrotto la sua navigazione prima di richieder il login)
-		\item Validazione 
+		\item Pulsante di "back" utilizzando PHP (far ritornare in automatico l'utente al punto sul quale aveva interrotto la sua navigazione prima di richieder il login)
+		\item Validazione HTML
 		\item Controllo contrasto colori
 		\item Gestione della sessione Utente
 		\item Controllo accessibilità
@@ -336,21 +342,21 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 		\item Input di ricerca nel menù e nella Gallery
 		\item Pagina "Liked images" e gestione dei likes
 		\item Pulsate "Details" per ogni immagine per indirizzare l'utente nella pagina di visualizzazione dell'immagine 
-		\item Validazione DA FINIRE
-		\item Css per la stampa
+		\item Validazione HTML
+		\item CSS per la stampa
 		\item Test su sistema IOs
 		\item Pagina "Your images" e gestione cancellazione immagini
 	\end{itemize}
 	\subsection{Daniele Bianchin - Matricola 1122996}
 	\begin{itemize}
-		\item correzione della relazione
-		\item correzione bug di sicurezza
+		\item Correzione della relazione
+		\item Correzione bug di sicurezza
 		\item Pagina di visualizzazione dell'immagine
 		\item Gestione dei commenti
 		\item Script JS per funzionalità di lente di ingrandimento sulle immagini
 		\item Creazione database
 		\item Test su sistema Linux
-		\item Test su differenti browser elencati nel capitolo 5
+		\item Paragrafo relativo alla sicurezza nella relazione
 	\end{itemize}
 
 \end{document}
