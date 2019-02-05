@@ -182,6 +182,11 @@ Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si
 			\subsubsection{Comportamento}
 			Il comportamento della pagina è stato gestito tramite JavaScript per implementare la funzionalità di ingrandimento nella visualizzazione delle immagini, per poter saltare la lettura delle voci del menù ed andare direttamente al contenuto, per eseguire i controlli di validazione del form di Login e Sign Up, per calcolare il numero di caratteri inseriti rispetto al limite di caratteri consentiti quando si compila il form dell'Upload e per implementare il pulsante Top quando si scrolla la pagina.\\
 			Sono presenti controlli tramite codice PHP per validare i dati inseriti nei form e mostrare i relativi messaggi di errore, in oltre vengono anche gestite tutte le funzionalità della Gallery, del Login, del Sign up, dell'Upload, per i commenti, i likes ed il menù, compresa la gestione del menù ad hamburger nel mobile. Se Javascript dovessere essere disabilitato l'esperienza utente non verrebbe influenzata negativamente in quanto le funzioni implementate con Javascript, come per esempio la lente di ingrandimento per le immagini, non sono essenziali per la navigazione e l'interazione nel sito.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth]{images/lente}
+				\caption{Funzione lente di ingrandimento usabile solo se Javascript è abilitato}
+			\end{figure}
 
 	\subsection{Parte amministratore}
 		Esiste un utente "admin" il quale, oltre alle normali attività di tutti gli altri utenti, può eliminare le immagini o i commenti nel caso in cui questi non vengano ritenuti appropriati. Nella sezione "Your images" può visualizzare le immagini di tutti gli utenti come se fossero le proprie.
@@ -220,9 +225,19 @@ Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si
 			\subsection{Markup Validation Service w3.org}
 				Tutte le pagine sono state testate con il validatore fornito da w3.org e la verifica non ha segnalato nessun errore in nessuna pagina.\\
 				Il validatore è accessibile all'indirizzo \url{https://validator.w3.org/}.\\
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth]{images/validazione_html}
+				\caption{Risultati validazione html}
+			\end{figure}
 			\subsection{W3C CSS Validator w3.org}
 				Sia lo stile css del sito web su browser che quello di stampa sono stati testati con il validatore fornito da w3.org e non sono stati rilevati errori.\\
 Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-validator/validator}.\\
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth]{images/validazione_css}
+				\caption{Risultati validazione html}
+			\end{figure}
 			\subsection{Vamola validator}
 				Uno strumento utilizzato per la verifica automatica dell'accessibilità è stato Vamola, presente all'indirizzo \url{www.validatore.it/vamola_validator/checker/index.php}.\\
 				Come impostazione è stato utilizzato "WCAG 2.0 (Level AAA)", tutti i potenziali problemi che vengono segnalati riguardano elementi che il validatore non sa come controllare e quindi viene richiesta un controllo da un umano.
@@ -242,7 +257,7 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 				\subsection{Dispositivi mobili}
 				Di seguito sono elencati i vari dispositivi mobili sui quali il sito è stato testato
 				\begin{itemize}
-				\item Huwawei P9 la cui risoluzione è di 1920x1080p
+				\item Huawei P9 la cui risoluzione è di 1920x1080p
 				\item Xiaomi Redmi Note 5 la cui risoluzione è di 2160x1080p
 				\item Ipad Pro la cui è risoluzione di 2224x1668p
 				\end{itemize}
@@ -250,6 +265,16 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 				In tutti i dispositivi testati il sito si adatta perfettamente alla risoluzione dello schermo e non sono presenti problemi di compatibilità, neppure con JavaScript.\\
 				\subsection{Test con diverse impostazioni utente}
 				Il sito è stato testato con multiple impostazioni utente, sono state provate risoluzioni che vanno dai 300p fino a 1920p senza presentare problemi di visualizzazione. Oltre alle dimensioni dello schermo è stato testato anche il sito con diverse dimensioni dei caratteri garantendo sempre una buona navigabilità anche grazie all'uso dell'unità di misura "em" per impostare le dimensioni degli elementi e la loro posizione all'interno della pagina. E' stata presa in considerazione anche la possibilità che un utente abbia bloccato Javascript e nonostante questo il sito rimane comunque facilmente navigabile senza rendendo impercettibile l'assenza di Javascript.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth]{images/small_font}
+				\caption{Sito web visualizzato con Xiaomi Rednote 5 e impostazione caratteri piccola}
+			\end{figure}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth]{images/big_font}
+				\caption{Sito web visualizzato con Xiaomi Rednote 5 e impostazione caratteri grande}
+			\end{figure}
 		\subsection{Aspetti di sicurezza}
 			Ci sono diversi aspetti della sicurezza che bisogna tenere conto quando si costruisce un sito con PHP e MYSQL:
 			\begin{itemize}
