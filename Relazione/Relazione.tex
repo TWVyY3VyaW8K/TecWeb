@@ -60,14 +60,14 @@
 	\chapter{Abstract}
 	Artbit è un progetto di un social network per la condivisione delle proprie immagini e la creazione di una comunità online interessata all'arte (digitale e non).\\
 	L'obiettivo è quello di far interagire il più possibile gli utenti e incentivare la creazione di immagini graficamente piacevoli.\\
-	 Il sito è rivolto principalmente ad un pubblico giovane ed internazionale, per questo è stato sviluppato in inglese e con un interfaccia il più possibile pulita per renderlo facilemente fruibile e garantire una piacevole esperienza di navigazione.\\
+	 Il sito è rivolto principalmente ad un pubblico giovane ed internazionale, per questo è stato scritto in inglese e sviluppato con un interfaccia il più possibile pulita per renderlo facilemente fruibile e garantire una piacevole esperienza di navigazione.\\
 	Nel sito è possibile caricare qualsiasi tipo di immagine, essa può essere sia una semplice foto oppure un'opera d'arte digitale. L'importante è che l'immagine inserita rientri nella giusta categoria e con un'opportuna descrizione che ne spieghi al meglio il contenuto.
 	Esiste un account amministratore che può cancellare qualsiasi commento o immagine nel caso in cui i contenuti non dovessero essere appropriati.\\
 	Infine per incentivare gli utenti ad essere il più attivi possibile sono state aggiunte anche delle classifiche con l'intento di creare una sorta di competizione tra gli utenti iscritti, le classifiche mostrano i primi cinque utenti che hanno ricevuto più likes in totale e quelli che hanno caricato il maggior numero di opere.
 	Il sito è stato anche caricato su Altervista per farlo provare ad un gruppo ristretto di utenti i quali sono stati molto soddisfatti dal prodotto realizzato.
 
 	\chapter{Installazione}
-Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si può usare il file .sql allegato "database.sql" che genera il database con con l'utente admin inserito di default con password "admin". All'inizio nel database non sarà presente alcuna opera che potrà essere successivamente aggiunta via upload.\\
+Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si può usare il file .sql allegato "database.sql" che genera il database con con l'utente admin inserito di default con password "admin". All'inizio nel database non sarà presente alcuna opera ma potrà essere in seguito aggiunta via upload.\\
 	Successivamente è necessario modificare il file dbConnector.php, presente nella root del sito, indicando i dati per l'accesso al database (HOST\_DB, USER, PASSWD, DATABASE).\\
 	
 	
@@ -106,7 +106,7 @@ Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si
 		
 		\subsubsection{Gallery}
 		E' una delle sezioni più importanti di tutto il sito perchè è qui che vengono mostrati tutti i contenuti.\\
-		Ogni pagina della Gallery mostra otto immagini le quali possono essere sfogliate tramite una paginazione posta infondo. E' possibile filtrare le immagini per categoria utilizzando gli appositi pulsanti, oppure, utilizzando la barra di ricerca, si possono filtrare i contenuti in base al nome dell'autore o secondo alcune parole chiave presenti nella descrizione. E' inoltre possibile scegliere diverse tipologie di ordinamento in modo da per mostrare per prime le immagini che hanno ottenuto più likes oppure quelle inserite più recentemente. Cliccando sul pulsante "Details", posto sotto la didascalia di ogni immagine, si accede ad una nuova pagina che ne mostra i dettagli. Lo stesso si può fare anche cliccando direttamente sulla miniatura.
+		Ogni pagina della Gallery mostra otto immagini le quali possono essere sfogliate tramite una paginazione posta infondo. E' possibile filtrare le immagini per categoria utilizzando gli appositi pulsanti, oppure, utilizzando la barra di ricerca, si possono filtrare i contenuti in base al nome dell'autore o secondo alcune parole chiave presenti nella descrizione. E' inoltre possibile scegliere diverse tipologie di ordinamento in modo da poter mostrare per prime le immagini che hanno ottenuto più likes oppure quelle inserite più recentemente. Cliccando sul pulsante "Details", posto sotto la didascalia di ogni immagine, si accede ad una nuova pagina che ne mostra i dettagli. Lo stesso si può fare anche cliccando direttamente sull'immagine.
 		
 		\subsubsection{Visualizzazione singola immagine}
 		Mostra tutti i dettagli di un immagine ovvero:
@@ -134,7 +134,7 @@ Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si
 
 		\subsubsection{Upload}
 		Questa pagina permette agli utenti di caricate le proprie immagini, sono accettati formati di tipo png o jpg di dimensione massima di 2Mb.\\
-		Dopo l'upload l'immagine viene convertita in formato jpeg tramite la funzione PHP "imagejpeg" in modo da facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
+		Dopo l'upload l'immagine viene convertita in formato jpeg tramite la funzione PHP "imagejpeg" per comprimerla ulteriormente e facilitare la gestione delle immagini. Il form mostra anche appropriati messaggi di errore nel caso in cui l'immagine o alcuni campi dati non siano corretti.
 		
 		\subsubsection{Visualizzazione delle immagini a cui è stato messo un likes}
 		Questa sezione mostra le immagini preferite dall'utente, ovvero le immagini le quali l'utente ha messo un like.
@@ -143,7 +143,7 @@ Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si
 		Questa sezione mostra le immagini caricate dall'utente, da qui è anche possibile eliminarle tramite l'apposito pulsante "Delete". Un utente accede a questa sezione principalmente per controllare i likes ricevuti dalle proprie immagini e visualizzarne i commenti.
 		
 		\subsubsection{Modifica descrizione immagine}
-		Un utente autenticato ha la possibilità di cambiare la descrizione di una propria immagine tramite il pulsante Edit presente quando si visualizza un' immagine.
+		Un utente autenticato ha la possibilità di cambiare la descrizione di una propria immagine tramite il pulsante Edit presente quando si visualizzano i dettagli di un' immagine.
 			
 		\subsubsection{Gestione account}
 		Questa pagina permette all'utente di modificare alcuni dei suoi dati personali come nome, cognome, password ed email. L'username non può essere modificato, è univoco e serve per identificare un utente.
@@ -215,11 +215,10 @@ Il sito richiede un database MySql. Per la creazione delle tabelle utilizzate si
 
 	\chapter{Validazione e test}
 		\section{Descrizione della sessione}
-			Questa sezione si occupa di metodo e strumenti con i quali si sono svolti i processi di verica e validazione delle componenti del sito.
+			Questa sezione si occupa di metodi e strumenti con i quali si sono svolti i processi di verica e validazione delle componenti del sito.
 		\section{Validazione con test automatici}
 			\subsection{Markup Validation Service w3.org}
-				Tutte le pagine sono state testate con il validatore fornito da w3.org, la verifica non ha segnalato nessun problema in nessuna pagina.\\
-				Sono state testate anche la pagina di login, la pagina di database non raggiungibile e la pagina di errore di input, tutte con esito positivo.\\
+				Tutte le pagine sono state testate con il validatore fornito da w3.org e la verifica non ha segnalato nessun errore in nessuna pagina.\\
 				Il validatore è accessibile all'indirizzo \url{https://validator.w3.org/}.\\
 			\subsection{W3C CSS Validator w3.org}
 				Sia lo stile css del sito web su browser che quello di stampa sono stati testati con il validatore fornito da w3.org e non sono stati rilevati errori.\\
@@ -277,7 +276,7 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 				In un mondo altamente globalizzato come il nostro è fondamentale che il sito sia interamente in lingua inglese essendo la lingua più conosciuta e la più comune sul web. Ovviamente ciascun utente potrà poi utilizzare liberamente qualsiasi lingua, incluse le lingue che utilizzano caratteri non latini per interagire con il sito come l'aggiunta di commenti e le descrizioni delle immagini.\\
 				Essendo che il successo del sito è basato sul numero di utenti è stato ritenuto fondamentale non escludere gli utenti stranieri.
 		\section{Dimensione massima per l'upload delle immagini limitata a 2Mb}
-				Nella schermata di Upload è possibile caricare immagini di dimensione massima di 1Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini sul server dell'università.\\
+				Nella schermata di Upload è possibile caricare immagini di dimensione massima di 2Mb. Valori di dimensione più reali si aggirano tra i 5Mb fino ai 20Mb per le fotocamere dei cellulari di ultima generazione. La scelta di una dimensione così piccola è stata fatta con lo scopo di ridurre la quantità di memoria utilizzata per memorizzare le immagini sul server dell'università.\\
 		\section{Scelte estetiche}
 				Essendo il sito un basato su opere d'arte ed immagini è stato fondamentale dare una grafica gradevole agli elementi presenti nelle pagine. In particolare, il menù e le tabelle sono stati colorati con un colore a gradiente che sfuma tra il verde ed il blu il quale garantisce una buona visibilità alle scritte in bianco delle relative voci. Inoltre, le voci del menù non cambiano colore dopo essere state visitate, questa scelta è stata fatta sia per dare più eleganza al sito risultando più bello da vedere sia per il fatto che nel menù non sono presenti molte voci, ma poche ed essenziali rendendo così semplice ed immediata la navigazione.
 			
@@ -289,10 +288,10 @@ Il validatore è accessibile all'indirizzo \url{https://jigsaw.w3.org/css-valida
 		Nella maggior parte dei siti moderni è presente un qualche collegamento ad alcune pagine nei social network, nel nostro caso non è stata ritenuto un impiego di tempo produttivo per gli scopi del progetto andare a creare queste pagine social ma sarebbero state utili per aumentare la popolarità del sito.
 
 		\section{Traduzione in più lingue}
-		Essendo il sito rivolto verso un pubblico internazionale e disomogeneo sarebbe stato opportuno creare più versioni del sito in lingue diverse ed inserire nel menù un'opzione per poter cambiare la lingua. Questa funzione esula gli scopi di questo progetto ed inoltre sarebbe stato impossibile per i membri del team senza l'aiuto di una persona esterna in grado di effettuare le traduzioni.
+		Essendo il sito rivolto verso un pubblico internazionale e disomogeneo sarebbe stato opportuno creare più versioni del sito in lingue diverse ed inserire nel menù un'opzione per poter cambiare la lingua. Questa funzione esula gli scopi di questo progetto ed inoltre sarebbe stato impossibile svolgere questo compito per i membri del team senza l'aiuto di una persona esterna in grado di effettuare le traduzioni.
 		
 		\section{Preview dell'immagine e modifica con filtri durante la fase di upload}
-		I social network più moderni offrono la possibilità sia di visualizzare una schermata di preview dell'immagine in modo da capire come verrà visualizzata nella Gallery una volta caricata che di applicare dei filtri all'immagine in modo da renderla più accattivante. Questo non è stato fatto in quanto avrebbe richiesto troppo tempo studiare le tecnologie necessarie per implementare questa funzionalità.
+		I social network più moderni offrono la possibilità sia di visualizzare una schermata di preview dell'immagine in modo da capire come verrà visualizzata nella Gallery una volta caricata, sia di applicare dei filtri all'immagine in modo da renderla più accattivante. Questo non è stato fatto in quanto avrebbe richiesto troppo tempo studiare le tecnologie necessarie per implementare questa funzionalità.
 
 
 	\chapter{Suddivisione del lavoro}
