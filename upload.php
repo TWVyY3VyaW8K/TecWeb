@@ -137,5 +137,6 @@
       </div>
     <?php require_once "footer.html"?>
     <script type="text/javascript" src="script.js" ></script>
+    <script type="text/javascript" src="upload-fun.js" ></script>
 </body>
 </html>

@@ -137,10 +137,10 @@
           <div id="description-comments">
             <div class="descriptionTitle">Description</div>
             <div class="imageInfo">
-              <?php echo '</br>By: <a href="gallery.php?gallerySearch='.$Artist.'">'.$Artist.'</a></br>' ?>
-              Artist: <?php echo $ArtistName; ?></br>
-              Uploaded on: <?php echo $Date; ?></br>
-              Category: <?php echo $Category; ?></br>
+              <?php echo '<br/>By: <a href="gallery.php?gallerySearch='.$Artist.'">'.$Artist.'</a><br/>' ?>
+              Artist: <?php echo $ArtistName; ?><br/>
+              Uploaded on: <?php echo $Date; ?><br/>
+              Category: <?php echo $Category; ?><br/>
               Comments: <?php echo $Comments; ?>
 
               <?php
@@ -156,6 +156,7 @@
                 $url = $_SERVER['REQUEST_URI'];
                 //echo $url;
                 $query = parse_url($url, PHP_URL_QUERY);
+                $lBL = htmlspecialchars("likedBy.php?artist=$Artist&imgName=$Title");
                 if ($query) {
                     $url .= '&lNumI=1';
                 } else {
@@ -164,23 +165,24 @@
                 echo '<div class="wrapper">';
                 echo '<div class="width-15">';
                 if($isLiked == true){
-                  echo '              <a href="'.$url.'"><div class="like-btn like-btn-added"></div></a>';
+                  echo '                <a href="'.htmlspecialchars($url).'" title="give like to '.$Title.' by '.$Artist.'"><span class="like-btn like-btn-added"></span></a>';
                 }else{
-                  echo '              <a href="'.$url.'"><div class="like-btn"></div></a>';
+                    echo '              <a href="'.htmlspecialchars($url).'" title="give like to '.$Title.' by '.$Artist.'"><span class="like-btn"></span></a>';
                 }
                 echo '  </div>';
                 echo '  <div class="width-85">';
-                echo '       <p><a class="customLink" href="likedBy.php?artist='.$Artist.'&imgName='.$Title.'">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</a></p>';
+                echo '       <p><a class="customLink" href="'.$lBL.'" title="Likes of '.$Title.' by '.$Artist.'">Likes: '.getLikesByItem($Artist,$Title)['Result'].'</a></p>';
                 echo '  </div></div>';
-              ?>            </div>
+              ?>            
+              </div>
 
             <div id="main-description">
               <?php
               if(isset($_SESSION['Username']) && ($_SESSION['Username'] === $Artist || strtolower($_SESSION['Username']) === 'admin'))
               {
                 echo "Edit description:<br/>";
-                echo "<form action="."\"viewArtwork.php?Title=".$Title."&Artist=".$Artist."\""." method=\"post\">";
-                echo "<inputfield>";
+                echo "<form action="."\"".htmlspecialchars("viewArtwork.php?Title=".$Title."&Artist=".$Artist)."\" method=\"post\">";
+                echo "<div>";
                 echo "<textarea rows=\"5\" cols=\"30\" name=\"input-description\">";
                 echo $Description;
                 echo "</textarea>";
@@ -189,7 +191,7 @@
                   $descriptionUpdated = false;
                 }
                 echo "<input type= \"submit\" value=\"Edit\" id=\"description-btn\"/>";
-                echo "</inputfield>";
+                echo "</div>";
                 echo "</form>"; 
               }
               else
@@ -200,21 +202,23 @@
           </div>
           <div id="commentSection" class="container1024">
           <div class="comment" id="topComment">
-          <form action=<?php echo "\"viewArtwork.php?Title=".$Title."&Artist=".$Artist."\"" ?> method="post">
-            <input type="hidden" name="UserNotLogged" value="true"/>
-          <?php
-            if($myDb->connected && isset($_SESSION['Username']))
-                echo $_SESSION['Username'];
-              else
-                echo "Login to add a comment.";
-              if(!empty($Error))
-                echo ' ('.$Error.') ';
-           ?>
-           <?php $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : ""; ?>
-           <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
-        <?php
-            echo '<input type="submit" value="Send" id="comment-btn"/>';
-          ?>
+          <form action=<?php echo "\"".htmlspecialchars("viewArtwork.php?Title=".$Title."&Artist=".$Artist)."\"" ?> method="post">
+            <div>
+              <input type="hidden" name="UserNotLogged" value="true"/>
+              <?php
+              if($myDb->connected && isset($_SESSION['Username']))
+                  echo $_SESSION['Username'];
+                else
+                  echo "Login to add a comment.";
+                if(!empty($Error))
+                  echo ' ('.$Error.') ';
+              ?>
+              <?php $en = !isset($_SESSION['Username']) ? "disabled=\"disabled\"" : ""; ?>
+              <textarea name="input-comment" id="texxt" rows="2" cols="10" <?php echo  $en?>> </textarea>
+              <?php
+              echo '<input type="submit" value="Send" id="comment-btn"/>';
+              ?>
+            </div>
           </form>
           </div>
           <?php
@@ -229,15 +233,14 @@
                     echo '<div class="comment">';
                     if(isset($_SESSION['Username'])){
                       if($row['Utente'] === $_SESSION['Username'] || strtolower($_SESSION['Username']) === 'admin')
-                        echo '<div class="delComment"> <a href="viewArtwork.php?Remove='.$row['ID'].'&Title='.$Title.'&Artist='.$Artist.'"> x </a></div>';
+                        echo '<div class="delComment"> <a href="'.htmlspecialchars('viewArtwork.php?Remove='.$row['ID'].'&Title='.$Title.'&Artist='.$Artist).'"> x </a></div>';
                     }
                     echo '<a href="gallery.php?gallerySearch='.$row['Utente'].'">'.$row['Utente'].'</a>';
                     echo ' '.$row['Commento']."</div>";
                   }
                 }
               }
-            ?>
-        </div>
+          ?>
     </div>
   </div>
       <?php require_once "footer.html"?>

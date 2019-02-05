@@ -103,7 +103,7 @@
           echo '<a href="#">'.$_SESSION["Username"].'</a>';
           echo '<div class="account-dropdown-content">';
           echo '<a href="editProfile.php">Edit Profile</a>';
-          echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'">';
+          echo '<form  method="post" action="'.htmlspecialchars($_SERVER['REQUEST_URI']).'">';
           echo '<div><input name="logOut" type="submit" value="LogOut"></input></div>';
           echo '</form>';
           echo '</div>';
@@ -139,7 +139,7 @@
   </div>-->
   <li class="hamburgerMenu">
     <?php
-      echo '<form  method="post" action="'.$_SERVER['REQUEST_URI'].'"><div>';
+      echo '<form  method="post" action="'.htmlspecialchars($_SERVER['REQUEST_URI']).'"><div>';
       if(isset($_POST['menuDropDown'])){
         if($_POST['menuDropDown'] == 'true')
           echo '<input name="menuDropDown" type="hidden" value="false"/>';
