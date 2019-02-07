@@ -49,9 +49,9 @@
             }
 
             if($isLiked == true){
-                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn like-btn-added"></span></a>';
+                echo '              <a href="'.htmlspecialchars($url).'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn like-btn-added"></span></a>';
             }else{
-                echo '              <a href="'.$url.'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn"></span></a>';
+                echo '              <a href="'.htmlspecialchars($url).'" title="give like to '.$imgName.' by '.$artist.'"><span class="like-btn"></span></a>';
             }
             echo '              </div>';
             echo '              <div class="width-85">';
