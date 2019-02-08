@@ -148,7 +148,7 @@
       }else{
         echo '<input name="menuDropDown" type="hidden" value="false"/>';
       }
-      echo '<input type="submit" class="posAbsolute" value=""></input>';
+      echo '<input type="submit" name="hamburgerButton" class="posAbsolute" value=""></input>';
       echo '</div></form>';
     ?>
         <div class="hamburgerMenuContainer<?php if(isset($_POST['menuDropDown']) && $_POST['menuDropDown'] == 'false' )echo " rotate"; ?>">

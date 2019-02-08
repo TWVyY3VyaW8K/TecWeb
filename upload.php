@@ -9,7 +9,7 @@
   <meta name="title" content="Upload - Artbit"/>
   <meta name="language" content="english en"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
-  <link rel="stylesheet" type="text/css" href="Style/style.css" media="handheld, screen"/>
+  <link rel="stylesheet" type="text/css" href="Style/style.css" media="all"/>
   <link rel="stylesheet" type="text/css" href="Style/print.css" media="print" />
   <link rel="icon" type="image/png" href="Images/logo.png"/>
   <title>Upload - Artbit</title>
