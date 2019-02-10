@@ -33,7 +33,8 @@
             galleryDeleteImageNumberFromUrl();
         }
     ?>
-    <div class="gallery fullScreenHeight container1024" id="content">
+    <div class="gallery fullScreenHeight container1024">
+        <?php require_once "artFilters.php"; ?>
         <?php $mostraPagination=FALSE; $j=0;?>
         <div class="clearfix galleryBoard">
             <?php
@@ -41,14 +42,57 @@
                     //connecting to db
                     $myDb= new DbConnector();
                     $myDb->openDBConnection();
+                    $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'none';
                     $result = array();
                     $qrStr = "";
                     if($myDb->connected){
-                        if(strtolower($_SESSION['Username']) === 'admin'){
-                            $qrStr = "SELECT Nome,Artista FROM opere";
-                        }else{
-                            $qrStr = "SELECT Nome,Artista FROM opere WHERE Artista='".strtolower($_SESSION['Username'])."'";
+
+                        $artistB = (strtolower($_SESSION['Username']) === 'admin');
+                        $strToLowArtist = strtolower($_SESSION['Username']);
+                        $artQ = $artistB ? "LIKE '%%'" : "='".$strToLowArtist."' ";
+                        if(isset($gallerySearch)){
+                            if(!isset($galleryCategory) || (isset($galleryCategory) && ($galleryCategory == 'All'))){
+                                $qrStr = "SELECT Artista,Nome FROM opere WHERE Artista ".$artQ." AND (Descrizione LIKE '%".$gallerySearch."%' OR Categoria LIKE '%".$gallerySearch."%' OR Nome LIKE '%".$gallerySearch."%')";
+                                if($orderBy == 'likes'){
+                                    $qrStr = "SELECT Nome, Artista, COUNT(likes.Opera) as Likes FROM opere o LEFT JOIN likes on Nome=Opera and Artista=Creatore
+                                        WHERE Artista ".$artQ." AND (o.Descrizione LIKE '%".$gallerySearch."%' OR o.Categoria LIKE '%".$gallerySearch."%' OR Nome LIKE '%".$gallerySearch."%')
+                                        GROUP BY o.Nome, o.Artista ORDER BY COUNT(likes.Opera) DESC";
+                                }
+                                if($orderBy == 'latestAdded'){
+                                    $qrStr = "SELECT Artista,Nome FROM opere WHERE Artista ".$artQ." AND (Descrizione LIKE '%".$gallerySearch."%' OR Categoria LIKE '%".$gallerySearch."%' OR Nome LIKE '%".$gallerySearch."%') ORDER BY Data_upload DESC";
+                                }
+                            }elseif(isset($galleryCategory) && ($galleryCategory != 'All')){
+                                $qrStr = 'SELECT Artista,Nome FROM opere WHERE Categoria="'.$galleryCategory.'" AND Artista '.$artQ.' AND (Descrizione LIKE "%'.$gallerySearch.'%" OR Nome LIKE "%'.$gallerySearch.'%")';
+                                if($orderBy == 'likes'){
+                                    $qrStr = 'SELECT Nome, Artista, COUNT(likes.Opera) as Likes FROM opere LEFT JOIN likes on Nome=Opera and Artista=Creatore
+                                            WHERE Categoria="'.$galleryCategory.'" AND Artista '.$artQ.' AND (Descrizione LIKE "%'.$gallerySearch.'%" OR Nome LIKE "%'.$gallerySearch.'%")
+                                            GROUP BY Nome, Artista ORDER BY COUNT(likes.Opera) DESC';
+                                }
+                                if($orderBy == 'latestAdded'){
+                                    $qrStr = 'SELECT Artista,Nome FROM opere WHERE Categoria="'.$galleryCategory.'" AND Artista '.$artQ.'  AND (Descrizione LIKE "%'.$gallerySearch.'%" OR Nome LIKE "%'.$gallerySearch.'%") ORDER BY Data_upload DESC';
+                                }
+                            }
+                        }elseif(isset($galleryCategory)){
+                            if($galleryCategory == 'All'){
+                                $qrStr = "SELECT Artista,Nome FROM opere WHERE Artista ".$artQ.";";
+                                if($orderBy == 'likes'){
+                                    $qrStr = "SELECT Nome, Artista, COUNT(likes.Opera) as Likes FROM opere LEFT JOIN likes on Nome=Opera and Artista=Creatore WHERE Artista ".$artQ." GROUP BY Nome, Artista ORDER BY COUNT(likes.Opera) DESC";
+                                }
+                                if($orderBy == 'latestAdded'){
+                                    $qrStr = "SELECT Artista,Nome FROM opere WHERE Artista ".$artQ." ORDER BY Data_upload DESC;";
+                                }
+                            }else{
+                                $qrStr = "SELECT Artista,Nome FROM opere WHERE Artista ".$artQ." AND Categoria='".$galleryCategory."'";
+                                if($orderBy == 'likes'){
+                                    $qrStr = "SELECT Nome, Artista, COUNT(likes.Opera) as Likes FROM opere JOIN likes on Nome=Opera and Artista=Creatore
+                                            WHERE Artista ".$artQ." AND Categoria='".$galleryCategory."' GROUP BY Nome, Artista ORDER BY COUNT(likes.Opera) DESC";
+                                }
+                                if($orderBy == 'latestAdded'){
+                                    $qrStr = "SELECT Artista,Nome FROM opere WHERE Artista ".$artQ." Categoria='".$galleryCategory."' ORDER BY Data_upload DESC;";
+                                }
+                            }
                         }
+
                         $result = $myDb->doQuery($qrStr);
                         if(isset($_SESSION['deleteImage']) && $result){
                             $row = getImageAtPosition($result, $_SESSION['deleteImage']);
