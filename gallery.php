@@ -43,7 +43,7 @@
                         }
 
                     ?>
-                    <button class="btnSearch" type="submit" onclick="deleteCookie('divPagNumber')"><span class="searchIcon"></span></button>
+                    <button class="btnSearch" type="submit"><span class="searchIcon"></span></button>
                 </div>
                 <div class="divCategoryFilter">
                     <p>Categories</p>
