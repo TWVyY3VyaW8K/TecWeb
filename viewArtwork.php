@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
     <head>
-      <meta http-equiv="Content-Type" content="application/xhtml; charset=UTF-8"/>
+      <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8"/>
       <meta name="description" content="Online artwork database"/>
       <meta name="keywords" content="artwork,picture,image,database"/>
       <meta name="author" content="Daniele Bianchin, Pardeep Singh, Davide Liu, Harwinder Singh"/>
