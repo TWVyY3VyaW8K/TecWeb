@@ -27,7 +27,7 @@
             galleryImageNumberFromUrl();
         }
     ?>
-    <div class="gallery container1024">
+    <div class="gallery container1024 fullScreenHeight">
         <?php require_once "artFilters.php"; ?>
 
         <?php $mostraPagination=FALSE; $j=0;?>
