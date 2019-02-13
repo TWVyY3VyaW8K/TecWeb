@@ -34,7 +34,7 @@
                 <div class="divCategoryButtons">
                     <button type="submit" name="galleryCategory" value="All" <?php if(isset($galleryCategory) && $galleryCategory=='All'){echo "class='active'";} ?>>All</button>
                     <button type="submit" name="galleryCategory" value="Landscape" <?php if(isset($galleryCategory) && $galleryCategory=='Landscape'){echo "class='active'";} ?>>Landscape</button>
-                    <button type="submit" name="galleryCategory" value="Fantasy"<?php if(isset($galleryCategory) && $galleryCategory=='Fantasy'){echo "class='active'";} ?>>Fantasy</button>
+                    <button type="submit" name="galleryCategory" value="Fantasy" <?php if(isset($galleryCategory) && $galleryCategory=='Fantasy'){echo "class='active'";} ?>>Fantasy</button>
                     <button type="submit" name="galleryCategory" value="Abstract" <?php if(isset($galleryCategory) && $galleryCategory=='Abstract'){echo "class='active'";} ?>>Abstract</button>
                     <button type="submit" name="galleryCategory" value="Cartoon" <?php if(isset($galleryCategory) && $galleryCategory=='Cartoon'){echo "class='active'";} ?>>Cartoon</button>
                     <button type="submit" name="galleryCategory" value="Portrait" <?php if(isset($galleryCategory) && $galleryCategory=='Portrait'){echo "class='active'";} ?>>Portrait</button>
